@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8" />
+    <title>Doc</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" ></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+
+</head>
+
+<body>
+
+<div th:replace="layout/layout :: header"></div>
+<div th:replace="layout/layout :: navbar"></div>
+
+
+
+<section class="container">
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Главная</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Врачи</li>
+        </ol>
+    </nav>
+</section>
+
+
+
+<div class="container ">
+
+  <div class="analizHead">
+    <h1 class="analizText"><b>Сдать анализ</b></h1>
+    <div div>Здесь будет поиск</div>
+  </div>
+
+  <div class="analizCenter">
+    <div class="analizTable">
+      <button class="analizBtn"><i class="bi bi-file-earmark-medical"></i>Общие анализы</button>
+      <button class="analizBtn"><i class="bi bi-capsule"></i></i>Гормональные анализы</button>
+      <button class="analizBtn"><i class="bi bi-droplet-half"></i>Биохимические исследования</button>
+    </div>
+
+    <div class="analizList">
+
+      <div class="analizComponent">
+      <div class="analizName">
+        <small class="smallGreyText">№324</small>
+        <h6 class="strong">АК (Общий анализ крови) </h6>
+        <small class="blueText"> <i class="bi bi-calendar-check"></i>&nbsp; до 3-х календарных дней</small>
+      </div>
+      <div class="analizPrice">
+        <h5 class="baseColor strong">3 400 тг.</h5>
+        <button class="analizPriceButton blueText">+</button>
+      </div>
+    </div>
+
+
+    <div class="analizComponent">
+      <div class="analizName">
+        <small class="smallGreyText">№132</small>
+        <h6><strong>Определение РНК SARS-CoV-2 в мазке со слизистой носоглотки и/или ротоглотки </strong></h6>
+        <small class="blueText"> <i class="bi bi-calendar-check"></i>&nbsp; до 6  календарных дней</small>
+      </div>
+      <div class="analizPrice">
+        <h5 class="baseColor"><strong>12 900 тг.</strong></h5>
+        <button class="analizPriceButton blueText">+</button>
+      </div>
+    </div>
+
+
+    <div class="analizComponent">
+      <div class="analizName">
+        <small class="smallGreyText">№1239</small>
+        <h6><strong>Фактор VIII, активность % (Factor VIII, FVIII, Activity %)</strong></h6>
+        <small class="blueText"> <i class="bi bi-calendar-check"></i>&nbsp; до 9 календарных дней</small>
+      </div>
+      <div class="analizPrice">
+        <h5 class="baseColor"><strong>32 600 тг.</strong></h5>
+        <button class="analizPriceButton blueText">+</button>
+      </div>
+    </div>
+
+      </div>
+    </div>
+  </div>
+
+
+</body>
+</html>
+
