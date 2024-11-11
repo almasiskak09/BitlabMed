@@ -3,6 +3,10 @@ body{
     font-optical-sizing: auto;
     font-style: normal;
 }
+.btn:active{
+    background-color: #0e4962 !important;
+}
+
 .blueText{
     color: #1897b2;
     transition-duration: 0.1s;
@@ -301,6 +305,11 @@ hr{
     margin-top: 30px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     border-radius: 20px;
+}
+.doctorProfileHead{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .doctorUp{
@@ -603,12 +612,7 @@ hr{
 
 
 /*ПРОФИЛЬ МЕНЕДЖЕРА*/
-.profileZapicList {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Создаёт 3 колонки одинаковой ширины */
-    gap: 40px;
-    padding: 10px 0px;
-}
+
 
 .profileZapic{
     border: 1px solid rgb(243, 243, 243);
@@ -640,19 +644,31 @@ hr{
     color: white;
 }
 
+
+
 .zapicComponent{
-    box-shadow: rgba(52, 129, 174, 0.2) 0px 2px 8px 0px;  transition-duration: 0.2s;
     transition-delay: 0.3ms;
-    border-radius: 6px;
-    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px 10px 10px;
+    border-top: 1px solid rgb(241, 241, 241);
+    transition-duration: 0.2s;
+    transition-delay: 0.3ms;
 }
 .zapicComponent:hover{
-    box-shadow: rgb(242, 211, 211) 0px 2px 4px 0px, rgb(244, 225, 225) 0px 2px 16px 0px;
-
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+
+
+.p{
+    margin-top: -6px;
+}
+
 .zapicButton{
-    position: absolute;
     top: -5px;
+    position: absolute;
     right: -10px;
     border: 0px;
     border-radius: 20px;
@@ -663,7 +679,22 @@ hr{
     transition-duration: 0.1s;
     transition-delay: 0.2ms;
 }
-.zapicButton:hover{
+
+.zapicButton0{
+    top: -5px;
+    position: relative;
+    border: 0px;
+    border-radius: 20px;
+    background-color: #0098DA;
+    color: white;
+    font-weight: 700;
+    padding: 5px 20px;
+    transition-duration: 0.1s;
+    transition-delay: 0.2ms;
+}
+
+
+.zapicButton:hover, .zapicButton0:hover{
     background-color: rgb(255, 255, 255);
     color: #0098DA;
     border: 1px solid #0098DA;
@@ -671,17 +702,17 @@ hr{
 
 
 .zapicComponentHead{
-    border: 1px solid rgb(237, 237, 237);
     border-radius: 6px 6px 0px 0px;
-    padding: 10px 15px 0px ;
 }
-.zapicComponentLeg{
-    border: 1px solid rgb(237, 237, 237);
-    border-radius: 0px 0px 6px 6px;
+.zapicPadding{
     padding: 10px 15px 0px ;
-    background-color: #fdfbf6;
+    width: 20%;
 
 }
+
+
+
+
 .zapicComponentAnaliz{
     border: 0.1px solid rgb(223, 223, 223);
     padding: 10px;

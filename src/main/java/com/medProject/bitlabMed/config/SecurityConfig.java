@@ -45,7 +45,7 @@ public class SecurityConfig {
                 .formLogin(
                         login -> login
                                 .loginProcessingUrl("/enter")
-                                .defaultSuccessUrl("/analyses", true) // По умолчанию на /home
+                                .defaultSuccessUrl("/home", true) // По умолчанию на /home
                                 .loginPage("/sign-in")
                                 .failureUrl("/sign-in?error")
                                 .usernameParameter("email")

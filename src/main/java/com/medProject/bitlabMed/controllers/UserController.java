@@ -37,9 +37,9 @@ public class UserController {
     public String registration(@RequestParam(name = "user_email") String email,
                                @RequestParam(name = "user_password") String password,
                                @RequestParam(name = "user_repeat_password") String repeatPassword,
-                               @RequestParam(name = "user_full_name") String fullName,
+                               @RequestParam(name = "user_full_name") String full_name,
                                @RequestParam(name = "user_phone") String phone) {
-        Boolean result = userService.signUp(email, password, repeatPassword, fullName, phone);
+        Boolean result = userService.signUp(email, password, repeatPassword, full_name, phone);
         //result = false/true/null;
 
         if (result != null) {

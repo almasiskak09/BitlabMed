@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="add-user" author="Almas Iskak">
+        <insert tableName="t_users">
+            <column name="full_name" value="user"></column>
+            <column name="email" value="user@mail.ru"></column>
+            <column name="password" value="$2a$12$QD9dfsrBAEt1keaBvaP1TezjnZyG7N/BrTBIlYgt.Fqxg2jlkNrwy"></column>
+            <column name="phone" value="87071011010"></column>
+        </insert>
+
+        <insert tableName="t_users">
+            <column name="full_name" value="doctor"></column>
+            <column name="email" value="doctor@mail.ru"></column>
+            <column name="password" value="$2a$12$hsGn5hI.EsWu6MvdIqc0Weq5Wd4BLx/EdN.V4TgakRDkyhwxp999S"></column>
+            <column name="phone" value="87072020202"></column>
+        </insert>
+
+        <insert tableName="t_users">
+            <column name="full_name" value="manager"></column>
+            <column name="email" value="manager@mail.ru"></column>
+            <column name="password" value="$2a$12$BmEjv.TgVBs.IIXMjkAq1eAQhIWLw7.4MJHKcUa61ZnAhkDsuCO7C"></column>
+            <column name="phone" value="87073030303"></column>
+        </insert>
+    </changeSet>
+    
+
+</databaseChangeLog>

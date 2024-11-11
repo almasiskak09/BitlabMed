@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+<changeSet id="create-user-table" author="Almas Iskak">
+        <createTable tableName="t_users">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"></constraints>
+            </column>
+            <column name="email" type="varchar(255)" >
+                <constraints unique="true" nullable="false"></constraints>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="full_name" type="varchar(255)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="phone" type="bigint">
+                <constraints nullable="false"></constraints>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-permission-table" author="Almas Iskak">
+        <createTable tableName="t_permission">
+            <column name="id" type="bigint" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"></constraints>
+            </column>
+            <column name="permission_name" type="varchar(255)">
+                <constraints nullable="false"></constraints>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-users-roles-table" author="Almas Iskak">
+        <createTable tableName="t_users_roles">
+            <column name="user_id" type="bigint"/>
+            <column name="roles_id" type="bigint"/>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="create-users-roles-table-foreign-key-user-id" author="Almas Iskak">
+        <addForeignKeyConstraint baseTableName="t_users_roles"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_user_id"  onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedTableName="t_users"
+                                 referencedColumnNames="id"
+                                 validate="true"/>
+    </changeSet>
+
+
+    <changeSet id="create-users-roles-table-foreign-key-roles-id" author="Almas Iskak">
+        <addForeignKeyConstraint baseTableName="t_users_roles"
+                                 baseColumnNames="roles_id"
+                                 constraintName="fk_roles_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedTableName="t_permission"
+                                 referencedColumnNames="id"
+                                 validate="true"/>
+    </changeSet>
+
+
+</databaseChangeLog>

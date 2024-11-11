@@ -21,8 +21,8 @@ public class User extends BaseEntity implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "fullName")
-    private String fullName;
+    @Column(name = "full_name")
+    private String full_name;
 
     @Column(name = "phone")
     private String phone;
