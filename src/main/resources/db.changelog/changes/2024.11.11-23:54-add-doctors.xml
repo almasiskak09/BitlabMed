@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create-doctors-table" author="Almas Iskak">
+        <createTable tableName="doctors">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"></constraints>
+            </column>
+            <column name="doctorName" type="varchar(255)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="doctorSpeciality" type="varchar(255)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="doctorYearsOfExperience" type="varchar(20)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="doctorPrice" type="bigint">
+                <constraints nullable="false"></constraints>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-doctors" author="Almas Iskak">
+        <insert tableName="doctors">
+            <column name="doctorName" value="Толегенов Данияр"></column>
+            <column name="doctorSpeciality" value="Терапевт,Уролог"></column>
+            <column name="doctorYearsOfExperience" value="12"></column>
+            <column name="doctorPrice" value="9000"></column>
+        </insert>
+
+        <insert tableName="doctors">
+            <column name="doctorName" value="Асан Айбар"></column>
+            <column name="doctorSpeciality" value="ЛОР"></column>
+            <column name="doctorYearsOfExperience" value="8"></column>
+            <column name="doctorPrice" value="8000"></column>
+        </insert>
+
+        <insert tableName="doctors">
+            <column name="doctorName" value="Каипназаров Димаш"></column>
+            <column name="doctorSpeciality" value="Дерматолог"></column>
+            <column name="doctorYearsOfExperience" value="15"></column>
+            <column name="doctorPrice" value="15000"></column>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

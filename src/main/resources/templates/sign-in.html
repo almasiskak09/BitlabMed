@@ -37,8 +37,8 @@
         <H4 class="strongBlue">Логин</H4>
 
         <div class="form-group">
-            <input type="text" name="email" id="user_email" placeholder="Email">
-            <input type="text" name="password" id="user_password" placeholder="Пароль">
+            <input type="email" name="email" id="user_email" placeholder="Email">
+            <input type="password" name="password" id="user_password" placeholder="Пароль">
         </div>
         <button type="submit" class="regButton">Войти</button><br>
         <div class="alert alert-primary mb-4" role="alert" th:if="${param.logout != null}">

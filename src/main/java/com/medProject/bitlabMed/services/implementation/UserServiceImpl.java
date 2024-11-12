@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -38,17 +36,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
-        if (user != null) {
-            System.out.println(user.getEmail());
-            System.out.println(user.getPassword());
-            System.out.println(user.getRoles().stream()
-                    .map(role -> new SimpleGrantedAuthority(role.getPermissionName()))
-                    .collect(Collectors.toList()));
-
-        return user;
-        } else {
-            throw new UsernameNotFoundException("User Not Found");
-        }
+       return user;
     }
 
         private User getCurrentUser(){
