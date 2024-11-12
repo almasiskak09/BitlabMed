@@ -10,16 +10,31 @@
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"></constraints>
             </column>
-            <column name="doctorName" type="varchar(255)">
+            <column name="doctor_name" type="varchar(255)">
                 <constraints nullable="false"></constraints>
             </column>
-            <column name="doctorSpeciality" type="varchar(255)">
+            <column name="doctor_speciality" type="varchar(255)">
                 <constraints nullable="false"></constraints>
             </column>
-            <column name="doctorYearsOfExperience" type="varchar(20)">
+            <column name="doctor_years_of_experience" type="varchar(20)">
                 <constraints nullable="false"></constraints>
             </column>
-            <column name="doctorPrice" type="bigint">
+            <column name="doctor_price" type="bigint">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="doctor_address" type="varchar(255)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="doctor_profile_picture" type="varchar(255)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="doctor_rating" type="varchar(20)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="doctor_working_hours" type="varchar(20)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="doctor_description" type="varchar(255)">
                 <constraints nullable="false"></constraints>
             </column>
         </createTable>
@@ -27,24 +42,42 @@
 
     <changeSet id="add-doctors" author="Almas Iskak">
         <insert tableName="doctors">
-            <column name="doctorName" value="Толегенов Данияр"></column>
-            <column name="doctorSpeciality" value="Терапевт,Уролог"></column>
-            <column name="doctorYearsOfExperience" value="12"></column>
-            <column name="doctorPrice" value="9000"></column>
+            <column name="doctor_name" value="Толегенов Данияр"></column>
+            <column name="doctor_speciality" value="Терапевт,Уролог"></column>
+            <column name="doctor_years_of_experience" value="12"></column>
+            <column name="doctor_price" value="9000"></column>
+            <column name="doctor_address" value="г.Алматы, Абая 142"></column>
+            <column name="doctor_profile_picture" value="/images/d3.png"></column>
+            <column name="doctor_rating" value="4.1"></column>
+            <column name="doctor_working_hours" value="10:00-18:00"></column>
+            <column name="doctor_description" value="Врач высшей категории"></column>
         </insert>
 
         <insert tableName="doctors">
-            <column name="doctorName" value="Асан Айбар"></column>
-            <column name="doctorSpeciality" value="ЛОР"></column>
-            <column name="doctorYearsOfExperience" value="8"></column>
-            <column name="doctorPrice" value="8000"></column>
+            <column name="doctor_name" value="Асан Айбар"></column>
+            <column name="doctor_speciality" value="ЛОР"></column>
+            <column name="doctor_years_of_experience" value="8"></column>
+            <column name="doctor_price" value="8000"></column>
+            <column name="doctor_address" value="г.Алматы, Макатаева 13"></column>
+            <column name="doctor_profile_picture" value="/images/d1.png"></column>
+            <column name="doctor_rating" value="4.9"></column>
+            <column name="doctor_working_hours" value="10:00-18:00"></column>
+            <column name="doctor_description" value="PHD,Кандидат медицинских
+            наук"></column>
+
         </insert>
 
         <insert tableName="doctors">
-            <column name="doctorName" value="Каипназаров Димаш"></column>
-            <column name="doctorSpeciality" value="Дерматолог"></column>
-            <column name="doctorYearsOfExperience" value="15"></column>
-            <column name="doctorPrice" value="15000"></column>
+            <column name="doctor_name" value="Каипназаров Димаш"></column>
+            <column name="doctor_speciality" value="Дерматолог"></column>
+            <column name="doctor_years_of_experience" value="15"></column>
+            <column name="doctor_price" value="15000"></column>
+            <column name="doctor_address" value="г.Алматы, Абая 142"></column>
+            <column name="doctor_profile_picture" value="/images/d2.png"></column>
+            <column name="doctor_rating" value="4.4"></column>
+            <column name="doctor_working_hours" value="10:00-18:00"></column>
+            <column name="doctor_description" value="Главный врач ГПХ, PHD"></column>
+
         </insert>
 
     </changeSet>

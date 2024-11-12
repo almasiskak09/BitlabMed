@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/users")
-public class RestUserController {
+public class UserRestController {
     private final UserService userService;
 
     @GetMapping("/getAllUsers")

@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 
 </head>
 
@@ -42,59 +44,67 @@
           </form>
       </div>
 
-    <div class="doctorProfile">
-    <div class="doctorUp">
-      <div class="profileUp">
-        <img th:src="@{/images/d1.png}">
-        <div class="profileText">
-          <h3>Акжанов Алем </h3>
-          <span><b>- 32 года стажа работы</b>, Невропатолог</span>
-          <small>- Врач высшей категории</small>
-          <pr><i class="bi bi-trophy" style="font-size: 20px; color: #0098DA;"> </i> <b> 4.0</b> Рейтинг</pr>
-        </div>
-      </div>
-      <button class="bookDoctor">Записаться</button>
-    </div>
-    <div class="doctorDown">
-        <div class="profileTextDown">
-          <span><i class="bi bi-geo-alt" style="font-size: 20px; color: #0098DA;"> </i>8-й микрорайон, д. 58а (по ул. Шаляпина, уг.ул. Алтынсарина), Алматы </span>
-          <span><i class="bi bi-alarm" style="font-size: 20px; color: #0098DA;" ></i> пн-пт: 08:00-20:00 / сб: 08:00-14:00</span>
-        </div>
-        <div class="ProfilePrice">
-          <h4 class="baseColor strong">5 000 тг.</h4>
-          <p style="color: grey; font-size: 12px;">BitlabMED</p>
-        </div>
-    </div>
+      <div id="doctorsContainer" class="container"></div>
   </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Функция для получения всех врачей
+        function getAllDoctors() {
+            axios.get('/doctor/getAllDoctors')
+                .then(function(response) {
+                    displayDoctors(response.data);
+                })
+                .catch(function(error) {
+                    console.error('Ошибка при получении данных:', error);
+                });
+        }
 
-  <div class="doctorProfile">
-    <div class="doctorUp">
-      <div class="profileUp">
-        <img th:src="@{/images/d1.png}">
-        <div class="profileText">
-          <h3>Акжанов Алем </h3>
-          <span><b>- 32 года стажа работы</b>, Невропатолог</span>
-          <small>- Врач высшей категории</small>
-          <pr><i class="bi bi-trophy" style="font-size: 20px; color: #0098DA;"> </i> <b> 4.0</b> Рейтинг</pr>
-        </div>
-      </div>
-      <button class="bookDoctor">Записаться</button>
-    </div>
-    <div class="doctorDown">
-        <div class="profileTextDown">
-          <span><i class="bi bi-geo-alt" style="font-size: 20px; color: #0098DA;"> </i>8-й микрорайон, д. 58а (по ул. Шаляпина, уг.ул. Алтынсарина), Алматы </span>
-          <span><i class="bi bi-alarm" style="font-size: 20px; color: #0098DA;" ></i> пн-пт: 08:00-20:00 / сб: 08:00-14:00</span>
-        </div>
-        <div class="ProfilePrice">
-          <h4 class="baseColor strong">5 000 тг.</h4>
-          <p style="color: grey; font-size: 12px;">BitlabMED</p>
-        </div>
-    </div>
-  </div>
+        // Функция для отображения врачей на странице
+        function displayDoctors(doctors) {
+            const container = document.getElementById('doctorsContainer');
+            container.innerHTML = ''; // Очищаем контейнер
 
+            doctors.forEach(function(doctor) {
+                const doctorProfile = document.createElement('div');
+                doctorProfile.className = 'container';
 
-  </div>
+                doctorProfile.innerHTML = `
+                    <div class="doctorProfile">
+                        <div class="doctorUp">
+                            <div class="profileUp">
+                                <img src="${doctor.doctor_profile_picture}">
+                                <div class="profileText">
+                                    <h3>${doctor.doctor_name}</h3>
+                                    <span><b>- ${doctor.doctor_years_of_experience} лет стажа работы</b>,<u> ${doctor.doctor_speciality}</u></span>
+                                    <small>- ${doctor.doctor_description} </small>
+                                    <pr><i class="bi bi-trophy" style="font-size: 20px; color: #0098DA;"> </i> <b> ${doctor.doctor_rating}</b> Рейтинг</pr>
+                                </div>
+                            </div>
+                            <button class="bookDoctor">Записаться</button>
+                        </div>
+                        <div class="doctorDown">
+                            <div class="profileTextDown">
+                                <span><i class="bi bi-geo-alt" style="font-size: 20px; color: #0098DA;"> </i>${doctor.doctor_address}</span>
+                                <span><i class="bi bi-alarm" style="font-size: 20px; color: #0098DA;" > </i> <b> ${doctor.doctor_working_hours}</b></span>
+                            </div>
+                            <div class="ProfilePrice">
+                                <h4 class="baseColor strong">${doctor.doctor_price} тг.</h4>
+                                <p style="color: grey; font-size: 12px;">BitlabMED</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(doctorProfile);
+            });
+        }
+
+        // Вызываем функцию для получения всех врачей при загрузке страницы
+        getAllDoctors();
+    });
+</script>
+
 
 
 </body>

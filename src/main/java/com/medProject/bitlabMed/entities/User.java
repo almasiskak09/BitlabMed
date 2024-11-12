@@ -30,11 +30,11 @@ public class User extends BaseEntity implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Permission> roles;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<UserHistory>userHistoryList;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<TreatmentPlan>treatmentPlanList;
+//    @OneToMany(fetch = FetchType.LAZY)
+//    private List<UserHistory>userHistoryList;
+//
+//    @OneToMany(fetch = FetchType.LAZY)
+//    private List<TreatmentPlan>treatmentPlanList;
 
 
 
