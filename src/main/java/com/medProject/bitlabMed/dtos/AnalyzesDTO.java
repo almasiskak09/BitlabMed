@@ -1,5 +1,7 @@
 package com.medProject.bitlabMed.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.medProject.bitlabMed.entities.AnalyzesCategory;
 import com.medProject.bitlabMed.entities.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,8 +16,11 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class AnalyzesDTO extends BaseEntity {
 
-    private String analysisName;
-    private int analysisPrice;
-    private LocalDate analysisReadyDate;
+    private String analyzes_name;
+    private int analyzes_price;
+    private String analyzes_ready_date;
+    @JsonIgnore
+    private AnalyzesCategory analyzesCategory;
+
 
 }

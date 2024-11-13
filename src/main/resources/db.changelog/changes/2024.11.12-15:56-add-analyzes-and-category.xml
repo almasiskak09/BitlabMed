@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="add-analyzes-categories" author="Almas Iskak">
+        <insert tableName="analyzes_category">
+            <column name="analyzes_category_name" value="Общие анализы"></column>
+        </insert>
+
+        <insert tableName="analyzes_category">
+            <column name="analyzes_category_name" value="Гормональные анализы"></column>
+        </insert>
+
+        <insert tableName="analyzes_category">
+            <column name="analyzes_category_name" value="Биохимические исследования"></column>
+        </insert>
+    </changeSet>
+
+
+    <changeSet id="add-analyze-columns" author="Almas Iskak">
+        <insert tableName="analyzes">
+            <column name="analyzes_name" value="Trisomy test (13,18 и 21)"></column>
+            <column name="analyzes_price" value="12000"></column>
+            <column name="analyzes_ready_date" value="5"></column>
+            <column name="analyzes_category_id" value="1"></column>
+        </insert>
+        <insert tableName="analyzes">
+            <column name="analyzes_name" value="17-ОН прогестерон в крови"></column>
+            <column name="analyzes_price" value="24000"></column>
+            <column name="analyzes_ready_date" value="12"></column>
+            <column name="analyzes_category_id" value="1"></column>
+        </insert>
+
+        <insert tableName="analyzes">
+            <column name="analyzes_name" value="Витамин E (токоферол) в крови"></column>
+            <column name="analyzes_price" value="9000"></column>
+            <column name="analyzes_ready_date" value="2"></column>
+            <column name="analyzes_category_id" value="2"></column>
+
+        </insert>
+        <insert tableName="analyzes">
+            <column name="analyzes_name" value="Гистамин в цельной крови"></column>
+            <column name="analyzes_price" value="17600"></column>
+            <column name="analyzes_ready_date" value="3"></column>
+            <column name="analyzes_category_id" value="2"></column>
+
+        </insert>
+
+        <insert tableName="analyzes">
+            <column name="analyzes_name" value="Дегидроэпиандростерон (ДГЭА) в крови"></column>
+            <column name="analyzes_price" value="8700"></column>
+            <column name="analyzes_ready_date" value="4"></column>
+            <column name="analyzes_category_id" value="3"></column>
+
+        </insert>
+
+        <insert tableName="analyzes">
+            <column name="analyzes_name" value="Железо (Fe) в волосах"></column>
+            <column name="analyzes_price" value="6500"></column>
+            <column name="analyzes_ready_date" value="2"></column>
+            <column name="analyzes_category_id" value="3"></column>
+
+        </insert>
+
+
+    </changeSet>
+
+
+</databaseChangeLog>

@@ -41,7 +41,7 @@ public class SecurityConfig {
                                 .requestMatchers("/profile-manager").hasAuthority("ROLE_MANAGER")
                                 .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                                 .requestMatchers("/home", "/doctors", "/analyses", "/diagnostic").permitAll()
-                                .requestMatchers("/doctor/**","/users/**").permitAll()
+                                .requestMatchers("/doctor/**","/users/**","/analyzes/**","/analyze-category/**").permitAll()
                                 .anyRequest().hasAuthority("ROLE_ADMIN"))
                 .formLogin(
                         login -> login

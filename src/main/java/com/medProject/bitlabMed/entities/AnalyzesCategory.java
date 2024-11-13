@@ -1,5 +1,7 @@
 package com.medProject.bitlabMed.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
@@ -17,8 +19,9 @@ import java.util.List;
 @AllArgsConstructor
 public class AnalyzesCategory extends BaseEntity{
 
-    private String analysisCategoryName;
+    @Column(name = "analyzes_category_name")
+    private String analyzes_category_name;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Analyzes> analyzesList;
+    @OneToMany(mappedBy = "analyzesCategory", fetch = FetchType.LAZY)
+    private List<Analyzes> analyzes_list;
 }

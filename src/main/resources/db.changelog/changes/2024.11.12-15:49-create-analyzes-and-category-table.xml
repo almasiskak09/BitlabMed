@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create-analyzes-category-table" author="Almas Iskak">
+        <createTable tableName="analyzes_category">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"></constraints>
+            </column>
+            <column name="analyzes_category_name" type="varchar(255)">
+                <constraints nullable="false"></constraints>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-analyze-table" author="Almas Iskak">
+        <createTable tableName="analyzes">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"></constraints>
+            </column>
+            <column name="analyzes_name" type="varchar(255)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="analyzes_price" type="bigint">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="analyzes_ready_date" type="varchar(20)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="analyzes_category_id" type="bigint">
+                <constraints nullable="true"></constraints>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="analyzes"
+                                 baseColumnNames="analyzes_category_id"
+                                 constraintName="fk_analyzes_category_id"
+                                 referencedTableName="analyzes_category"
+                                 referencedColumnNames="id"></addForeignKeyConstraint>
+
+    </changeSet>
+
+
+
+</databaseChangeLog>

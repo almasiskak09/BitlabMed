@@ -12,6 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 </head>
 
@@ -32,68 +35,109 @@
 </section>
 
 
-
 <div class="container ">
 
-  <div class="analizHead">
-    <h1 class="analizText"><b>Сдать анализ</b></h1>
-      <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Найти анализ" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Найти</button>
-      </form>
-  </div>
-
-  <div class="analizCenter">
-    <div class="analizTable">
-      <button class="analizBtn"><i class="bi bi-file-earmark-medical"></i>Общие анализы</button>
-      <button class="analizBtn"><i class="bi bi-capsule"></i></i>Гормональные анализы</button>
-      <button class="analizBtn"><i class="bi bi-droplet-half"></i>Биохимические исследования</button>
+    <div class="analizHead">
+        <h1 class="analizText"><b>Сдать анализ</b></h1>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Найти анализ" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Найти</button>
+        </form>
     </div>
 
-    <div class="analizList">
+    <div class="analizCenter">
+        <!-- Список категорий анализов -->
 
-      <div class="analizComponent">
-      <div class="analizName">
-        <small class="smallGreyText">№324</small>
-        <h6 class="strong">АК (Общий анализ крови) </h6>
-        <small class="blueText"> <i class="bi bi-calendar-check"></i>&nbsp; до 3-х календарных дней</small>
-      </div>
-      <div class="analizPrice">
-        <h5 class="baseColor strong">3 400 тг.</h5>
-        <button class="analizPriceButton blueText">+</button>
-      </div>
+        <div class="analizTable" id="analyzesCategories">
+            <!-- Здесь будут динамически добавляться категории -->
+        </div>
+
+        <div class="analizList" id="analyzesList">
+            <!-- Здесь будут динамически добавляться анализы -->
+        </div>
     </div>
+</div>
 
+<script>
+    // Функция для отображения анализов
+    function displayAnalyzes(analyzes) {
+        $('#analyzesList').empty();  // Очищаем текущий список анализов
+        analyzes.forEach(function(analyze) {
+            // Логика для добавления суффикса -х, если analyzes_ready_date меньше 4
+            var readyDateText = analyze.analyzes_ready_date <= 4 ? analyze.analyzes_ready_date + '-х' : analyze.analyzes_ready_date;
 
-    <div class="analizComponent">
-      <div class="analizName">
-        <small class="smallGreyText">№132</small>
-        <h6><strong>Определение РНК SARS-CoV-2 в мазке со слизистой носоглотки и/или ротоглотки </strong></h6>
-        <small class="blueText"> <i class="bi bi-calendar-check"></i>&nbsp; до 6  календарных дней</small>
-      </div>
-      <div class="analizPrice">
-        <h5 class="baseColor"><strong>12 900 тг.</strong></h5>
-        <button class="analizPriceButton blueText">+</button>
-      </div>
-    </div>
+            $('#analyzesList').append(`
+            <div class="analizComponent">
+                <div class="analizName">
+                    <small class="smallGreyText">№ ${analyze.id}</small>
+                    <h6><strong>${analyze.analyzes_name}</strong></h6>
+                    <small class="blueText"> <i class="bi bi-calendar-check"></i>&nbsp; до ${readyDateText} календарных дней</small>
+                </div>
+                <div class="analizPrice">
+                    <h5 class="baseColor"><strong>${analyze.analyzes_price} тг.</strong></h5>
+                    <button class="analizPriceButton blueText">+</button>
+                </div>
+            </div>
+        `);
+        });
+    }
 
+    // Функция для получения всех анализов
+    function loadAllAnalyzes() {
+        $.ajax({
+            url: '/analyzes/getAllAnalyzes',  // Путь к вашему API для получения всех анализов
+            method: 'GET',
+            success: function(data) {
+                displayAnalyzes(data);  // Отображаем все анализы при загрузке страницы
+            },
+            error: function() {
+                alert('Ошибка при загрузке анализов');
+            }
+        });
+    }
 
-    <div class="analizComponent">
-      <div class="analizName">
-        <small class="smallGreyText">№1239</small>
-        <h6><strong>Фактор VIII, активность % (Factor VIII, FVIII, Activity %)</strong></h6>
-        <small class="blueText"> <i class="bi bi-calendar-check"></i>&nbsp; до 9 календарных дней</small>
-      </div>
-      <div class="analizPrice">
-        <h5 class="baseColor"><strong>32 600 тг.</strong></h5>
-        <button class="analizPriceButton blueText">+</button>
-      </div>
-    </div>
+    // Функция для загрузки анализов по категории
+    function loadAnalyzesByCategory(categoryId) {
+        $.ajax({
+            url: '/analyzes/getAnalyzesByCategory/' + categoryId,  // Путь к вашему API для получения анализов по категории
+            method: 'GET',
+            success: function(data) {
+                displayAnalyzes(data);  // Отображаем анализы выбранной категории
+            },
+            error: function() {
+                alert('Ошибка при загрузке анализов по категории');
+            }
+        });
+    }
 
-      </div>
-    </div>
-  </div>
+    // Функция для загрузки категорий
+    function loadCategories() {
+        $.ajax({
+            url: '/analyze-category/getAllAnalyzesCategories',  // Путь к вашему API для получения всех категорий
+            method: 'GET',
+            success: function(categories) {
+                let categoryHtml = '';
+                categories.forEach(function(category) {
+                    categoryHtml += `
+                        <button class="analizBtn" onclick="loadAnalyzesByCategory(${category.id})">
+                            <i class="bi bi-file-earmark-medical"></i> ${category.analyzes_category_name}
+                        </button>
+                    `;
+                });
+                $('#analyzesCategories').html(categoryHtml);  // Добавляем категории на страницу
+            },
+            error: function() {
+                alert('Ошибка при загрузке категорий');
+            }
+        });
+    }
 
+    // Загружаем категории и все анализы при загрузке страницы
+    $(document).ready(function() {
+        loadCategories();   // Загружаем категории
+        loadAllAnalyzes();  // Загружаем все анализы
+    });
+</script>
 
 </body>
 </html>

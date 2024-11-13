@@ -1,12 +1,17 @@
 package com.medProject.bitlabMed.services.implementation;
 
 
+import com.medProject.bitlabMed.dtos.AnalyzesDTO;
+import com.medProject.bitlabMed.entities.Analyzes;
+import com.medProject.bitlabMed.mappers.AnalyzesMapper;
 import com.medProject.bitlabMed.repositories.AnalyzesRepository;
 import com.medProject.bitlabMed.services.AnalyzesService;
-import com.medProject.bitlabMed.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -14,6 +19,37 @@ public class AnalyzesServiceImpl implements AnalyzesService {
 
     @Autowired
     private final AnalyzesRepository analyzesRepository;
+    private final AnalyzesMapper analyzesMapper;
 
+    public List<AnalyzesDTO> getAllAnalyzes(){
+        List<Analyzes>analyzesList = analyzesRepository.findAll();
+        return analyzesMapper.toDtoList(analyzesList);
+    }
+    public AnalyzesDTO addAnalyze (AnalyzesDTO analyzesDTO){
+        Analyzes analyze = analyzesMapper.toEntity(analyzesDTO);
+        analyzesRepository.save(analyze);
+        return analyzesMapper.toDto(analyze);
+    }
+    public AnalyzesDTO getAnalyzeById(Long id){
+        return analyzesMapper.toDto(analyzesRepository.findById(id).orElseThrow(null));
+    }
+    public AnalyzesDTO updateAnalyze(AnalyzesDTO analyzesDTO){
+        Analyzes analyzes = analyzesMapper.toEntity(analyzesDTO);
+        analyzesRepository.save(analyzes);
+        return analyzesMapper.toDto(analyzes);
+    }
+   public void deleteAnalyzeById(Long id){
+        analyzesRepository.deleteById(id);
+    }
+
+    public List<AnalyzesDTO> findByAnalyzesCategory_Id(Long categoryId) {
+        List<Analyzes> analyzes = analyzesRepository.findByAnalyzesCategory_Id(categoryId);
+        List<AnalyzesDTO> analyzesDTOList = new ArrayList<>();
+
+        for(Analyzes a1 : analyzes){
+            analyzesDTOList.add(analyzesMapper.toDto(a1));
+        }
+        return analyzesDTOList;
+    }
 
 }
