@@ -1,8 +1,7 @@
 package com.medProject.bitlabMed.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -13,6 +12,8 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "t_users")
+@NoArgsConstructor
+@AllArgsConstructor
 public class User extends BaseEntity implements UserDetails {
 
     @Column(name = "email")
@@ -22,7 +23,7 @@ public class User extends BaseEntity implements UserDetails {
     private String password;
 
     @Column(name = "full_name")
-    private String full_name;
+    private String fullName;
 
     @Column(name = "phone")
     private String phone;
@@ -35,8 +36,6 @@ public class User extends BaseEntity implements UserDetails {
 //
 //    @OneToMany(fetch = FetchType.LAZY)
 //    private List<TreatmentPlan>treatmentPlanList;
-
-
 
 @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

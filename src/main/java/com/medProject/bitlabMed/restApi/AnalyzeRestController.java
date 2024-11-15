@@ -29,14 +29,14 @@ public class AnalyzeRestController {
        return analyzesService.addAnalyze(analyzesDTO);
     }
 
-    @PutMapping(value = "/updateAnalyz")
+    @PutMapping(value = "/updateAnalyze")
     public AnalyzesDTO updateAnalyze(@RequestBody AnalyzesDTO analyzesDTO){
         return analyzesService.updateAnalyze(analyzesDTO);
     }
 
-    @DeleteMapping(value = "/deleteMapping/{id}")
-    public AnalyzesDTO deleteAnalyze(@PathVariable Long id){
-        return analyzesService.getAnalyzeById(id);
+    @DeleteMapping(value = "/deleteAnalyze/{id}")
+    public void deleteAnalyzeById(@PathVariable Long id){
+        analyzesService.deleteAnalyzeById(id);
     }
 
     @GetMapping(value = "/getAnalyzesByCategory/{categoryId}")

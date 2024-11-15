@@ -17,31 +17,31 @@ import java.util.List;
 public class Doctor extends BaseEntity{
 
     @Column(name = "doctor_name")
-    private String doctor_name;
+    private String doctorName;
 
     @Column(name = "doctor_speciality")
-    private String doctor_speciality;
+    private String doctorSpeciality;
 
     @Column(name = "doctor_years_of_experience")
-    private String doctor_years_of_experience;
+    private String doctorYearsOfExperience;
 
     @Column(name = "doctor_price")
-    private int doctor_price;
+    private int doctorPrice;
 
     @Column(name = "doctor_address")
-    private String doctor_address;
+    private String doctorAddress;
 
     @Column(name = "doctor_profile_picture")
-    private String doctor_profile_picture;
+    private String doctorProfilePicture;
 
     @Column(name = "doctor_rating")
-    private String doctor_rating;
+    private String doctorRating;
 
     @Column(name = "doctor_working_hours")
-    private String doctor_working_hours;
+    private String doctorWorkingHours;
 
     @Column(name = "doctor_description")
-    private String doctor_description;
+    private String doctorDescription;
 
 //    @OneToMany(fetch = FetchType.LAZY)
 //    private List<ApplicationRequest> application_request_list;

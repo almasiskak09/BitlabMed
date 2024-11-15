@@ -6,6 +6,14 @@ body{
 .btn:active{
     background-color: #0e4962 !important;
 }
+.doctorSps{
+    display: flex;
+    flex-direction: row;
+}
+.underline{
+    text-decoration: underline;
+    font-weight: 500;
+}
 
 .blueText{
     color: #1897b2;
@@ -485,49 +493,40 @@ hr{
 }
 
 
-
 /* ДИАГНОСТИКА */
 .announcement {
-    margin-top: 30px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* Три колонки */
-    grid-template-rows: 1fr 1fr;   /* Первый ряд авторазмера для картинки, два нижних - равные */
-    border: 0.3px solid rgb(227, 227, 227);
+    display: flex;
+    flex-direction: row;
+    margin: 30px 0px;
 }
 
-.square {
+.announcementText{
+    border: 0.5px solid rgb(237, 237, 237);
+    padding: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 20px;
-    background-color: #ffffff; /* Цвет фона для квадратов */
-    height: auto;
-    transition-duration: 0.4s;
-    transition-delay: 0.3ms;
-}
-.square:hover{
-    background-color: #e3f7ff;
-}
-.square button{
-    border: 0px;
-    background-color: transparent;
-    padding: 0px;
-    transition-duration: 0.1s;
-    transition-delay: 0.2ms;
-}
-.square button:hover{
-    color: #ff7b7b;
-}
-
-.s2, .s3{
-    background-color: rgb(241, 253, 255);
+    background-color: #f8fdff;
 }
 .announcement img {
     grid-column: 1/ 2; /* Занимает первую колонку */
-    grid-row: 1 / span 3; /* Занимает все три ряда */
-    width: 100%; /* Чтобы изображение занимало всю ширину своей ячейки */
+    grid-row: 1 / span 2; /* Занимает все три ряда */
+    width: 40%; /* Чтобы изображение занимало всю ширину своей ячейки */
     height: 100%; /* Чтобы изображение занимало всю высоту своей ячейки */
     object-fit: cover; /* Сохраняет пропорции изображения */
+}
+.announcementLeg{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.announcementBt{
+    background-color: #0098DA;
+    color: white;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 40px;
 }
 .diagnostikaList{
     margin-top: 30px;
@@ -827,4 +826,40 @@ hr{
     height: 500px;
     border: 0.5px solid gainsboro;
     border-radius: 10px;
+}
+
+.items{
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.itogo {
+    display: flex;
+    flex-direction: row;
+    width: 700px;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: auto;
+}
+.itogo h4{
+    border: 0.5px solid #a1dff9;
+    padding: 10px 20px;
+    margin: 0px;
+    border-radius: 15px;
+    max-width: auto;
+}
+
+.addedItem{
+    padding: 1px 23px;
+    border: 1px solid #0098DA;
+    color: white;
+    background-color: #0098DA;
+    border-radius: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 7px;
 }

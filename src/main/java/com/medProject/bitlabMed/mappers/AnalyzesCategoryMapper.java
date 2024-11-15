@@ -3,6 +3,7 @@ package com.medProject.bitlabMed.mappers;
 import com.medProject.bitlabMed.dtos.AnalyzesCategoryDTO;
 import com.medProject.bitlabMed.entities.AnalyzesCategory;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 

@@ -20,9 +20,9 @@
 
 <body>
 
-<div th:replace="layout/layout :: header"></div>
-<div th:replace="layout/layout :: navbar"></div>
 
+<div th:replace="~{layout/layout :: header}"></div>
+<div th:replace="~{layout/layout :: navbar}"></div>
 
 
 <section class="container">
@@ -33,7 +33,6 @@
         </ol>
     </nav>
 </section>
-
 
 <div class="container ">
 
@@ -46,96 +45,69 @@
     </div>
 
     <div class="analizCenter">
-        <!-- Список категорий анализов -->
 
-        <div class="analizTable" id="analyzesCategories">
-            <!-- Здесь будут динамически добавляться категории -->
+        <div class="analizTable" >
+            <div th:each="analyzesCategory : ${analyzesCategoryList}">
+
+                <button class="analizBtn" th:text="${analyzesCategory.analyzesCategoryName}">
+                    <i class="bi bi-file-earmark-medical blueText"></i>
+                </button>
+            </div>
         </div>
 
-        <div class="analizList" id="analyzesList">
-            <!-- Здесь будут динамически добавляться анализы -->
+        <div class="analizList">
+
+            <div class="analizComponent" th:each="analyzes:${analyzesList}">
+                <div class="analizName" >
+                    <small class="smallGreyText" th:text="'№'+${analyzes.id}"></small>
+                    <h6 class="strong" th:text="${analyzes.analyzesName}"></h6>
+                   <div>
+                       <i class="bi bi-calendar-check blueText"></i>
+                       <span>&nbsp;</span> <!-- Пробел -->
+                       <small class="blueText" th:text="${analyzes.analyzesReadyDate} + (${analyzes.analyzesReadyDate} <= 4 ? '-x' : '') + ' календарных дней'"></small>
+                   </div>
+                </div>
+                <div class="analizPrice">
+                    <h5 class="baseColor strong" th:text="${analyzes.getFormattedPrice()}+' тг.'"></h5>
+                    <button class="analizPriceButton blueText" th:data-analyze-id="${analyzes.getId()}" th:classappend="${#lists.contains(addedAnalyzes, analyzes.id)} ? 'addedItem' : ''">+</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
 <script>
-    // Функция для отображения анализов
-    function displayAnalyzes(analyzes) {
-        $('#analyzesList').empty();  // Очищаем текущий список анализов
-        analyzes.forEach(function(analyze) {
-            // Логика для добавления суффикса -х, если analyzes_ready_date меньше 4
-            var readyDateText = analyze.analyzes_ready_date <= 4 ? analyze.analyzes_ready_date + '-х' : analyze.analyzes_ready_date;
-
-            $('#analyzesList').append(`
-            <div class="analizComponent">
-                <div class="analizName">
-                    <small class="smallGreyText">№ ${analyze.id}</small>
-                    <h6><strong>${analyze.analyzes_name}</strong></h6>
-                    <small class="blueText"> <i class="bi bi-calendar-check"></i>&nbsp; до ${readyDateText} календарных дней</small>
-                </div>
-                <div class="analizPrice">
-                    <h5 class="baseColor"><strong>${analyze.analyzes_price} тг.</strong></h5>
-                    <button class="analizPriceButton blueText">+</button>
-                </div>
-            </div>
-        `);
-        });
-    }
-
-    // Функция для получения всех анализов
-    function loadAllAnalyzes() {
-        $.ajax({
-            url: '/analyzes/getAllAnalyzes',  // Путь к вашему API для получения всех анализов
-            method: 'GET',
-            success: function(data) {
-                displayAnalyzes(data);  // Отображаем все анализы при загрузке страницы
-            },
-            error: function() {
-                alert('Ошибка при загрузке анализов');
-            }
-        });
-    }
-
-    // Функция для загрузки анализов по категории
-    function loadAnalyzesByCategory(categoryId) {
-        $.ajax({
-            url: '/analyzes/getAnalyzesByCategory/' + categoryId,  // Путь к вашему API для получения анализов по категории
-            method: 'GET',
-            success: function(data) {
-                displayAnalyzes(data);  // Отображаем анализы выбранной категории
-            },
-            error: function() {
-                alert('Ошибка при загрузке анализов по категории');
-            }
-        });
-    }
-
-    // Функция для загрузки категорий
-    function loadCategories() {
-        $.ajax({
-            url: '/analyze-category/getAllAnalyzesCategories',  // Путь к вашему API для получения всех категорий
-            method: 'GET',
-            success: function(categories) {
-                let categoryHtml = '';
-                categories.forEach(function(category) {
-                    categoryHtml += `
-                        <button class="analizBtn" onclick="loadAnalyzesByCategory(${category.id})">
-                            <i class="bi bi-file-earmark-medical"></i> ${category.analyzes_category_name}
-                        </button>
-                    `;
-                });
-                $('#analyzesCategories').html(categoryHtml);  // Добавляем категории на страницу
-            },
-            error: function() {
-                alert('Ошибка при загрузке категорий');
-            }
-        });
-    }
-
-    // Загружаем категории и все анализы при загрузке страницы
     $(document).ready(function() {
-        loadCategories();   // Загружаем категории
-        loadAllAnalyzes();  // Загружаем все анализы
+        $(".analizPriceButton").each(function() {
+            var button = $(this);
+            if (button.hasClass("addedItem")) {
+                button.html('<i class="bi bi-check-all"></i>');
+                button.prop("disabled", true);
+            }
+        });
+
+        $(".analizPriceButton").on("click", function(event) {
+            event.preventDefault();
+            var button = $(this);
+            var analyzeId = button.data("analyze-id");
+
+            // Отправляем AJAX-запрос
+            $.ajax({
+                url: '/add-to-cart',  // Путь к методу контроллера
+                method: 'POST',
+                data: { analyzeId: analyzeId },
+                success: function(response) {
+                    // Обработка ответа от сервера
+
+                    // Изменяем кнопку
+                    button.html('<i class="bi bi-check-all"></i>');
+                    button.prop("disabled", true); // Отключаем кнопку
+                    button.addClass("addedItem"); // Добавляем класс для изменения стиля
+                },
+                error: function(xhr, status, error) {
+                    alert("Произошла ошибка при добавлении товара в корзину.");
+                }
+            });
+        });
     });
 </script>
 

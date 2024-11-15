@@ -35,13 +35,14 @@ public class SecurityConfig {
         http.authorizeRequests(
                         authorize -> authorize
                                 .requestMatchers("/sign-in", "/entering", "/sign-up", "/registration").anonymous()
+                                .requestMatchers("/add-to-cart","/delete-from-cart").permitAll()
                                 .requestMatchers("/sign-out", "/change-password", "/save-password").authenticated()
                                 .requestMatchers("/profile").hasAuthority("ROLE_USER")
                                 .requestMatchers("/profile-doctor").hasAuthority("ROLE_DOCTOR")
                                 .requestMatchers("/profile-manager").hasAuthority("ROLE_MANAGER")
                                 .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
-                                .requestMatchers("/home", "/doctors", "/analyses", "/diagnostic").permitAll()
-                                .requestMatchers("/doctor/**","/users/**","/analyzes/**","/analyze-category/**").permitAll()
+                                .requestMatchers("/home", "/doctors", "/analyses", "/diagnostic","/cart").permitAll()
+                                .requestMatchers("/doctor/**","/users/**","/analyzes/**","/analyze-category/**","/diagnostic/**","/diagnostic-category/**").permitAll()
                                 .anyRequest().hasAuthority("ROLE_ADMIN"))
                 .formLogin(
                         login -> login

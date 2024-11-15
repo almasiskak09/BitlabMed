@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UserService extends UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException;
-    Boolean signUp(String email, String password, String repeatPassword, String full_name, String phone);
+    Boolean signUp(String email, String password, String repeatPassword, String fullName, String phone);
     Boolean updatePassword(String oldPassword, String newPassword, String repeatNewPassword);
 
     List<User> getAllUsers();

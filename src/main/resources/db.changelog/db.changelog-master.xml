@@ -7,10 +7,12 @@
 <include file="changes/2024.11.11-16:13-create-basic-table.xml" relativeToChangelogFile="true"></include>
 <include file="changes/2024.11.11-17:28-add-user-roles.xml" relativeToChangelogFile="true"></include>
 <include file="changes/2024.11.11-17:32-add-user.xml" relativeToChangelogFile="true"></include>
-    <include file="changes/2024.11.11-17:40-add-roles-to-users.xml" relativeToChangelogFile="true"></include>
+<include file="changes/2024.11.11-17:40-add-roles-to-users.xml" relativeToChangelogFile="true"></include>
 <include file="changes/2024.11.11-22:43-changing-user-phone-type.xml" relativeToChangelogFile="true"></include>
-    <include file="changes/2024.11.11-23:54-create-and-add-doctors.xml" relativeToChangelogFile="true"></include>
+<include file="changes/2024.11.11-23:54-create-and-add-doctors.xml" relativeToChangelogFile="true"></include>
 <include file="db.changelog/changes/2024.11.12-15:49-create-analyzes-and-category-table.xml"></include>
 <include file="db.changelog/changes/2024.11.12-15:56-add-analyzes-and-category.xml"></include>
+<include file="db.changelog/changes/2024.11.13-14:01-create-diagnostic-and-category-table.xml"></include>
+<include file="db.changelog/changes/2024-11.13-14:07-add-diagnostic-and-category.xml"></include>
 
 </databaseChangeLog>

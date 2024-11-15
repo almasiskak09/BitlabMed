@@ -1,5 +1,8 @@
+
 package com.medProject.bitlabMed.dtos;
 
+
+import com.medProject.bitlabMed.entities.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +14,9 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AnalyzesCategoryDTO {
+public class DiagnosticCategoryDTO extends BaseEntity {
 
-    private Long id;
-    private String analyzesCategoryName;
-    private List<AnalyzesDTO> analyzesList;
+    private String diagnosticCategoryName;
+
+    private List<DiagnosticDTO> diagnosticList;
 }

@@ -7,17 +7,17 @@ import com.medProject.bitlabMed.mappers.AnalyzesMapper;
 import com.medProject.bitlabMed.repositories.AnalyzesRepository;
 import com.medProject.bitlabMed.services.AnalyzesService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 @RequiredArgsConstructor
-public class AnalyzesServiceImpl implements AnalyzesService {
+public class AnalyzesServiceImpl implements AnalyzesService  {
 
-    @Autowired
     private final AnalyzesRepository analyzesRepository;
     private final AnalyzesMapper analyzesMapper;
 
@@ -50,6 +50,11 @@ public class AnalyzesServiceImpl implements AnalyzesService {
             analyzesDTOList.add(analyzesMapper.toDto(a1));
         }
         return analyzesDTOList;
+    }
+
+    public String formatPrice(double price) {
+        NumberFormat formatter = NumberFormat.getInstance(new Locale("ru", "RU"));
+        return formatter.format(price);
     }
 
 }

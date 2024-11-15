@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+
+    <changeSet id="add-diagnostic-category-data" author="Almas Iskak">
+        <insert tableName="diagnostic_category">
+            <column name="diagnostic_category_name" value="УЗИ (ультразвуковое исследование, сонография)"></column>
+        </insert>
+        <insert tableName="diagnostic_category">
+            <column name="diagnostic_category_name" value="МРТ (магнитно-резонансная томография)"></column>
+        </insert>
+        <insert tableName="diagnostic_category">
+            <column name="diagnostic_category_name" value="КТ (компьютераня томография)"></column>
+        </insert>
+    </changeSet>
+    
+    <changeSet id="add-diagnostic-data" author="Almas Iskak">
+        <insert tableName="diagnostic">
+            <column name="diagnostic_name" value="Узи брюшной полости"></column>
+            <column name="diagnostic_completed_date" value="1"></column>
+            <column name="diagnostic_price" value="8000"></column>
+            <column name="diagnostic_category_id" value="1"></column>
+        </insert>
+
+        <insert tableName="diagnostic">
+            <column name="diagnostic_name" value="Узи мочеполовой системы"></column>
+            <column name="diagnostic_completed_date" value="1"></column>
+            <column name="diagnostic_price" value="12000"></column>
+            <column name="diagnostic_category_id" value="1"></column>
+        </insert>
+
+        <insert tableName="diagnostic">
+            <column name="diagnostic_name" value="МРТ головы"></column>
+            <column name="diagnostic_completed_date" value="2"></column>
+            <column name="diagnostic_price" value="40000"></column>
+            <column name="diagnostic_category_id" value="2"></column>
+        </insert>
+
+        <insert tableName="diagnostic">
+            <column name="diagnostic_name" value="МРТ поясницы"></column>
+            <column name="diagnostic_completed_date" value="3"></column>
+            <column name="diagnostic_price" value="45000"></column>
+            <column name="diagnostic_category_id" value="2"></column>
+        </insert>
+
+        <insert tableName="diagnostic">
+            <column name="diagnostic_name" value="КТ позвоночника"></column>
+            <column name="diagnostic_completed_date" value="1"></column>
+            <column name="diagnostic_price" value="16000"></column>
+            <column name="diagnostic_category_id" value="3"></column>
+        </insert>
+
+        <insert tableName="diagnostic">
+            <column name="diagnostic_name" value="КТ черепа головы"></column>
+            <column name="diagnostic_completed_date" value="2"></column>
+            <column name="diagnostic_price" value="22000"></column>
+            <column name="diagnostic_category_id" value="3"></column>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create-diagnostic-category-table" author="Almas Iskak">
+        <createTable tableName="diagnostic_category">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"></constraints>
+            </column>
+            <column name="diagnostic_category_name" type="varchar(255)">
+                <constraints nullable="false"></constraints>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-diagnostic-table" author="Almas Iskak">
+        <createTable tableName="diagnostic">
+            <column name="id" type="bigint" autoIncrement="true" >
+                <constraints nullable="false" primaryKey="true"></constraints>
+            </column>
+            <column name="diagnostic_name" type="varchar(255)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="diagnostic_completed_date" type="varchar(20)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="diagnostic_price" type="bigint">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="diagnostic_category_id" type="bigint"></column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-foreign-key-to-diagnostic" author="Almas Iskak">
+        <addForeignKeyConstraint baseTableName="diagnostic"
+                                 baseColumnNames="diagnostic_category_id"
+                                 constraintName="fk_diagnostic_category_id"
+                                 referencedTableName="diagnostic_category"
+                                 referencedColumnNames="id"></addForeignKeyConstraint>
+    </changeSet>
+
+
+</databaseChangeLog>

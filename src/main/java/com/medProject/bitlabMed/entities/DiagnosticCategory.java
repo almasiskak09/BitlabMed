@@ -16,11 +16,11 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AnalyzesCategory extends BaseEntity{
+public class DiagnosticCategory extends BaseEntity {
 
-    @Column(name = "analyzes_category_name")
-    private String analyzesCategoryName;
+    @Column(name = "diagnostic_category_name")
+    private String diagnosticCategoryName;
 
-    @OneToMany(mappedBy = "analyzesCategory", fetch = FetchType.LAZY)
-    private List<Analyzes> analyzesList;
+    @OneToMany(mappedBy = "diagnosticCategory",fetch = FetchType.LAZY)
+    private List<Diagnostic> diagnosticList;
 }

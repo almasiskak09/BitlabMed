@@ -11,14 +11,15 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 </head>
 
 <body>
 
-<div th:replace="layout/layout :: header"></div>
-<div th:replace="layout/layout :: navbar"></div>
+<div th:replace="~{layout/layout :: header}"></div>
+<div th:replace="~{layout/layout :: navbar}"></div>
 
 
 
@@ -31,7 +32,6 @@
     </nav>
 </section>
 
-
 <div class="container ">
 
     <div class="diagnostikaHead">
@@ -42,92 +42,44 @@
         </form>
     </div>
 
-    <div class="announcement">
+    <div class="announcement" >
         <img th:src="@{/images/MRT.png}" alt="Diagnostic Image">
-        <div class="square s1">
-            <div><small class="smallGreyText">№334</small>
-                <div>
-                    <button  class="strong">
-                        Название диагностики
-                    </button>
-                </div>
-            </div>
-            <div>
-                <h3 class="baseColor"><strong>9800 тг.</strong> </h3>
-            </div>
-        </div>
-        <div class="square s2">
-            <div><small class="smallGreyText">№334</small>
-                <div>
-                    <button  class="strong">
-                        Название диагностики
-                    </button>
-                </div>
-            </div>
-            <div>
-                <h3 class="baseColor"><strong>9800 тг.</strong> </h3>
+        <div class="announcementText">
+            <h4 class="strong2">
+                Магнитно-резонансный томограф Philips Ingenia Ambition S
+            </h4>
+            <p>
+                Диагностическая система магнитно-резонансной томографии (МРТ), предназначенная для сканирования любой области тела человека.для сканирования любой области тела человека. Эта система включает в себя сверхпроводящий магнит и может быть стационарной, передвижной или транспортируемой.
+            </p>
+            <div class="announcementLeg">
+                <p class="announcementBt">Градиентное эхо</p>
+                <p class="announcementBt">3D Реконструкция</p>
+                <p class="announcementBt">Анализ Т2*-перфузии</p>
+
             </div>
         </div>
-        <div class="square s3">
-            <div><small class="smallGreyText">№334</small>
-                <div>
-                    <button  class="strong">
-                        Название диагностики
-                    </button>
-                </div>
-            </div>
-            <div>
-                <h3 class="baseColor"><strong>9800 тг.</strong> </h3>
-            </div>
-        </div>
-        <div class="square s4">
-            <div><small class="smallGreyText">№334</small>
-                <div>
-                    <button  class="strong">
-                        Название диагностики
-                    </button>
-                </div>
-            </div>
-            <div>
-                <h3 class="baseColor"><strong>9800 тг.</strong> </h3>
-            </div>
-        </div>
+
 
     </div>
 
     <div class="diagnostikaList">
 
-        <div class="diagnostikaCategory">
-            <h4 class="strong2 baseColor">Категория диагностики</h4>
-            <div class="diagnostikaComponent">
-                <h5 class="strong">Название услуги</h5>
+        <div class="diagnostikaCategory" th:each="diagnosticCategory:${diagnosticCategoryList}">
+            <h4 class="strong2 baseColor" th:text="${diagnosticCategory.diagnosticCategoryName}"></h4>
+            <div class="diagnostikaComponent" th:each="diagnostic:${diagnosticCategory.diagnosticList}">
+                <input type="hidden" th:value="${diagnostic.getId()}">
+                <h5 class="strong" th:text="${diagnostic.diagnosticName}"></h5>
                 <div class="analizPrice">
-                    <h2 class="baseColor"><strong>12 900 тг.</strong></h2>
+                    <h2 class="baseColor strong" th:text="${diagnostic.getFormattedPrice()}+' тг.'"></h2>
                     <button class="analizPriceButton blueText">+</button>
                 </div>
             </div>
-            <div class="diagnostikaComponent">
-                <h5 class="strong">Название услуги</h5>
-                <div class="analizPrice">
-                    <h2 class="baseColor"><strong>12 900 тг.</strong></h2>
-                    <button class="analizPriceButton blueText">+</button>
-                </div>
-            </div>
-            <div class="diagnostikaComponent">
-                <h5 class="strong">Название услуги</h5>
-                <div class="analizPrice">
-                    <h2 class="baseColor"><strong>12 900 тг.</strong></h2>
-                    <button class="analizPriceButton blueText">+</button>
-                </div>
-            </div>
-
         </div>
-
-
     </div>
-
-
 </div>
+
+
+
 </body>
 </html>
 

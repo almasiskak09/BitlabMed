@@ -1,8 +1,7 @@
 package com.medProject.bitlabMed.services;
 
 import com.medProject.bitlabMed.dtos.AnalyzesCategoryDTO;
-import com.medProject.bitlabMed.dtos.AnalyzesDTO;
-import com.medProject.bitlabMed.entities.AnalyzesCategory;
+
 
 import java.util.List;
 

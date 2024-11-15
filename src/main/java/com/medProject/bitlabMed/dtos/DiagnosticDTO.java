@@ -1,12 +1,11 @@
 package com.medProject.bitlabMed.dtos;
 
 import com.medProject.bitlabMed.entities.BaseEntity;
+import com.medProject.bitlabMed.utils.PriceFormatter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -15,8 +14,14 @@ import java.time.LocalDate;
 public class DiagnosticDTO extends BaseEntity {
 
     private String diagnosticName;
-    private LocalDate diagnosticCompletedDate;
+    private String diagnosticCompletedDate;
     private int diagnosticPrice;
-    private boolean diagnosticStatus;
+
+    private Long diagnosticCategoryId;
+
+    public String getFormattedPrice(){
+        return PriceFormatter.formatPrice(diagnosticPrice);
+    }
+
 
 }

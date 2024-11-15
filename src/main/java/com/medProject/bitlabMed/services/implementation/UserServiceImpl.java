@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public Boolean signUp(String email, String password, String repeatPassword, String full_name, String phone) {
+    public Boolean signUp(String email, String password, String repeatPassword, String fullName, String phone) {
         User u = userRepository.findByEmail(email);
 
         if(u == null) {
@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
                 newUser.setEmail(email);
                 newUser.setPhone(phone);
                 newUser.setPassword(passwordEncoder.encode(password));
-                newUser.setFull_name(full_name);
+                newUser.setFullName(fullName);
                 newUser.setRoles(permissions);
 
                 userRepository.save(newUser);
