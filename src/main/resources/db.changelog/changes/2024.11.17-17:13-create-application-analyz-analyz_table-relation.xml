@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create-application-analyzes-analyzes-table-relationship-table" author="Almas Iskak">
+        <createTable tableName="application_analyzes_analyzes_table_relationship">
+            <column name="application_analyzes_id" type="bigint">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="analyzes_id" type="bigint">
+                <constraints nullable="false"></constraints>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-relation-application-analyzes-analyze" author="Almas Iskak">
+        <addForeignKeyConstraint baseTableName="application_analyzes_analyzes_table_relationship"
+                                 baseColumnNames="application_analyzes_id"
+                                 constraintName="fk_application_analyze_to_application_analyze"
+                                 referencedTableName="application_analyzes"
+                                 referencedColumnNames="id"></addForeignKeyConstraint>
+
+        <addForeignKeyConstraint baseTableName="application_analyzes_analyzes_table_relationship"
+                                 baseColumnNames="analyzes_id"
+                                 constraintName="fk_application_analyze_analyze_table"
+                                 referencedTableName="analyzes"
+                                 referencedColumnNames="id"></addForeignKeyConstraint>
+    </changeSet>
+    
+    
+</databaseChangeLog>

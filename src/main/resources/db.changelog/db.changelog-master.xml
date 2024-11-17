@@ -13,6 +13,7 @@
 <include file="db.changelog/changes/2024.11.12-15:49-create-analyzes-and-category-table.xml"></include>
 <include file="db.changelog/changes/2024.11.12-15:56-add-analyzes-and-category.xml"></include>
 <include file="db.changelog/changes/2024.11.13-14:01-create-diagnostic-and-category-table.xml"></include>
-<include file="db.changelog/changes/2024-11.13-14:07-add-diagnostic-and-category.xml"></include>
-
+<include file="/db.changelog/changes/2024.11.13-14:07-add-diagnostic-and-category.xml"></include>
+<include file="db.changelog/changes/2024.11.17-16:11-create-application-analyzes-user-relation.xml"></include>
+    <include file="db.changelog/changes/2024.11.17-17:13-create-application-analyz-analyz_table-relation.xml"></include>
 </databaseChangeLog>

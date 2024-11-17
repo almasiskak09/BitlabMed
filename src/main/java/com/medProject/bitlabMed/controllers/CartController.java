@@ -6,16 +6,10 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,7 +18,7 @@ public class CartController {
     private final AnalyzesService analyzesService;
 
     @PostMapping("/add-to-cart")
-    public String addToCart(@RequestParam Long analyzeId, HttpSession httpSession, RedirectAttributes redirectAttributes){
+    public String addToCart(@RequestParam Long analyzeId, HttpSession httpSession, RedirectAttributes redirectAttributes) {
         List<AnalyzesDTO> cart = (List<AnalyzesDTO>) httpSession.getAttribute("cart");
         if (cart == null) {
             cart = new ArrayList<>();
@@ -34,11 +28,10 @@ public class CartController {
         AnalyzesDTO analyzesDTO = analyzesService.getAnalyzeById(analyzeId);
         if (analyzesDTO != null) {
             cart.add(analyzesDTO);
-            System.out.println(analyzesDTO.getAnalyzesPrice());
         }
 
-        List<Long>addedAnalyzes = (List<Long>) httpSession.getAttribute("addedAnalyzes");
-        if(addedAnalyzes==null){
+        List<Long> addedAnalyzes = (List<Long>) httpSession.getAttribute("addedAnalyzes");
+        if (addedAnalyzes == null) {
             addedAnalyzes = new ArrayList<>();
             httpSession.setAttribute("addedAnalyzes", addedAnalyzes);
         }
@@ -72,7 +65,7 @@ public class CartController {
 
 
     @GetMapping("/cart")
-    public String getCart(HttpSession httpSession, Model model){
+    public String getCart(HttpSession httpSession, Model model) {
         List<AnalyzesDTO> cart = (List<AnalyzesDTO>) httpSession.getAttribute("cart");
         if (cart == null) {
             cart = new ArrayList<>();
@@ -80,7 +73,7 @@ public class CartController {
         }
 
         int totalPrice = 0;
-        for(AnalyzesDTO cart1 : cart){
+        for (AnalyzesDTO cart1 : cart) {
             totalPrice += cart1.getAnalyzesPrice();
         }
         model.addAttribute("cart", cart);
@@ -88,4 +81,12 @@ public class CartController {
 
         return "cart";
     }
+
+    @GetMapping("/checkCart")
+    @ResponseBody
+    public Map<String, Boolean> checkCart(@ModelAttribute("cart") List<AnalyzesDTO> cart) {
+        boolean isEmpty = cart == null || cart.isEmpty();
+        return Collections.singletonMap("isEmpty", isEmpty);
+    }
+
 }

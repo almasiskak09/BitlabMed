@@ -31,6 +31,8 @@ public class User extends BaseEntity implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Permission> roles;
 
+    @ManyToMany (mappedBy = "apUserList")
+    private List<ApplicationAnalyzes> ApplicationAnalyzesList;
 //    @OneToMany(fetch = FetchType.LAZY)
 //    private List<UserHistory>userHistoryList;
 //

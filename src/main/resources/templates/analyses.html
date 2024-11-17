@@ -25,16 +25,8 @@
 <div th:replace="~{layout/layout :: navbar}"></div>
 
 
-<section class="container">
-    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Главная</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Врачи</li>
-        </ol>
-    </nav>
-</section>
 
-<div class="container ">
+<div class="container h">
 
     <div class="analizHead">
         <h1 class="analizText"><b>Сдать анализ</b></h1>
@@ -46,35 +38,50 @@
 
     <div class="analizCenter">
 
-        <div class="analizTable" >
-            <div th:each="analyzesCategory : ${analyzesCategoryList}">
 
-                <button class="analizBtn" th:text="${analyzesCategory.analyzesCategoryName}">
-                    <i class="bi bi-file-earmark-medical blueText"></i>
-                </button>
-            </div>
+        <div class="analizTable">
+            <h5 class="strong blueText action">Информация про акции</h5>
         </div>
 
         <div class="analizList">
 
-            <div class="analizComponent" th:each="analyzes:${analyzesList}">
-                <div class="analizName" >
-                    <small class="smallGreyText" th:text="'№'+${analyzes.id}"></small>
-                    <h6 class="strong" th:text="${analyzes.analyzesName}"></h6>
-                   <div>
-                       <i class="bi bi-calendar-check blueText"></i>
-                       <span>&nbsp;</span> <!-- Пробел -->
-                       <small class="blueText" th:text="${analyzes.analyzesReadyDate} + (${analyzes.analyzesReadyDate} <= 4 ? '-x' : '') + ' календарных дней'"></small>
-                   </div>
-                </div>
-                <div class="analizPrice">
-                    <h5 class="baseColor strong" th:text="${analyzes.getFormattedPrice()}+' тг.'"></h5>
-                    <button class="analizPriceButton blueText" th:data-analyze-id="${analyzes.getId()}" th:classappend="${#lists.contains(addedAnalyzes, analyzes.id)} ? 'addedItem' : ''">+</button>
-                </div>
-            </div>
+            <section class="accordion" th:each="category : ${analyzesCategoryList}">
+                <div class="tab">
+                    <input type="checkbox" name="accordion-1" th:attr="id=${category.id}">
+                    <label th:attr="for=${category.id}" class="tab__label"><i class="bi bi-file-earmark-medical"></i><h6 class="strong blueText s" th:text="${category.analyzesCategoryName}"></h6> </label>
+                    <div class="tab__content">
+
+                        <div class="analizBlock">
+
+                           <div class="analizComponent" th:each="analyze : ${category.analyzesList}">
+                                <div class="analizName" >
+                                    <small class="smallGreyText" th:text="'№'+${analyze.id}"></small>
+                                    <h6 class="strong" th:text="${analyze.analyzesName}"></h6>
+                                   <div>
+                                       <i class="bi bi-calendar-check blueText"></i>
+                                       <span>&nbsp;</span> <!-- Пробел -->
+                                       <small class="blueText" th:text="${analyze.analyzesReadyDate} + (${analyze.analyzesReadyDate} <= 4 ? '-x' : '') + ' календарных дней'"></small>
+                                   </div>
+                                </div>
+                                <div class="analizPrice">
+                                    <h5 class="baseColor strong" th:text="${analyze.getFormattedPrice()}+' тг.'"></h5>
+                                    <button class="analizPriceButton blueText" th:data-analyze-id="${analyze.getId()}" th:classappend="${#lists.contains(addedAnalyzes, analyze.id)} ? 'addedItem' : ''">+</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    </div>
+            </section>
+
+        </div>
         </div>
     </div>
-</div>
+
+
+
+
 <script>
     $(document).ready(function() {
         $(".analizPriceButton").each(function() {

@@ -18,16 +18,9 @@
 <div th:replace="~{layout/layout :: header}"></div>
 <div th:replace="~{layout/layout :: navbar}"></div>
 
-<section class="container">
-    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Главная</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Врачи</li>
-        </ol>
-    </nav>
-</section>
 
-<div class="container items">
+
+<div class="container h items">
 
     <div class="itemsAnalizes">
         <h1 class="analizText"><b>Список выбранных анализов</b></h1>
@@ -51,10 +44,47 @@
         </div>
     </div>
 
-    <div class="itogo">
-        <h3 class="analizText">Общая сумма заказов</h3>
-        <h4 class="strong" id="totalPrice" th:text="${totalPrice}+' тг.'"></h4>
+    <div class="cart">
+        <div class="itogo">
+            <h3 class="analizText underline">Общая сумма заказов:</h3>
+            <h4 class="strong" id="totalPrice" th:text="${totalPrice}+' тг.'"></h4>
+        </div>
+            <button class="applyCart" type="button" th:if="${cart != null && !#lists.isEmpty(cart)}"  data-bs-toggle="modal" data-bs-target="#applyCart">Подтвердить заказ</button>
     </div>
+
+<!--Модальное Окно для формы-->
+
+
+    <!-- Modal -->
+<form th:action="@{/addApplication}" th:method="post">
+    <div class="modal fade" id="applyCart" tabindex="-1" aria-labelledby="exampleModalApplyCart" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 strong blueText" id="exampleModalLabel">Подтверждение заказ анализов</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" name="apUserFullName" id="user_email" placeholder="ФИО">
+                        <input type="tel" name="apUserPhone" id="user_password" placeholder="Телефон">
+                    </div>
+                </div>
+                <div th:each="analyze:${cart}">
+                    <input type="hidden" th:value="${analyze.id}" name="analyzesIds">
+                </div>
+                <div>
+                    <input type="hidden" th:value="${totalPrice}" name="apTotalPrice">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="b1 strong" data-bs-dismiss="modal">Закрыть</button>
+                    <button type="submit" class="b2 strong" >Подвердить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
 
 </div>
 <script>$(document).ready(function() {

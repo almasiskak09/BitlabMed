@@ -1,11 +1,12 @@
 package com.medProject.bitlabMed.entities;
 
-import com.medProject.bitlabMed.utils.PriceFormatter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -27,5 +28,7 @@ public class Analyzes extends BaseEntity {
     @JoinColumn(name = "analyzes_category_id")
     private AnalyzesCategory analyzesCategory;
 
+    @ManyToMany(mappedBy = "apAnalyzesList")
+    private List<ApplicationAnalyzes> ApplicationAnalyzesList;
 
 }

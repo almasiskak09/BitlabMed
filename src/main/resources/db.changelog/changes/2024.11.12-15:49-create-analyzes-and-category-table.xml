@@ -31,7 +31,7 @@
                 <constraints nullable="false"></constraints>
             </column>
             <column name="analyzes_category_id" type="bigint">
-                <constraints nullable="true"></constraints>
+                <constraints nullable="false"></constraints>
             </column>
         </createTable>
 

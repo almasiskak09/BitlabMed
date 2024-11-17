@@ -3,6 +3,9 @@ body{
     font-optical-sizing: auto;
     font-style: normal;
 }
+.h{
+    margin-top: 30px;
+}
 .btn:active{
     background-color: #0e4962 !important;
 }
@@ -16,11 +19,13 @@ body{
 }
 
 .blueText{
-    color: #1897b2;
+    color: #0098DA;
     transition-duration: 0.1s;
     transition-delay: 0.2ms;
 }
-
+.s{
+    margin-top: 4px;
+}
 .strongBlue{
     font-weight: 700;
     color: #0098DA;
@@ -403,7 +408,15 @@ hr{
 }
 .analizTable{
     width: 60%;
+    padding: 20px 25px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 10px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
+
 .analizBtn{
     width: 100%;
     height: 60px;
@@ -765,22 +778,25 @@ hr{
 
 /* Visual styles */
 .accordion {
-    color: var(--theme);
     border: 0px solid;
-    border-radius: 0.2rem;
+    border-radius: 0;
     overflow: hidden;
+    width: 100%;
+    margin-top: 0px ;
 }
 .tab__label,
 .tab__close {
     display: flex;
-    color: white;
-    background: var(--theme);
+    color: #0098DA;
+    border: 0.2px solid #0098DA;
     cursor: pointer;
     font-weight: 600;
 }
 .tab__label {
-    justify-content: space-between;
     padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
 }
 .tab__label::after {
     content: "\276F";
@@ -789,6 +805,7 @@ hr{
     text-align: center;
     transform: rotate(90deg);
     transition: all 0.35s;
+    margin-left: auto;
 }
 .tab input:checked + .tab__label::after {
     transform: rotate(270deg);
@@ -818,7 +835,6 @@ hr{
         transform: rotate(90deg) translate(-.25rem);
     }
 }
-
 /*КАБИНЕТ ВРАЧА*/
 
 .doctorCalendar{
@@ -834,10 +850,13 @@ hr{
     gap: 80px;
 }
 
+.cart{
+    margin-bottom: 50px;
+}
 .itogo {
     display: flex;
     flex-direction: row;
-    width: 700px;
+    width: 600px;
     justify-content: space-between;
     align-items: center;
     margin-left: auto;
@@ -862,4 +881,50 @@ hr{
     justify-content: center;
     align-items: center;
     margin-bottom: 7px;
+}
+
+.applyCart{
+    margin-left: 83%;
+    margin-top: 10px;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    border: 0px;
+    color: white;
+    background-color: #ff7b7b;
+    font-weight: 700;
+}
+.applyCart:hover{
+    background-color: #eaf9ff;
+    color: #0098DA;
+    transition-duration: 0.1s;
+    transition-delay: 0.2ms;
+    border: 0.5px solid #0098DA;
+}
+.apply-cart{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.modal-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.b1,.b2{
+    background-color: #0098DA;
+    color: white;
+    transition-duration: 0.1s;
+    transition-delay: 0.2ms;
+    padding: 7px 15px;
+    border: 0px;
+    border-radius: 10px;
+}
+.b2{
+    background-color: #ff7b7b;
+}
+.action{
+    align-self: center;
 }

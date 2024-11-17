@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create-application-analyzes-table" author="Almas Iskak">
+        <createTable tableName="application_analyzes">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"></constraints>
+            </column>
+            <column name="application_analyzes_user_full_name" type="varchar(255)">
+                <constraints nullable="true"></constraints>
+            </column>
+            <column name="application_analyzes_user_phone" type="varchar">
+                <constraints nullable="true"></constraints>
+            </column>
+            <column name="application_analyzes_total_price" type="bigint">
+                <constraints nullable="true"></constraints>
+            </column>
+            <column name="application_analyzes_created_date" type="date">
+                <constraints nullable="false"></constraints>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="creat-application-analyzes-user-relations-table" author="Almas Iskak">
+        <createTable tableName="application_analyzes_user_relations">
+            <column name="application_analyzes_id" type="bigint">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"></constraints>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-relation-application-analyzes-user" author="Almas Iskak">
+        <addForeignKeyConstraint baseTableName="application_analyzes_user_relations"
+                                 baseColumnNames="application_analyzes_id"
+                                 constraintName="fk_application_analyzes_user_relations_application_analyz_id"
+                                 referencedTableName="application_analyzes"
+                                 referencedColumnNames="id"></addForeignKeyConstraint>
+        
+        <addForeignKeyConstraint baseTableName="application_analyzes_user_relations"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_application_analyzes_user_relations_user_id"
+                                 referencedTableName="t_users"
+                                 referencedColumnNames="id"></addForeignKeyConstraint>
+    </changeSet>
+
+
+</databaseChangeLog>

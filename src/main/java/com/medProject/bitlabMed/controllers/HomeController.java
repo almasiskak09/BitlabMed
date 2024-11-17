@@ -25,13 +25,14 @@ public class HomeController {
 
 
     @GetMapping(value = "/home")
-    public String home(){
+    public String home(Model model){
         return "home";
     }
     @GetMapping(value = "/doctors")
     public String doctorsPage(Model model){
         List<DoctorDTO>doctorList = doctorService.getAllDoctors();
         model.addAttribute("doctorsList",doctorList);
+
 
         return "doctors";
     }
@@ -61,6 +62,7 @@ public class HomeController {
 
         model.addAttribute("diagnosticList",diagnosticDTOList);
         model.addAttribute("diagnosticCategoryList",diagnosticCategoryDTOList);
+
         return "diagnostic";
     }
 
