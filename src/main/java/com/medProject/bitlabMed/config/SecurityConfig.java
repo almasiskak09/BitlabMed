@@ -42,7 +42,7 @@ public class SecurityConfig {
                                 .requestMatchers("/profile-manager").hasAuthority("ROLE_MANAGER")
                                 .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                                 .requestMatchers("/home", "/doctors", "/analyses", "/diagnostic","/cart").permitAll()
-                                .requestMatchers("/doctor/**","/users/**","/analyzes/**","/analyze-category/**","/diagnostic/**","/diagnostic-category/**","/addApplication").permitAll()
+                                .requestMatchers("/doctor/**","/users/**","/analyzes/**","/analyze-category/**","/diagnostic/**","/diagnostic-category/**","/addApplication","/application-analyzes/**").permitAll()
                                 .anyRequest().hasAuthority("ROLE_ADMIN"))
                 .formLogin(
                         login -> login

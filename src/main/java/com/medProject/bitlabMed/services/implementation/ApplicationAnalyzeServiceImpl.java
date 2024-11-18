@@ -1,5 +1,6 @@
 package com.medProject.bitlabMed.services.implementation;
 
+
 import com.medProject.bitlabMed.dtos.ApplicationAnalyzesDTO;
 import com.medProject.bitlabMed.entities.ApplicationAnalyzes;
 import com.medProject.bitlabMed.mappers.ApplicationAnalyzesMapper;
@@ -22,9 +23,9 @@ public class ApplicationAnalyzeServiceImpl implements ApplicationAnalyzesService
         return applicationAnalyzesMapper.toDtoList(applicationAnalyzes);
     }
     public ApplicationAnalyzesDTO addApplicationAnalyzes (ApplicationAnalyzesDTO applicationAnalyzesDTO){
-      ApplicationAnalyzes applicationAnalyzes = applicationAnalyzesMapper.toEntity(applicationAnalyzesDTO);
-      applicationAnalyzesRepository.save(applicationAnalyzes);
-      return applicationAnalyzesMapper.toDto(applicationAnalyzes);
+       ApplicationAnalyzes applicationAnalyzes = applicationAnalyzesMapper.toEntity(applicationAnalyzesDTO);
+       applicationAnalyzesRepository.save(applicationAnalyzes);
+       return applicationAnalyzesMapper.toDto(applicationAnalyzes);
     }
     public ApplicationAnalyzesDTO getApplicationAnalyzes(Long id){
        ApplicationAnalyzes applicationAnalyzes = applicationAnalyzesRepository.findById(id).orElse(null);
@@ -39,4 +40,6 @@ public class ApplicationAnalyzeServiceImpl implements ApplicationAnalyzesService
        applicationAnalyzesRepository.deleteById(id);
     }
 
+
 }
+

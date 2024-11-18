@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @Transactional
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(String email);
+    User findByFullName(String fullName);
 }

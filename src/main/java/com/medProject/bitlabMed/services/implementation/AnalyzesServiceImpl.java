@@ -56,5 +56,8 @@ public class AnalyzesServiceImpl implements AnalyzesService  {
         NumberFormat formatter = NumberFormat.getInstance(new Locale("ru", "RU"));
         return formatter.format(price);
     }
+    public List<Analyzes>findAllById(List<Long> ids){
+        return analyzesRepository.findAllById(ids);
+    }
 
 }

@@ -22,33 +22,17 @@
             <column name="application_analyzes_created_date" type="date">
                 <constraints nullable="false"></constraints>
             </column>
-        </createTable>
-    </changeSet>
-    
-    <changeSet id="creat-application-analyzes-user-relations-table" author="Almas Iskak">
-        <createTable tableName="application_analyzes_user_relations">
-            <column name="application_analyzes_id" type="bigint">
-                <constraints nullable="false"></constraints>
-            </column>
             <column name="user_id" type="bigint">
-                <constraints nullable="false"></constraints>
+                <constraints nullable="true"></constraints>
             </column>
         </createTable>
     </changeSet>
 
-    <changeSet id="create-relation-application-analyzes-user" author="Almas Iskak">
-        <addForeignKeyConstraint baseTableName="application_analyzes_user_relations"
-                                 baseColumnNames="application_analyzes_id"
-                                 constraintName="fk_application_analyzes_user_relations_application_analyz_id"
-                                 referencedTableName="application_analyzes"
-                                 referencedColumnNames="id"></addForeignKeyConstraint>
-        
-        <addForeignKeyConstraint baseTableName="application_analyzes_user_relations"
+    <changeSet id="create-application-user-relation" author="Almas Iskak">
+        <addForeignKeyConstraint baseTableName="application_analyzes"
                                  baseColumnNames="user_id"
-                                 constraintName="fk_application_analyzes_user_relations_user_id"
+                                 constraintName="fk_user_id_to_application_analyzes"
                                  referencedTableName="t_users"
                                  referencedColumnNames="id"></addForeignKeyConstraint>
     </changeSet>
-
-
 </databaseChangeLog>

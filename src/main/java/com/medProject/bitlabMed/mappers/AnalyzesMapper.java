@@ -13,6 +13,7 @@ public interface AnalyzesMapper {
     @Mapping(source = "analyzesCategory.id", target = "analyzesCategoryId")
     AnalyzesDTO toDto(Analyzes analyzes);
     Analyzes toEntity(AnalyzesDTO analyzesDTO);
+
     List<AnalyzesDTO> toDtoList(List<Analyzes> analyzesList);
     List<Analyzes>toEntityList(List<AnalyzesDTO>analyzesDtoList);
 

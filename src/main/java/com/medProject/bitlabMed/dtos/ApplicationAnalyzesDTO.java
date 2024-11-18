@@ -1,5 +1,6 @@
 package com.medProject.bitlabMed.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.medProject.bitlabMed.entities.Analyzes;
 import com.medProject.bitlabMed.entities.BaseEntity;
 import com.medProject.bitlabMed.entities.User;
@@ -24,7 +25,7 @@ public class ApplicationAnalyzesDTO {
     private String apUserPhone;
     private int apTotalPrice;
     private LocalDate apCreatedDate;
-    private List<Long> analyzesIds; // Список ID анализов
-    private List<Long> userIds; // Список ID пользователей
+    private List<Long> analyzesIds;
+    private Long userId;
 
 }

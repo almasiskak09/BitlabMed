@@ -32,10 +32,8 @@ public class ApplicationAnalyzes extends BaseEntity {
     inverseJoinColumns = @JoinColumn(name = "analyzes_id"))
     private List<Analyzes> apAnalyzesList;
 
-    @ManyToMany
-    @JoinTable(name = "application_analyzes_user_relations",
-            joinColumns = @JoinColumn(name = "application_analyzes_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> apUserList;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }

@@ -1,6 +1,7 @@
 package com.medProject.bitlabMed.services;
 
 import com.medProject.bitlabMed.dtos.AnalyzesDTO;
+import com.medProject.bitlabMed.entities.Analyzes;
 
 import java.util.List;
 
@@ -12,4 +13,5 @@ public interface AnalyzesService {
     AnalyzesDTO updateAnalyze(AnalyzesDTO analyzesDTO);
     void deleteAnalyzeById(Long id);
     List<AnalyzesDTO> findByAnalyzesCategory_Id(Long categoryId);
+    List<Analyzes>findAllById(List<Long> ids);
 }
