@@ -2,7 +2,9 @@ package com.medProject.bitlabMed.controllers;
 
 import com.medProject.bitlabMed.dtos.DoctorDto.AppointmentDoctorDto;
 import com.medProject.bitlabMed.dtos.DoctorDto.DoctorDTO;
+import com.medProject.bitlabMed.entities.Doctor.AppointmentDoctor;
 import com.medProject.bitlabMed.entities.User.User;
+import com.medProject.bitlabMed.mappers.AppointmentDoctorMapper;
 import com.medProject.bitlabMed.repositories.UserRepository;
 import com.medProject.bitlabMed.services.AppointmentDoctorService;
 import com.medProject.bitlabMed.services.DoctorService;
@@ -30,11 +32,12 @@ public class DoctorController {
     private final DoctorService doctorService;
     private final AppointmentDoctorService appointmentDoctorService;
     private final UserRepository userRepository;
+    private final AppointmentDoctorMapper appointmentDoctorMapper;
 
     @GetMapping(value = "/doctors")
-    public String doctorsPage(Model model){
+    public String doctorsPage(Model model) {
         List<DoctorDTO> doctorList = doctorService.getAllDoctors();
-        model.addAttribute("doctorsList",doctorList);
+        model.addAttribute("doctorsList", doctorList);
         return "doctors";
     }
 
@@ -48,7 +51,7 @@ public class DoctorController {
     }
 
     @PostMapping("/addAppointmentDoctor")
-    public String addAppointmentDoctor (@ModelAttribute AppointmentDoctorDto appointmentDoctorDto) {
+    public String addAppointmentDoctor(@ModelAttribute AppointmentDoctorDto appointmentDoctorDto) {
 
         // Получение текущего пользователя через SecurityContext
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -64,9 +67,14 @@ public class DoctorController {
         }
 
         appointmentDoctorService.addAppointmentDoctor(appointmentDoctorDto);
-      return "/doctors";
+
+
+        return "doctors";
 
     }
-
-
 }
+
+
+
+
+
