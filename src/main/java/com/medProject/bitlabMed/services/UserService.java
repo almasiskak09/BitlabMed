@@ -1,5 +1,5 @@
 package com.medProject.bitlabMed.services;
-import com.medProject.bitlabMed.entities.User;
+import com.medProject.bitlabMed.entities.User.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

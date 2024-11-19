@@ -1,5 +1,6 @@
-package com.medProject.bitlabMed.entities;
+package com.medProject.bitlabMed.entities.User;
 
+import com.medProject.bitlabMed.entities.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

@@ -1,6 +1,6 @@
 package com.medProject.bitlabMed.restApi;
 
-import com.medProject.bitlabMed.entities.User;
+import com.medProject.bitlabMed.entities.User.User;
 import com.medProject.bitlabMed.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

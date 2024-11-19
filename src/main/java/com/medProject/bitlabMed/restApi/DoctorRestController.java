@@ -1,6 +1,6 @@
 package com.medProject.bitlabMed.restApi;
 
-import com.medProject.bitlabMed.dtos.DoctorDTO;
+import com.medProject.bitlabMed.dtos.DoctorDto.DoctorDTO;
 import com.medProject.bitlabMed.services.DoctorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping( "doctor")
+@RequestMapping( "/doctors")
 public class DoctorRestController {
 
     private final DoctorService doctorService;

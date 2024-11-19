@@ -1,7 +1,7 @@
 package com.medProject.bitlabMed.services.implementation;
 
-import com.medProject.bitlabMed.entities.Permission;
-import com.medProject.bitlabMed.entities.User;
+import com.medProject.bitlabMed.entities.User.Permission;
+import com.medProject.bitlabMed.entities.User.User;
 import com.medProject.bitlabMed.repositories.PermissionRepository;
 import com.medProject.bitlabMed.repositories.UserRepository;
 import com.medProject.bitlabMed.services.UserService;

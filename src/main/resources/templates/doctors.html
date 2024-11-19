@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 </head>
 
 <body>
@@ -43,12 +47,43 @@
                     <p><i class="bi bi-trophy" style="font-size: 20px; color: #0098DA;"> </i> <b> 4.0</b> Рейтинг</p>
                 </div>
             </div>
-            <button class="bookDoctor">Записаться</button>
+            <button class="bookDoctor" data-bs-toggle="modal" th:attr="data-bs-target='#exampleModal'+${doctors.id}" th:data-doctor-id="${doctors.id}">Записаться</button>
+            <!-- Modal -->
+            <div class="modal fade" th:id="'exampleModal'+${doctors.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog2 modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 blueText strong" id="exampleModalLabel">Подтверждение записи к врачу</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="calendarTable">
+
+
+                            </div>
+                            <div class="fmg">
+                                <label class="blueText">ФИО: <input type="text" name="patientFullName" id="patientFullName" placeholder="Имя Фамилия"></label>
+                                <label class="blueText">Телефон: <input type="text" name="patientPhone" id="patientPhone" placeholder="8 707 222 03 03"></label>
+
+
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="strong b1" data-bs-dismiss="modal">Закрыть</button>
+                            <button type="submit" class="strong b2">Подтвердить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="doctorDown">
             <div class="profileTextDown">
              <div><i class="bi bi-geo-alt" style="font-size: 20px; color: #0098DA;"></i><span th:text="' '+${doctors.doctorAddress}"></span> </div>
-                <div> <i class="bi bi-alarm" style="font-size: 20px; color: #0098DA;" ></i><span th:text="' '+${doctors.doctorWorkingHours}"></span></div>
+                <div> <i class="bi bi-alarm" style="font-size: 20px; color: #0098DA;" ></i><span class="underline" th:text="' '+${doctors.doctorWorkingHours}"></span></div>
             </div>
             <div class="ProfilePrice">
                 <h4 class="baseColor strong" th:text="${doctors.getFormattedPrice()}+' тг.'"></h4>
@@ -58,8 +93,187 @@
     </div>
 
 
+    <script>
+        function selectTime(button) {
+        // Убираем класс 'selected' у всех кнопок в текущем модальном окне
+        const modal = button.closest('.modal');
+        modal.querySelectorAll('.time').forEach(btn => btn.classList.remove('selected'));
 
+        // Добавляем класс 'selected' к выбранной кнопке
+        button.classList.add('selected');
+    }
 
+        function loadSchedule(doctorId, startDate, modal) {
+            console.log('Запрос расписания для доктора с id:', doctorId); // Логируем, чтобы увидеть id в запросе
+            fetch(`/week-schedule?doctorId=${doctorId}&startDate=${startDate}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Очистка расписания только для текущего модального окна
+                    const calendarTable = modal.querySelector('.calendarTable');
+                    calendarTable.innerHTML = ''; // Очищаем старое расписание
+
+                    // Получаем массив дат и сортируем их по возрастанию
+                    const sortedDates = Object.keys(data).sort((a, b) => new Date(a) - new Date(b));
+
+                    sortedDates.forEach(date => {
+                        const dateObj = new Date(date);
+
+                        // Определяем день недели (0 - воскресенье, 6 - суббота)
+                        const dayOfWeek = dateObj.getDay();
+
+                        const shortWeekday = dateObj.toLocaleDateString('ru-RU', {weekday: 'short'});
+                        const day = dateObj.getDate();
+                        const month = dateObj.toLocaleString('ru-RU', {month: 'long'});
+
+                        const weekendDiv = document.createElement('div');
+                        weekendDiv.classList.add('weekend');
+
+                        // День недели (синий цвет)
+                        const weekDayDiv = document.createElement('div');
+                        weekDayDiv.classList.add('weekDay');
+                        weekDayDiv.style.color = '#0098DA';
+                        weekDayDiv.style.fontWeight = 'bold';
+                        weekDayDiv.textContent = shortWeekday;
+
+                        // Дата (число и месяц на одной линии)
+                        const dateDiv = document.createElement('div');
+                        dateDiv.classList.add('dateDiv');
+                        dateDiv.textContent = `${day} ${month}`;
+
+                        if (dayOfWeek === 0 || dayOfWeek === 6) {
+                            // Если день недели — суббота (6) или воскресенье (0), отображаем только пустую полосу
+                            const emptyDiv = document.createElement('div');
+                            emptyDiv.classList.add('emptyDay');
+                            emptyDiv.textContent = 'Выходной'; // Можно убрать, если нужна просто полоса
+                            weekendDiv.appendChild(weekDayDiv);
+                            weekendDiv.appendChild(dateDiv);
+                            weekendDiv.appendChild(emptyDiv);
+                        } else {
+                            // Контейнер для времени
+                            const dayTimesDiv = document.createElement('div');
+                            dayTimesDiv.classList.add('dayTimes');
+
+                            // Для каждой доступной временной метки создаем кнопку
+                            data[date].forEach(time => {
+                                const formattedTime = time.split(':').slice(0, 2).join(':');
+                                const timeButton = document.createElement('button');
+                                timeButton.classList.add('time');
+                                timeButton.textContent = formattedTime;
+                                timeButton.onclick = function () {
+                                    selectTime(this);
+                                };
+                                dayTimesDiv.appendChild(timeButton);
+                            });
+
+                            weekendDiv.appendChild(weekDayDiv);
+                            weekendDiv.appendChild(dateDiv);
+                            weekendDiv.appendChild(dayTimesDiv);
+                        }
+
+                        calendarTable.appendChild(weekendDiv);
+                    });
+                })
+
+                .catch(error => {
+                    console.error('Ошибка при загрузке расписания:', error);
+                });
+        }
+        document.querySelectorAll('.bookDoctor').forEach(button => {
+            button.addEventListener('click', function () {
+                // Получаем id доктора из data-атрибута
+                const doctorId = this.dataset.doctorId;
+                console.log('ID выбранного доктора:', doctorId);
+
+                // Обновление модального окна с правильным ID врача
+                const modal = document.querySelector(`#exampleModal${doctorId}`);
+                const modalTitle = modal.querySelector('.modal-title');
+
+                // Загрузка расписания для выбранного доктора
+                const today = new Date();
+                const startDate = today.toISOString().split('T')[0];
+
+                loadSchedule(doctorId, startDate, modal); // Передаем модальное окно для работы с ним
+
+                // Обработка кнопки "Записаться"
+                // Добавляем обработчик клика на кнопку подтверждения
+                modal.querySelector('.b2').addEventListener('click', function () {
+                    const selectedDate = modal.querySelector('.weekDay').textContent + ' ' + modal.querySelector('.dateDiv').textContent;
+                    const selectedTime = modal.querySelector('.time.selected')?.textContent || '';
+
+                    const months = {
+                        январь: '01',
+                        февраль: '02',
+                        март: '03',
+                        апрель: '04',
+                        май: '05',
+                        июнь: '06',
+                        июль: '07',
+                        август: '08',
+                        сентябрь: '09',
+                        октябрь: '10',
+                        ноябрь: '11',
+                        декабрь: '12'
+                    };
+
+                    const [shortWeekday, day, monthName] = selectedDate.split(' ');
+                    const month = months[monthName];
+                    const currentYear = new Date().getFullYear();
+                    const fullDateString = `${currentYear}-${month}-${day.padStart(2, '0')}`;
+                    const dateObj = new Date(fullDateString);
+
+                    if (isNaN(dateObj.getTime())) {
+                        console.error('Invalid date:', fullDateString);
+                        alert('Некорректная дата.');
+                        return;
+                    }
+
+                    const appointmentDate = dateObj.toISOString().split('T')[0];
+                    const appointmentStartTime = selectedTime; // Предполагаем, что `selectedTime` уже в нужном формате
+
+                    const patientFullNameInput = modal.querySelector('#patientFullName');
+                    const patientPhoneInput = modal.querySelector('#patientPhone');
+
+                    const patientFullName = patientFullNameInput.value;
+                    const patientPhone = patientPhoneInput.value;
+
+                    // Проверяем заполненность данных
+                    if (!appointmentDate || !appointmentStartTime || !patientFullName || !patientPhone) {
+                        alert('Пожалуйста, заполните все поля.');
+                        return;
+                    }
+
+                    // Выполняем AJAX-запрос
+                    $.ajax({
+                        url: '/addAppointmentDoctor',
+                        method: 'POST',
+                        data: {
+                            appointmentDate: appointmentDate,
+                            appointmentStartTime: appointmentStartTime,
+                            patientPhone: patientPhone,
+                            patientFullName: patientFullName,
+                            doctorId: doctorId, // Убедитесь, что `doctorId` определен
+                            isBooked: true
+                        },
+                        success: function (response) {
+                            console.log('Response from server:', response);
+                            // Закрываем модальное окно
+                            $(modal).modal('hide');
+                            localStorage.setItem('modalMessage', 'Операция выполнена успешно!');
+
+                            // Перезагружаем страницу
+                            window.location.href = '/home';
+
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Error during AJAX request:', error);
+                            alert("Произошла ошибка при сохранении.");
+                        }
+                    });
+                });
+            });
+        });
+
+    </script>
 
 </div>
 </body>

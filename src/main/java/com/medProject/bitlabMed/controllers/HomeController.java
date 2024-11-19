@@ -1,8 +1,9 @@
 package com.medProject.bitlabMed.controllers;
 
 import com.medProject.bitlabMed.dtos.*;
-import com.medProject.bitlabMed.entities.Analyzes;
-import com.medProject.bitlabMed.entities.AnalyzesCategory;
+import com.medProject.bitlabMed.dtos.AnalyzesDto.AnalyzesCategoryDTO;
+import com.medProject.bitlabMed.dtos.AnalyzesDto.AnalyzesDTO;
+import com.medProject.bitlabMed.dtos.DoctorDto.DoctorDTO;
 import com.medProject.bitlabMed.services.*;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -28,14 +29,7 @@ public class HomeController {
     public String home(Model model){
         return "home";
     }
-    @GetMapping(value = "/doctors")
-    public String doctorsPage(Model model){
-        List<DoctorDTO>doctorList = doctorService.getAllDoctors();
-        model.addAttribute("doctorsList",doctorList);
 
-
-        return "doctors";
-    }
     @GetMapping(value = "/analyses")
     public String analysesPage(Model model, HttpSession httpSession){
         List<AnalyzesDTO>analyzesDTOList = analyzesService.getAllAnalyzes();

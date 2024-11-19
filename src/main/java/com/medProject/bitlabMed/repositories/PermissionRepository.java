@@ -1,6 +1,6 @@
 package com.medProject.bitlabMed.repositories;
 
-import com.medProject.bitlabMed.entities.Permission;
+import com.medProject.bitlabMed.entities.User.Permission;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

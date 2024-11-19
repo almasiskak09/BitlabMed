@@ -3,28 +3,33 @@ body{
     font-optical-sizing: auto;
     font-style: normal;
 }
-.h{
-    margin-top: 30px;
+mrg-top{
+    margin-top: 40px;
+}
+
+nav{
+    margin-top: 40px;
 }
 .btn:active{
     background-color: #0e4962 !important;
 }
+
 .doctorSps{
     display: flex;
     flex-direction: row;
 }
+
 .underline{
     text-decoration: underline;
     font-weight: 500;
 }
-
 .blueText{
-    color: #0098DA;
+    color: #1897b2;
     transition-duration: 0.1s;
     transition-delay: 0.2ms;
 }
-.s{
-    margin-top: 4px;
+.h{
+    margin-top: 40px;
 }
 .strongBlue{
     font-weight: 700;
@@ -369,7 +374,7 @@ hr{
 .doctorDown{
     width: 100%;
     height: auto;
-    padding: 15px 35px;
+    padding: 25px 35px;
     border: 0.5px solid #a1c5d5;
     border-radius: 0px 0px 20px 20px;
     background-color: #f5fcff;
@@ -417,6 +422,9 @@ hr{
     gap: 20px;
 }
 
+.action{
+    align-self: center;
+}
 .analizBtn{
     width: 100%;
     height: 60px;
@@ -462,12 +470,13 @@ hr{
     border-left: 0.1px solid rgb(228, 228, 228);
     display: flex;
     flex-direction: row;
-    padding: 10px;
+    padding: 10px 30px;
     min-height: 110px;
     align-items: center;
     transition-duration: 0.2s;
     transition-delay: 0.3ms;
     justify-content: space-between;
+    background-color: #f9fdff;
 }
 .analizComponent:hover{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;}
@@ -499,11 +508,25 @@ hr{
     align-items: center;
     margin-bottom: 7px;
 }
+.addedItem{
+    padding: 1px 23px;
+    border: 1px solid #0098DA;
+    color: white;
+    background-color: #0098DA;
+    border-radius: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 7px;
+}
 
 .analizPriceButton:hover {
     background-color: #0098DA;
     color: white;
 }
+
 
 
 /* ДИАГНОСТИКА */
@@ -549,7 +572,7 @@ hr{
     padding: 20px;
 }
 .diagnostikaComponent h5{
-    margin-left: 35px;
+    margin-left: 55px;
 }
 .diagnostikaComponent{
     padding: 15px;
@@ -597,6 +620,11 @@ hr{
     padding: 10px;
     border: 0px;
     border-bottom: 0.5px solid #0098DA;
+}
+.fg2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 .regButton{
     background-color: #ff7b7b;
@@ -835,6 +863,7 @@ hr{
         transform: rotate(90deg) translate(-.25rem);
     }
 }
+
 /*КАБИНЕТ ВРАЧА*/
 
 .doctorCalendar{
@@ -850,9 +879,6 @@ hr{
     gap: 80px;
 }
 
-.cart{
-    margin-bottom: 50px;
-}
 .itogo {
     display: flex;
     flex-direction: row;
@@ -862,25 +888,11 @@ hr{
     margin-left: auto;
 }
 .itogo h4{
-    border: 0.5px solid #a1dff9;
+    border: 0.5px solid #0098DA;
     padding: 10px 20px;
     margin: 0px;
-    border-radius: 15px;
+    border-radius: 10px;
     max-width: auto;
-}
-
-.addedItem{
-    padding: 1px 23px;
-    border: 1px solid #0098DA;
-    color: white;
-    background-color: #0098DA;
-    border-radius: 50px;
-    font-size: 20px;
-    cursor: pointer;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 7px;
 }
 
 .applyCart{
@@ -901,12 +913,6 @@ hr{
     transition-delay: 0.2ms;
     border: 0.5px solid #0098DA;
 }
-.apply-cart{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-}
 
 .modal-body{
     display: flex;
@@ -925,6 +931,108 @@ hr{
 .b2{
     background-color: #ff7b7b;
 }
-.action{
-    align-self: center;
+
+.alert{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 30px 10px;
+}
+
+
+.calendarTable{
+    width: 95%;
+    max-width: 100%;
+    overflow-x: auto; /* Добавляем горизонтальную прокрутку */
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    overflow-y: auto;
+    overflow: hidden;
+    overflow-x: auto;
+}
+.fmg{
+    width: 700px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+.fmg input{
+    border: 0px;
+    border-bottom: 0.5px solid #43a6d1;
+    width: 200px;
+}
+.fmg label{
+    font-weight: 700;
+}
+.weekDay{
+    text-align: center;
+    font-weight: 600;
+}
+.weekend{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.dayTimes{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.time{
+    border: transparent;
+    background-color: #43a6d1;
+    color: white;
+    font-weight: 600;
+    padding: 6px 5px;
+    border-radius: 10px;
+    transition-duration: 0.1s;
+    transition-delay: 0.2ms;
+    border: 0.5px solid #43a6d1;
+
+}
+
+.selected{
+    background-color:#7dc67d;
+    border: 0.5px solid #7dc67d;
+    box-shadow:  #7dc67d 0px 4px 12px;
+
+}
+.calendarGrey{
+    background-color: rgb(224, 224, 224);
+    color: gray;
+    border: gray;
+}
+.calendarGrey:hover{
+    background-color: rgb(224, 224, 224);
+    color: gray;
+    border: gray;
+    cursor: not-allowed;
+}
+.modal-dialog2 {
+    max-width: 100%; /* Сделать диалоговое окно более отзывчивым */
+    width: 60%; /* Устанавливаем ширину модального окна на 100% */
+    margin: 0 auto; /* Центрируем модальное окно */
+}
+
+.emptyDay {
+    height: 40px; /* Высота пустой полосы */
+    background-color: #f8f9fa; /* Светло-серый фон */
+    border: 1px dashed #ddd; /* Пунктирная граница */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #6c757d; /* Серый текст */
+    font-size: 14px; /* Размер шрифта */
+    font-style: italic; /* Курсив для текста */
+    border-radius: 10px;
 }

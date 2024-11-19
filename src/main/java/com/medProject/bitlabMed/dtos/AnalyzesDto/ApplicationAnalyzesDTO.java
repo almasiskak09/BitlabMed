@@ -1,10 +1,5 @@
-package com.medProject.bitlabMed.dtos;
+package com.medProject.bitlabMed.dtos.AnalyzesDto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.medProject.bitlabMed.entities.Analyzes;
-import com.medProject.bitlabMed.entities.BaseEntity;
-import com.medProject.bitlabMed.entities.User;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

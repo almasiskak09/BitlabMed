@@ -1,7 +1,6 @@
 package com.medProject.bitlabMed.repositories;
 
-import com.medProject.bitlabMed.dtos.AnalyzesDTO;
-import com.medProject.bitlabMed.entities.Analyzes;
+import com.medProject.bitlabMed.entities.Analyzes.Analyzes;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

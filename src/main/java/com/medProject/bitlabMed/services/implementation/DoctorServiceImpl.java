@@ -1,7 +1,7 @@
 package com.medProject.bitlabMed.services.implementation;
 
-import com.medProject.bitlabMed.dtos.DoctorDTO;
-import com.medProject.bitlabMed.entities.Doctor;
+import com.medProject.bitlabMed.dtos.DoctorDto.DoctorDTO;
+import com.medProject.bitlabMed.entities.Doctor.Doctor;
 import com.medProject.bitlabMed.mappers.DoctorMapper;
 import com.medProject.bitlabMed.repositories.DoctorRepository;
 import com.medProject.bitlabMed.services.DoctorService;

@@ -1,5 +1,6 @@
-package com.medProject.bitlabMed.entities;
+package com.medProject.bitlabMed.entities.Analyzes;
 
+import com.medProject.bitlabMed.entities.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -16,7 +17,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AnalyzesCategory extends BaseEntity{
+public class AnalyzesCategory extends BaseEntity {
 
     @Column(name = "analyzes_category_name")
     private String analyzesCategoryName;

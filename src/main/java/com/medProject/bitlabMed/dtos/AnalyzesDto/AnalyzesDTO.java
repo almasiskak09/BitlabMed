@@ -1,4 +1,4 @@
-package com.medProject.bitlabMed.dtos;
+package com.medProject.bitlabMed.dtos.AnalyzesDto;
 
 
 import com.medProject.bitlabMed.utils.PriceFormatter;

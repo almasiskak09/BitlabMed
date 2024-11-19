@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+
+    <changeSet id="create-appointment-doctor-table" author="Almas Iskak">
+        <createTable tableName="appointment_doctor">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"></constraints>
+            </column>
+            <column name="doctor_id" type="bigint"></column>
+            <column name="is_booked" type="boolean"></column>
+            <column name="appointment_date" type="date"></column>
+            <column name="appointment_start_time" type="time"></column>
+            <column name="patient_full_name" type="varchar(255)"></column>
+            <column name="patient_phone" type="varchar(255)"></column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="true"></constraints>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-doctor-to-appointmentDoctor-relation" author="Almas Iskak">
+        <addForeignKeyConstraint baseTableName="appointment_doctor"
+                                 baseColumnNames="doctor_id"
+                                 constraintName="fk_doctor_id_to_appointment_doctor_relation"
+                                 referencedTableName="doctors"
+                                 referencedColumnNames="id"></addForeignKeyConstraint>
+    </changeSet>
+
+
+    <changeSet id="appointmentDoctor-to-user-relation" author="Almas Iskak">
+      <addForeignKeyConstraint baseTableName="appointment_doctor"
+                               baseColumnNames="user_id"
+                               constraintName="fk_user_to_appointment_doctor_relation"
+                               referencedTableName="t_users"
+                               referencedColumnNames="id"></addForeignKeyConstraint>
+    </changeSet>
+
+</databaseChangeLog>

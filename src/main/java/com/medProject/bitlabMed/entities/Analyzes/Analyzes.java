@@ -1,5 +1,6 @@
-package com.medProject.bitlabMed.entities;
+package com.medProject.bitlabMed.entities.Analyzes;
 
+import com.medProject.bitlabMed.entities.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -52,6 +52,11 @@
             <button class="applyCart" type="button" th:if="${cart != null && !#lists.isEmpty(cart)}"  data-bs-toggle="modal" data-bs-target="#applyCart">Подтвердить заказ</button>
     </div>
 
+
+    <div class="alert alert-success mb-4" role="alert" th:if="${param.success != null}">
+        <h4>Ваша заявка на анализы успешно принята! Ожидайте звонка от менеджера.</h4>
+    </div>
+
 <!--Модальное Окно для формы-->
 
 
@@ -61,7 +66,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5 strong blueText" id="exampleModalLabel">Подтверждение заказ анализов</h1>
+                    <h1 class="modal-title fs-5 strong blueText" id="exampleModalLabel">Подтверждение заказа анализов</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

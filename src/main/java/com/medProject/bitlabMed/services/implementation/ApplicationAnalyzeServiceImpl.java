@@ -1,8 +1,8 @@
 package com.medProject.bitlabMed.services.implementation;
 
 
-import com.medProject.bitlabMed.dtos.ApplicationAnalyzesDTO;
-import com.medProject.bitlabMed.entities.ApplicationAnalyzes;
+import com.medProject.bitlabMed.dtos.AnalyzesDto.ApplicationAnalyzesDTO;
+import com.medProject.bitlabMed.entities.Analyzes.ApplicationAnalyzes;
 import com.medProject.bitlabMed.mappers.ApplicationAnalyzesMapper;
 import com.medProject.bitlabMed.repositories.ApplicationAnalyzesRepository;
 import com.medProject.bitlabMed.services.ApplicationAnalyzesService;

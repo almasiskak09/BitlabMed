@@ -1,7 +1,7 @@
 package com.medProject.bitlabMed.services.implementation;
 
-import com.medProject.bitlabMed.dtos.AnalyzesCategoryDTO;
-import com.medProject.bitlabMed.entities.AnalyzesCategory;
+import com.medProject.bitlabMed.dtos.AnalyzesDto.AnalyzesCategoryDTO;
+import com.medProject.bitlabMed.entities.Analyzes.AnalyzesCategory;
 import com.medProject.bitlabMed.mappers.AnalyzesCategoryMapper;
 import com.medProject.bitlabMed.repositories.AnalyzesCategoryRepository;
 import com.medProject.bitlabMed.services.AnalyzesCategoryService;

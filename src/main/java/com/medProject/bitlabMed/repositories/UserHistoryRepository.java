@@ -1,6 +1,6 @@
 package com.medProject.bitlabMed.repositories;
 
-import com.medProject.bitlabMed.entities.UserHistory;
+import com.medProject.bitlabMed.entities.User.UserHistory;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

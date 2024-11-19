@@ -1,7 +1,7 @@
 package com.medProject.bitlabMed.mappers;
 
-import com.medProject.bitlabMed.dtos.DoctorDTO;
-import com.medProject.bitlabMed.entities.Doctor;
+import com.medProject.bitlabMed.dtos.DoctorDto.DoctorDTO;
+import com.medProject.bitlabMed.entities.Doctor.Doctor;
 import org.mapstruct.Mapper;
 
 import java.util.List;

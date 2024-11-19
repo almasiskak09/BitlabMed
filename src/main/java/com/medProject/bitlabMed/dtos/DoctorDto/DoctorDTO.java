@@ -1,14 +1,11 @@
-package com.medProject.bitlabMed.dtos;
+package com.medProject.bitlabMed.dtos.DoctorDto;
 
 import com.medProject.bitlabMed.entities.BaseEntity;
 import com.medProject.bitlabMed.utils.PriceFormatter;
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
 
 @Getter
 @Setter
@@ -25,7 +22,6 @@ public class DoctorDTO extends BaseEntity {
     private String doctorRating;
     private String doctorWorkingHours;
     private String doctorDescription;
-//    private List<ApplicationRequestDTO> application_request_list;
 
     public String getFormattedPrice(){
         return PriceFormatter.formatPrice(doctorPrice);

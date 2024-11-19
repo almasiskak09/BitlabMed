@@ -1,5 +1,6 @@
-package com.medProject.bitlabMed.entities;
+package com.medProject.bitlabMed.entities.Doctor;
 
+import com.medProject.bitlabMed.entities.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "doctors")
-public class Doctor extends BaseEntity{
+public class Doctor extends BaseEntity {
 
     @Column(name = "doctor_name")
     private String doctorName;
@@ -42,6 +43,9 @@ public class Doctor extends BaseEntity{
 
     @Column(name = "doctor_description")
     private String doctorDescription;
+
+    @OneToMany(mappedBy = "doctor")
+    private List<AppointmentDoctor> appointmentList;
 
 //    @OneToMany(fetch = FetchType.LAZY)
 //    private List<ApplicationRequest> application_request_list;

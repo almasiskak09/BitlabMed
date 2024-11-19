@@ -1,6 +1,6 @@
 package com.medProject.bitlabMed.services;
 
-import com.medProject.bitlabMed.dtos.DoctorDTO;
+import com.medProject.bitlabMed.dtos.DoctorDto.DoctorDTO;
 
 import java.util.List;
 

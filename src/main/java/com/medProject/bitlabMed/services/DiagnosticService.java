@@ -1,6 +1,5 @@
 package com.medProject.bitlabMed.services;
 
-import com.medProject.bitlabMed.dtos.AnalyzesDTO;
 import com.medProject.bitlabMed.dtos.DiagnosticDTO;
 
 import java.util.List;

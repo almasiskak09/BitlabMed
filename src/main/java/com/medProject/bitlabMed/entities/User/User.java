@@ -1,5 +1,8 @@
-package com.medProject.bitlabMed.entities;
+package com.medProject.bitlabMed.entities.User;
 
+import com.medProject.bitlabMed.entities.Analyzes.ApplicationAnalyzes;
+import com.medProject.bitlabMed.entities.BaseEntity;
+import com.medProject.bitlabMed.entities.Doctor.AppointmentDoctor;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -33,11 +36,11 @@ public class User extends BaseEntity implements UserDetails {
 
     @OneToMany (mappedBy = "user")
     private List<ApplicationAnalyzes> applicationAnalyzesList;
-//    @OneToMany(fetch = FetchType.LAZY)
-//    private List<UserHistory>userHistoryList;
-//
-//    @OneToMany(fetch = FetchType.LAZY)
-//    private List<TreatmentPlan>treatmentPlanList;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List <AppointmentDoctor> appointmentDoctorList;
+
+
 
 @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

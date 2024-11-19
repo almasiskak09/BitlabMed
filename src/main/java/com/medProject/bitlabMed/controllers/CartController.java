@@ -1,6 +1,6 @@
 package com.medProject.bitlabMed.controllers;
 
-import com.medProject.bitlabMed.dtos.AnalyzesDTO;
+import com.medProject.bitlabMed.dtos.AnalyzesDto.AnalyzesDTO;
 import com.medProject.bitlabMed.services.AnalyzesService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

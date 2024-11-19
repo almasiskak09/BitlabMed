@@ -1,5 +1,8 @@
-package com.medProject.bitlabMed.entities;
+package com.medProject.bitlabMed.entities.User;
 
+import com.medProject.bitlabMed.entities.ApplicationRequest;
+import com.medProject.bitlabMed.entities.BaseEntity;
+import com.medProject.bitlabMed.entities.TreatmentPlan;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +16,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserHistory extends BaseEntity{
+public class UserHistory extends BaseEntity {
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<ApplicationRequest>applicationRequestList;

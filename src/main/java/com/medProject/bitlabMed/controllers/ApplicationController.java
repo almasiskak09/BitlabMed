@@ -1,14 +1,9 @@
 package com.medProject.bitlabMed.controllers;
 
-import com.medProject.bitlabMed.dtos.AnalyzesDTO;
-import com.medProject.bitlabMed.dtos.ApplicationAnalyzesDTO;
-import com.medProject.bitlabMed.entities.Analyzes;
-import com.medProject.bitlabMed.entities.ApplicationAnalyzes;
-import com.medProject.bitlabMed.entities.User;
-import com.medProject.bitlabMed.mappers.ApplicationAnalyzesMapper;
-import com.medProject.bitlabMed.repositories.ApplicationAnalyzesRepository;
+import com.medProject.bitlabMed.dtos.AnalyzesDto.AnalyzesDTO;
+import com.medProject.bitlabMed.dtos.AnalyzesDto.ApplicationAnalyzesDTO;
+import com.medProject.bitlabMed.entities.User.User;
 import com.medProject.bitlabMed.repositories.UserRepository;
-import com.medProject.bitlabMed.services.AnalyzesService;
 import com.medProject.bitlabMed.services.ApplicationAnalyzesService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

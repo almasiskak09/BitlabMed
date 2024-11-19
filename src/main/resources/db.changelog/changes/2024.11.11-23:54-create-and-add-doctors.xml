@@ -49,7 +49,7 @@
             <column name="doctor_address" value="г.Алматы, Абая 142"></column>
             <column name="doctor_profile_picture" value="/images/d3.png"></column>
             <column name="doctor_rating" value="4.1"></column>
-            <column name="doctor_working_hours" value="пн-пт: 9:00-18:00 / сб:10:00-15:00"></column>
+            <column name="doctor_working_hours" value="пн-пт: 10:00-18:00"></column>
             <column name="doctor_description" value="Врач высшей категории"></column>
         </insert>
 
@@ -61,7 +61,7 @@
             <column name="doctor_address" value="г.Алматы, Макатаева 13"></column>
             <column name="doctor_profile_picture" value="/images/d1.png"></column>
             <column name="doctor_rating" value="4.9"></column>
-            <column name="doctor_working_hours" value="пн-пт: 10:00-18:00 / сб: 10:00-15:00"></column>
+            <column name="doctor_working_hours" value="пн-пт: 10:00-18:00"></column>
             <column name="doctor_description" value="PHD,Кандидат медицинских наук"></column>
 
         </insert>
@@ -74,7 +74,7 @@
             <column name="doctor_address" value="г.Алматы, Абая 142"></column>
             <column name="doctor_profile_picture" value="/images/d2.png"></column>
             <column name="doctor_rating" value="4.4"></column>
-            <column name="doctor_working_hours" value="пн-пт: 10:00-18:00 / сб: выходной"></column>
+            <column name="doctor_working_hours" value="пн-пт: 10:00-18:00"></column>
             <column name="doctor_description" value="Главный врач ГПХ, PHD"></column>
 
         </insert>

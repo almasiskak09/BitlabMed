@@ -1,9 +1,9 @@
 package com.medProject.bitlabMed.mappers;
 
-import com.medProject.bitlabMed.dtos.ApplicationAnalyzesDTO;
-import com.medProject.bitlabMed.entities.Analyzes;
-import com.medProject.bitlabMed.entities.ApplicationAnalyzes;
-import com.medProject.bitlabMed.entities.User;
+import com.medProject.bitlabMed.dtos.AnalyzesDto.ApplicationAnalyzesDTO;
+import com.medProject.bitlabMed.entities.Analyzes.Analyzes;
+import com.medProject.bitlabMed.entities.Analyzes.ApplicationAnalyzes;
+import com.medProject.bitlabMed.entities.User.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

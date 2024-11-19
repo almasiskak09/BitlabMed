@@ -1,10 +1,9 @@
 package com.medProject.bitlabMed.controllers;
 
-import com.medProject.bitlabMed.entities.User;
+import com.medProject.bitlabMed.entities.User.User;
 import com.medProject.bitlabMed.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
