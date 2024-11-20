@@ -1,7 +1,7 @@
 package com.medProject.bitlabMed.mappers;
 
-import com.medProject.bitlabMed.dtos.DiagnosticDTO;
-import com.medProject.bitlabMed.entities.Diagnostic;
+import com.medProject.bitlabMed.dtos.DiagnosticDto.DiagnosticDTO;
+import com.medProject.bitlabMed.entities.Diagnostic.Diagnostic;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

@@ -1,6 +1,7 @@
 package com.medProject.bitlabMed.dtos;
 
 import com.medProject.bitlabMed.dtos.AnalyzesDto.AnalyzesCategoryDTO;
+import com.medProject.bitlabMed.dtos.DiagnosticDto.DiagnosticDTO;
 import com.medProject.bitlabMed.dtos.DoctorDto.DoctorDTO;
 import com.medProject.bitlabMed.dtos.UserDto.UserDTO;
 import com.medProject.bitlabMed.entities.BaseEntity;

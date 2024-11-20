@@ -1,4 +1,4 @@
-package com.medProject.bitlabMed.entities.Doctor;
+package com.medProject.bitlabMed.entities.Diagnostic;
 
 import com.medProject.bitlabMed.entities.BaseEntity;
 import com.medProject.bitlabMed.entities.User.User;
@@ -10,22 +10,16 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "appointment_doctor")
-public class AppointmentDoctor extends BaseEntity {
+@Table(name = "appointment_diagnostic")
+public class AppointmentDiagnostic extends BaseEntity {
 
-    @Column(name = "appointment_date")
-    private LocalDate appointmentDate;
 
-    @Column(name = "appointment_start_time")
-    private LocalTime appointmentStartTime;
 
     @Column(name = "patient_full_name")
     private String patientFullName;
@@ -33,9 +27,15 @@ public class AppointmentDoctor extends BaseEntity {
     @Column(name = "patient_phone")
     private String patientPhone;
 
+    @Column(name = "diagnost_appointment_date")
+    private LocalDate diagnosticAppointmentDate;
+
+    @Column(name = "diagnost_appointment_start_time")
+    private LocalTime diagnosticAppointmentStartTime;
+
     @ManyToOne
-    @JoinColumn(name = "doctor_id")
-    private Doctor doctor;
+    @JoinColumn(name = "diagnostic_id")
+    private Diagnostic diagnostic;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = true)
@@ -47,8 +47,7 @@ public class AppointmentDoctor extends BaseEntity {
 
     public void setAppointmentStartTime(LocalTime appointmentStartTime) {
         // Обнуляем секунды и наносекунды перед сохранением
-        this.appointmentStartTime = appointmentStartTime.withSecond(0).withNano(0);
+        this.diagnosticAppointmentStartTime = appointmentStartTime.withSecond(0).withNano(0);
     }
-
 
 }

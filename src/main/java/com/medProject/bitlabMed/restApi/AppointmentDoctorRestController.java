@@ -1,10 +1,10 @@
 package com.medProject.bitlabMed.restApi;
 
 
+import com.medProject.bitlabMed.dtos.DoctorDto.AppointmentDoctorDto;
 import com.medProject.bitlabMed.services.AppointmentDoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -50,5 +50,16 @@ public class AppointmentDoctorRestController {
 //            return ResponseEntity.ok("Запись успешно создана");
 //        }
 //    }
+
+        @GetMapping(value = "/getAllAppointments")
+        public List<AppointmentDoctorDto> getAllAppointments(){
+                return appointmentDoctorService.getAllAppointmentDoctorsList();
+        }
+
+        @DeleteMapping(value = "/deleteAppointmentById/{id}")
+        public void deleteAppointmentById(@PathVariable Long id){
+                appointmentDoctorService.deleteAppointmentDoctorById(id);
+
+        }
 }
 

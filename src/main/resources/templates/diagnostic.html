@@ -54,7 +54,7 @@
 
     </div>
 
-    <div class="diagnostikaList">
+    <div class="diagnostikaList marginFoot" >
 
         <div class="diagnostikaCategory" th:each="diagnosticCategory:${diagnosticCategoryList}">
             <h4 class="strong2 baseColor" th:text="${diagnosticCategory.diagnosticCategoryName}"></h4>
@@ -63,15 +63,71 @@
                 <h5 class="strong" th:text="${diagnostic.diagnosticName}"></h5>
                 <div class="analizPrice">
                     <h2 class="baseColor strong" th:text="${diagnostic.getFormattedPrice()}+' тг.'"></h2>
-                    <button class="analizPriceButton blueText">+</button>
+                    <button class="analizPriceButton blueText"  data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                            th:attr="data-diagnostic-id=${diagnostic.getId()},
+                            data-diagnostic-name=${diagnostic.diagnosticName},
+                            data-diagnostic-price=${diagnostic.diagnosticPrice}">Запись</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 blueText strong" id="staticBackdropLabel">Запись на диагностику</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="diagnostikaComponent dcWidth">
+                    <span id="selectedDiagnosticId" class="hiddenId"></span>
+                    <h5 class="strong" id="selectedDiagnosticName"></h5>
+                    <div class="analizPrice">
+                        <h2 class="baseColor strong" id="selectedDiagnosticPrice"> тг.</span></h2>
+                    </div>
+                </div>
+                <div class="fmg">
+                    <label class="blueText">ФИО: <input type="text" name="patientFullName" id="patientFullName" placeholder="Имя Фамилия"></label>
+                    <label class="blueText">Телефон: <input type="text" name="patientPhone" id="patientPhone" placeholder="8 707 222 03 03"></label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="b1 strong" data-bs-dismiss="modal">Закрыть</button>
+                <button type="submit" class="b2 strong">Подтвердить запись</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
+<div th:replace="~{layout/layout :: footer}"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var modal = document.getElementById('staticBackdrop');
+        modal.addEventListener('show.bs.modal', function (event) {
+            // Кнопка, которая вызвала модальное окно
+            var button = event.relatedTarget;
+
+            // Извлекаем данные из атрибутов
+            var diagnosticId = button.getAttribute('data-diagnostic-id');
+            var diagnosticName = button.getAttribute('data-diagnostic-name');
+            var diagnosticPrice = button.getAttribute('data-diagnostic-price')
+
+            // Отображаем данные в модальном окне
+            var modalBodyName = modal.querySelector('#selectedDiagnosticName');
+            var modalBodyId = modal.querySelector('#selectedDiagnosticId');
+            var modalBodyPrice = modal.querySelector('#selectedDiagnosticPrice');
+
+            modalBodyName.textContent = diagnosticName;
+            modalBodyId.textContent = diagnosticId;
+            modalBodyPrice.textContent = diagnosticPrice + ' тг.';
+        });
+    });
+</script>
 </body>
 </html>
 

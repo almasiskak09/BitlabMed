@@ -1,5 +1,5 @@
 
-package com.medProject.bitlabMed.dtos;
+package com.medProject.bitlabMed.dtos.DiagnosticDto;
 
 
 import com.medProject.bitlabMed.entities.BaseEntity;

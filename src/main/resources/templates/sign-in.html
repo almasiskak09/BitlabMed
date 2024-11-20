@@ -21,16 +21,6 @@
 <div th:replace="~{layout/layout :: navbar}"></div>
 
 
-<section class="container">
-    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Главная</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Врачи</li>
-        </ol>
-    </nav>
-</section>
-
-
 <form class="container regAndLog" th:action="@{'/enter'}" method="post">
     <div class="regForm">
         <H4 class="strongBlue">Логин</H4>
@@ -49,6 +39,7 @@
         <p class="logQuestion">Нет аккаунта ?<a href="/sign-up"> Создать аккаунт</a></p>
     </div>
 </form>
+
 
 
 </body>

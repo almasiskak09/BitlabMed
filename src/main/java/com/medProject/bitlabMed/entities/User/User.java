@@ -2,6 +2,7 @@ package com.medProject.bitlabMed.entities.User;
 
 import com.medProject.bitlabMed.entities.Analyzes.ApplicationAnalyzes;
 import com.medProject.bitlabMed.entities.BaseEntity;
+import com.medProject.bitlabMed.entities.Diagnostic.AppointmentDiagnostic;
 import com.medProject.bitlabMed.entities.Doctor.AppointmentDoctor;
 import jakarta.persistence.*;
 import lombok.*;
@@ -34,13 +35,14 @@ public class User extends BaseEntity implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Permission> roles;
 
-    @OneToMany (mappedBy = "user")
+    @OneToMany (mappedBy = "user",fetch = FetchType.LAZY)
     private List<ApplicationAnalyzes> applicationAnalyzesList;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List <AppointmentDoctor> appointmentDoctorList;
 
-
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    private List<AppointmentDiagnostic> appointmentDiagnosticsList;
 
 @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

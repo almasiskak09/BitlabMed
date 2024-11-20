@@ -1,7 +1,7 @@
 package com.medProject.bitlabMed.services.implementation;
 
-import com.medProject.bitlabMed.dtos.DiagnosticCategoryDTO;
-import com.medProject.bitlabMed.entities.DiagnosticCategory;
+import com.medProject.bitlabMed.dtos.DiagnosticDto.DiagnosticCategoryDTO;
+import com.medProject.bitlabMed.entities.Diagnostic.DiagnosticCategory;
 import com.medProject.bitlabMed.mappers.DiagnosticCategoryMapper;
 import com.medProject.bitlabMed.repositories.DiagnosticCategoryRepository;
 import com.medProject.bitlabMed.services.DiagnosticCategoryService;

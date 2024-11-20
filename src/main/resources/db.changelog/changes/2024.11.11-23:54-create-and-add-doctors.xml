@@ -28,6 +28,9 @@
             <column name="doctor_profile_picture" type="varchar(255)">
                 <constraints nullable="false"></constraints>
             </column>
+            <column name="doctor_phone" type="varchar(255)">
+                <constraints nullable="false"></constraints>
+            </column>
             <column name="doctor_rating" type="varchar(20)">
                 <constraints nullable="false"></constraints>
             </column>
@@ -51,6 +54,7 @@
             <column name="doctor_rating" value="4.1"></column>
             <column name="doctor_working_hours" value="пн-пт: 10:00-18:00"></column>
             <column name="doctor_description" value="Врач высшей категории"></column>
+            <column name="doctor_phone" value="+7 (707) 343 43 43"></column>
         </insert>
 
         <insert tableName="doctors">
@@ -63,6 +67,7 @@
             <column name="doctor_rating" value="4.9"></column>
             <column name="doctor_working_hours" value="пн-пт: 10:00-18:00"></column>
             <column name="doctor_description" value="PHD,Кандидат медицинских наук"></column>
+            <column name="doctor_phone" value="+7 (707) 343 43 43"></column>
 
         </insert>
 
@@ -76,6 +81,7 @@
             <column name="doctor_rating" value="4.4"></column>
             <column name="doctor_working_hours" value="пн-пт: 10:00-18:00"></column>
             <column name="doctor_description" value="Главный врач ГПХ, PHD"></column>
+            <column name="doctor_phone" value="+7 (707) 343 43 43"></column>
 
         </insert>
 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    
+    <changeSet id="crete-appointment-diagnostic-table" author="Almas Iskak">
+        <createTable tableName="appointment_diagnostic">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"></constraints>
+            </column>
+
+            <column name="is_present" type="boolean"></column>
+            <column name="diagnostic_appointment_date" type="date"></column>
+            <column name="diagnostic_appointment_start_time" type="time"></column>
+            <column name="patient_full_name" type="varchar(255)"></column>
+            <column name="patient_phone" type="varchar(255)"></column>
+            <column name="diagnostic_id" type="bigint"></column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="true"></constraints>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-fk-to-diagnostic-table" author="Almas Iskak">
+        <addForeignKeyConstraint baseTableName="appointment_diagnostic"
+                                 baseColumnNames="diagnostic_id"
+                                 constraintName="fk_appointment_diagnostic_to_diagnostic_id"
+                                 referencedTableName="diagnostic"
+                                 referencedColumnNames="id"></addForeignKeyConstraint>
+    </changeSet>
+
+    <changeSet id="create-fk-to-user-table" author="Almas Iskak">
+        <addForeignKeyConstraint baseTableName="appointment_diagnostic"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_appointment_diagnostic_to_user_id"
+                                 referencedTableName="t_users"
+                                 referencedColumnNames="id"></addForeignKeyConstraint>
+    </changeSet>
+    
+    
+</databaseChangeLog>

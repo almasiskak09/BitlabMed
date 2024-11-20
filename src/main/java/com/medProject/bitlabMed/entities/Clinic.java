@@ -1,6 +1,7 @@
 package com.medProject.bitlabMed.entities;
 
 import com.medProject.bitlabMed.entities.Analyzes.AnalyzesCategory;
+import com.medProject.bitlabMed.entities.Diagnostic.Diagnostic;
 import com.medProject.bitlabMed.entities.Doctor.Doctor;
 import com.medProject.bitlabMed.entities.User.User;
 import jakarta.persistence.Entity;

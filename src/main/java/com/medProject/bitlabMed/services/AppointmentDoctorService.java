@@ -15,5 +15,5 @@ public interface AppointmentDoctorService {
     AppointmentDoctorDto addAppointmentDoctor ( AppointmentDoctorDto appointmentDoctorDto);
     AppointmentDoctorDto getAppointmentDoctorById(Long id);
     AppointmentDoctorDto updateAppointmentDoctor(AppointmentDoctorDto appointmentDoctorDto);
-    void deleteAppointmentDoctor(Long id);
+    void deleteAppointmentDoctorById(Long id);
 }

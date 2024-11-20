@@ -22,7 +22,7 @@
 
 
 
-<div class="container h">
+<div class="container h marginFoot">
     <div class="doctorProfileHead">
         <h1 class="diagnostikaText"><b>Врачи</b></h1>
         <form class="d-flex" role="search">
@@ -51,7 +51,7 @@
             <!-- Modal -->
             <div class="modal fade" th:id="'exampleModal'+${doctors.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog2 modal-dialog-centered">
-                    <div class="modal-content">
+                    <div class="modal-content md">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5 blueText strong" id="exampleModalLabel">Подтверждение записи к врачу</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -64,9 +64,7 @@
                             </div>
                             <div class="fmg">
                                 <label class="blueText">ФИО: <input type="text" name="patientFullName" id="patientFullName" placeholder="Имя Фамилия"></label>
-                                <label class="blueText">Телефон: <input type="text" name="patientPhone" id="patientPhone" placeholder="8 707 222 03 03"></label>
-
-
+                                <label class="blueText">Телефон: <input type="number" name="patientPhone" id="patientPhone" placeholder="8 707 222 03 03" maxlength="11" minlength="11"></label>
                             </div>
 
 
@@ -91,6 +89,9 @@
             </div>
         </div>
     </div>
+
+</div>
+    <div th:replace="~{layout/layout :: footer}"></div>
 
 
     <script>
@@ -210,6 +211,7 @@
 
                     const selectedTime = selectedTimeButton.textContent;
                     const selectedDateDiv = selectedTimeButton.closest('.weekend');
+
                     console.log(selectedTime);
                     console.log(selectedDateDiv);
 
@@ -288,8 +290,7 @@
                             // Закрываем модальное окно
                             $(modal).modal('hide');
 
-                            window.location.href = '/home';
-
+                            window.location.href = '/app-doctor/' + response;
                         },
                         error: function (xhr, status, error) {
                             console.error('Error during AJAX request:', error);
@@ -301,6 +302,6 @@
         });
     </script>
 
-</div>
+
 </body>
 </html>

@@ -41,8 +41,8 @@ public class SecurityConfig {
                                 .requestMatchers("/profile-doctor").hasAuthority("ROLE_DOCTOR")
                                 .requestMatchers("/profile-manager").hasAuthority("ROLE_MANAGER")
                                 .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
-                                .requestMatchers("/home", "/doctors", "/analyses", "/diagnostic","/cart").permitAll()
-                                .requestMatchers("/doctor/**","/users/**","/analyzes/**","/analyze-category/**","/diagnostic/**","/diagnostic-category/**","/addApplication","/application-analyzes/**","/appointments/**","/week-schedule","/addAppointmentDoctor").permitAll()
+                                .requestMatchers("/home", "/doctors", "/analyses", "/diagnostic","/cart","/app-doctor/**").permitAll()
+                                .requestMatchers("/doctor/**","/users/**","/analyzes/**","/analyze-category/**","/diagnostic/**","/diagnostic-category/**","/addApplication","/application-analyzes/**","/appointments/**","/week-schedule","/addAppointmentDoctor","/deleteAppointment").permitAll()
                                 .anyRequest().hasAuthority("ROLE_ADMIN"))
                 .formLogin(
                         login -> login

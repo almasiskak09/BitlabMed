@@ -1,9 +1,9 @@
 package com.medProject.bitlabMed.controllers;
 
-import com.medProject.bitlabMed.dtos.*;
 import com.medProject.bitlabMed.dtos.AnalyzesDto.AnalyzesCategoryDTO;
 import com.medProject.bitlabMed.dtos.AnalyzesDto.AnalyzesDTO;
-import com.medProject.bitlabMed.dtos.DoctorDto.DoctorDTO;
+import com.medProject.bitlabMed.dtos.DiagnosticDto.DiagnosticCategoryDTO;
+import com.medProject.bitlabMed.dtos.DiagnosticDto.DiagnosticDTO;
 import com.medProject.bitlabMed.services.*;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

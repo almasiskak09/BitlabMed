@@ -3,18 +3,13 @@ package com.medProject.bitlabMed.controllers;
 import com.medProject.bitlabMed.dtos.DoctorDto.AppointmentDoctorDto;
 import com.medProject.bitlabMed.dtos.DoctorDto.DoctorDTO;
 import com.medProject.bitlabMed.entities.Doctor.AppointmentDoctor;
-import com.medProject.bitlabMed.entities.User.User;
 import com.medProject.bitlabMed.mappers.AppointmentDoctorMapper;
-import com.medProject.bitlabMed.repositories.UserRepository;
 import com.medProject.bitlabMed.services.AppointmentDoctorService;
 import com.medProject.bitlabMed.services.DoctorService;
-import com.medProject.bitlabMed.services.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +26,6 @@ public class DoctorController {
 
     private final DoctorService doctorService;
     private final AppointmentDoctorService appointmentDoctorService;
-    private final UserRepository userRepository;
     private final AppointmentDoctorMapper appointmentDoctorMapper;
 
     @GetMapping(value = "/doctors")
@@ -50,27 +44,37 @@ public class DoctorController {
         return appointmentDoctorService.getWeekSchedule(doctorId, startDate);
     }
 
-    @PostMapping("/addAppointmentDoctor")
-    public String addAppointmentDoctor(@ModelAttribute AppointmentDoctorDto appointmentDoctorDto) {
+    @PostMapping(value = "/addAppointmentDoctor")
+    @ResponseBody
+    public Long addAppointmentDoctor(@ModelAttribute AppointmentDoctorDto appointmentDoctorDto) {
 
-        // Получение текущего пользователя через SecurityContext
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated() &&
-                !(authentication instanceof AnonymousAuthenticationToken)) {
-            // Пользователь залогинен
-            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            User user = userRepository.findByEmail(userDetails.getUsername()); // Поиск пользователя в базе
-            if (user != null) {
-                // Установка ID пользователя
-                appointmentDoctorDto.setUserId(user.getId());
-            }
+        AppointmentDoctor savedAppointmentDoctor = appointmentDoctorMapper.toEntity(appointmentDoctorService.addAppointmentDoctor(appointmentDoctorDto));
+        Long savedId = savedAppointmentDoctor.getId();
+
+        return savedId;
+
+    }
+
+    @GetMapping(value = {"/app-doctor/{id}", "/app-doctor/delete-success"})
+    public String appointmentDoctorPage(Model model, @PathVariable(required = false) Long id, HttpServletRequest request) {
+        if (id != null) {
+            AppointmentDoctorDto appointment = appointmentDoctorService.getAppointmentDoctorById(id);
+            DoctorDTO doctor = doctorService.getDoctorById(appointment.getDoctorId());
+
+            model.addAttribute("appointment", appointment);
+            model.addAttribute("doctor", doctor);
+            model.addAttribute("deleteSuccess", false);
+        } else {
+            model.addAttribute("deleteSuccess", true);
         }
+        return "app-doctor";
+    }
 
-        appointmentDoctorService.addAppointmentDoctor(appointmentDoctorDto);
 
-
-        return "doctors";
-
+    @PostMapping(value = "/deleteAppointment")
+    public String deleteAppointment(@RequestParam Long appointmentId) {
+        appointmentDoctorService.deleteAppointmentDoctorById(appointmentId);
+        return "redirect:/app-doctor/delete-success";
     }
 }
 

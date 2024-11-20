@@ -2,10 +2,16 @@ package com.medProject.bitlabMed.services.implementation;
 
 import com.medProject.bitlabMed.dtos.DoctorDto.AppointmentDoctorDto;
 import com.medProject.bitlabMed.entities.Doctor.AppointmentDoctor;
+import com.medProject.bitlabMed.entities.User.User;
 import com.medProject.bitlabMed.mappers.AppointmentDoctorMapper;
 import com.medProject.bitlabMed.repositories.AppointmentDoctorRepository;
+import com.medProject.bitlabMed.repositories.UserRepository;
 import com.medProject.bitlabMed.services.AppointmentDoctorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -21,6 +27,7 @@ public class AppointmentDoctorServiceImpl implements AppointmentDoctorService {
 
     private final AppointmentDoctorRepository appointmentDoctorRepository;
     private final AppointmentDoctorMapper appointmentDoctorMapper;
+    private final UserRepository userRepository;
 
     public Map<LocalDate, List<LocalTime>> getWeekSchedule(Long doctorId, LocalDate startDate) {
         LocalDate endDate = startDate.plusDays(7); // Неделя
@@ -49,7 +56,6 @@ public class AppointmentDoctorServiceImpl implements AppointmentDoctorService {
             }
             schedule.put(date, availableSlots);
         }
-
         return schedule;
     }
 
@@ -68,13 +74,26 @@ public class AppointmentDoctorServiceImpl implements AppointmentDoctorService {
       return   appointmentDoctorMapper.toDtoList(appointments);
     }
     public AppointmentDoctorDto addAppointmentDoctor ( AppointmentDoctorDto appointmentDoctorDto){
+        // Получение текущего пользователя через SecurityContext
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated() &&
+                !(authentication instanceof AnonymousAuthenticationToken)) {
+            // Пользователь залогинен
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            User user = userRepository.findByEmail(userDetails.getUsername()); // Поиск пользователя в базе
+            if (user != null) {
+                // Установка ID пользователя
+                appointmentDoctorDto.setUserId(user.getId());
+            }
+        }
+
         AppointmentDoctor appointmentDoctor = appointmentDoctorMapper.toEntity(appointmentDoctorDto);
-        appointmentDoctor.setBooked(true);
         appointmentDoctorRepository.save(appointmentDoctor);
         return appointmentDoctorMapper.toDto(appointmentDoctor);
     }
     public AppointmentDoctorDto getAppointmentDoctorById(Long id){
         AppointmentDoctor appointmentDoctor = appointmentDoctorRepository.findById(id).orElseThrow(null);
+
         return appointmentDoctorMapper.toDto(appointmentDoctor);
     }
     public AppointmentDoctorDto updateAppointmentDoctor(AppointmentDoctorDto appointmentDoctorDto){
@@ -82,7 +101,7 @@ public class AppointmentDoctorServiceImpl implements AppointmentDoctorService {
         appointmentDoctorRepository.save(appointmentDoctor);
         return appointmentDoctorMapper.toDto(appointmentDoctor);
     }
-    public void deleteAppointmentDoctor(Long id){
+    public void deleteAppointmentDoctorById(Long id){
         appointmentDoctorRepository.deleteById(id);
     }
 }

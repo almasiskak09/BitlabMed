@@ -1,9 +1,8 @@
 package com.medProject.bitlabMed.mappers;
 
-import com.medProject.bitlabMed.dtos.DiagnosticCategoryDTO;
-import com.medProject.bitlabMed.entities.DiagnosticCategory;
+import com.medProject.bitlabMed.dtos.DiagnosticDto.DiagnosticCategoryDTO;
+import com.medProject.bitlabMed.entities.Diagnostic.DiagnosticCategory;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 import java.util.List;
 

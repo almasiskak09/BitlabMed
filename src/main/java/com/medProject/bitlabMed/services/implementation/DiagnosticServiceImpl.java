@@ -1,7 +1,7 @@
 package com.medProject.bitlabMed.services.implementation;
 
-import com.medProject.bitlabMed.dtos.DiagnosticDTO;
-import com.medProject.bitlabMed.entities.Diagnostic;
+import com.medProject.bitlabMed.dtos.DiagnosticDto.DiagnosticDTO;
+import com.medProject.bitlabMed.entities.Diagnostic.Diagnostic;
 import com.medProject.bitlabMed.mappers.DiagnosticMapper;
 import com.medProject.bitlabMed.repositories.DiagnosticRepository;
 import com.medProject.bitlabMed.services.DiagnosticService;

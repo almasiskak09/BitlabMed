@@ -20,6 +20,7 @@ public class DoctorDTO extends BaseEntity {
     private String doctorAddress;
     private String doctorProfilePicture;
     private String doctorRating;
+    private String doctorPhone;
     private String doctorWorkingHours;
     private String doctorDescription;
 

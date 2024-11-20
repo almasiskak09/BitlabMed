@@ -22,8 +22,8 @@
 
 
 
-<div>
-  <div class="mainPage">
+<div class="marginFoot">
+  <div class="mainPage ">
     <img th:src="@{/images/main-page.png}">
   </div>
 
@@ -101,6 +101,9 @@
 </div>
 
 </div>
+
+<div th:replace="~{layout/layout :: footer}"></div>
+
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 package com.medProject.bitlabMed.restApi;
 
-import com.medProject.bitlabMed.dtos.DiagnosticDTO;
+import com.medProject.bitlabMed.dtos.DiagnosticDto.DiagnosticDTO;
 import com.medProject.bitlabMed.services.DiagnosticService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
