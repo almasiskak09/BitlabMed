@@ -9,10 +9,15 @@ mrg-top{
 
 footer{
     height: 100px;
-    background-color:#0098DA;
+    background-color: #0097b3;
     display: flex;
     flex-direction: row;
 
+}
+.btn{
+    color: white;
+    transition-duration: 0.1s;
+    transition-delay: 0.2ms;
 }
 
 .btn:active{
@@ -36,7 +41,7 @@ footer{
     color: rgb(236, 81, 76);
 }
 .blueText{
-    color: #1897b2;
+    color: #0097b3;
     transition-duration: 0.1s;
     transition-delay: 0.2ms;
 }
@@ -45,7 +50,7 @@ footer{
 }
 .strongBlue{
     font-weight: 700;
-    color: #0098DA;
+    color:#0097b3;
 }
 
 .strong1{
@@ -66,7 +71,7 @@ footer{
     font-size: 14px;
 }
 .baseColor{
-    color: #0098da;
+    color: #0097b3;
 }
 .container {
     width: 1150px !important;
@@ -125,7 +130,7 @@ footer{
 
 .navLink {
     height: 70px;
-    background-color:#0098DA;
+    background-color:#0097b3;
     display: flex;
     flex-direction: row;
 }
@@ -206,8 +211,8 @@ footer{
     justify-content: space-between;
 }
 .bigHeadLink{
-    border-bottom: 0.1px solid #0098DA;
-    border-left: 0.1px solid #0098DA;
+    border-bottom: 0.1px solid #0097b3;
+    border-left: 0.1px solid #0097b3;
     width: 100%;
     height: 250px;
     padding: 20px 20px 10px;
@@ -229,7 +234,7 @@ footer{
     align-items: flex-end;
 }
 .b3{
-    border-right: 0.1px solid #0098DA;
+    border-right: 0.1px solid #0097b3;
 }
 
 
@@ -309,9 +314,9 @@ hr{
 .news button{
     width: 100%;
     height: 60px;
-    border: 0.5px solid #0098DA;
+    border: 0.5px solid #0097b3;
     background-color: transparent;
-    color: #0098DA;
+    color: #0097b3;
     font-weight: 700;
     transition-duration: 0.1s;
     transition-delay: 0.2ms;
@@ -319,7 +324,7 @@ hr{
 }
 .news button:hover{
     color: white;
-    background-color: #0098DA;
+    background-color: #0097b3;
 
 }
 .bigRight{
@@ -432,7 +437,7 @@ hr{
     gap: 30px;
 }
 .analizTable{
-    width: 60%;
+    width: 50%;
     padding: 20px 25px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 10px;
@@ -450,7 +455,7 @@ hr{
     height: 60px;
     border: 0.4px solid rgb(226, 226, 226);
     background-color: white;
-    color: #0098DA;
+    color: #0097b3;
     font-weight: 700;
     transition-duration: 0.1s;
     transition-delay: 0.2ms;
@@ -475,7 +480,7 @@ hr{
 }
 
 .analizBtn:hover::before {
-    background-color: #0098DA; /* Change color on hover */
+    background-color: #0097b3; /* Change color on hover */
     width: 10px; /* Change width on hover */
 }
 .analizBtn:hover{
@@ -499,7 +504,9 @@ hr{
     background-color: #f9fdff;
 }
 .analizComponent:hover{
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;}
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: white;
+}
 .analizName{
     width: 65%;
 }
@@ -518,7 +525,7 @@ hr{
 }
 .analizPriceButton {
     padding: 1px 23px;
-    border: 1px solid #0098DA;
+    border: 1px solid #0097b3;
     background-color: transparent;
     border-radius: 50px;
     font-size: 20px;
@@ -530,9 +537,9 @@ hr{
 }
 .addedItem{
     padding: 1px 23px;
-    border: 1px solid #0098DA;
+    border: 1px solid #0097b3;
     color: white;
-    background-color: #0098DA;
+    background-color: #0097b3;
     border-radius: 50px;
     font-size: 20px;
     cursor: pointer;
@@ -543,7 +550,7 @@ hr{
 }
 
 .analizPriceButton:hover {
-    background-color: #0098DA;
+    background-color: #0097b3;
     color: white;
 }
 
@@ -578,7 +585,7 @@ hr{
     justify-content: space-between;
 }
 .announcementBt{
-    background-color: #0098DA;
+    background-color: #0097b3;
     color: white;
     font-weight: 600;
     padding: 10px 18px;
@@ -640,7 +647,7 @@ hr{
 .form-group input{
     padding: 10px;
     border: 0px;
-    border-bottom: 0.5px solid #0098DA;
+    border-bottom: 0.5px solid #0097b3;
 }
 .fg2{
     display: flex;
@@ -665,7 +672,7 @@ hr{
     margin: 20px 0px 10px 0px;
 }
 .logQuestion a{
-    color: #0098DA;
+    color: #0097b3;
 }
 
 
@@ -701,7 +708,7 @@ hr{
     transition-delay: 0.3ms;
 }
 .profileZapicCategory button:hover{
-    background-color: #0098DA;
+    background-color: #0097b3;
     color: white;
 }
 
@@ -733,7 +740,7 @@ hr{
     right: -10px;
     border: 0px;
     border-radius: 20px;
-    background-color: #0098DA;
+    background-color: #0097b3;
     color: white;
     font-weight: 700;
     padding: 5px 20px;
@@ -746,7 +753,7 @@ hr{
     position: relative;
     border: 0px;
     border-radius: 20px;
-    background-color: #0098DA;
+    background-color: #0097b3;
     color: white;
     font-weight: 700;
     padding: 5px 20px;
@@ -757,8 +764,8 @@ hr{
 
 .zapicButton:hover, .zapicButton0:hover{
     background-color: rgb(255, 255, 255);
-    color: #0098DA;
-    border: 1px solid #0098DA;
+    color: #0097b3;
+    border: 1px solid #0097b3;
 }
 
 
@@ -796,7 +803,7 @@ hr{
 
 /*АККОРДЕОН*/
 :root {
-    --primary: #0098DA;
+    --primary: #0097b3;
     --secondary: #ff5252;
     --background: #eee;
     --highlight: #ffda79;
@@ -836,8 +843,8 @@ hr{
 .tab__label,
 .tab__close {
     display: flex;
-    color: #0098DA;
-    border: 0.2px solid #0098DA;
+    color: #0097b3;
+    border: 0.2px solid #0097b3;
     cursor: pointer;
     font-weight: 600;
 }
@@ -909,7 +916,7 @@ hr{
     margin-left: auto;
 }
 .itogo h4{
-    border: 0.5px solid #0098DA;
+    border: 0.5px solid #0097b3;
     padding: 10px 20px;
     margin: 0px;
     border-radius: 10px;
@@ -929,10 +936,10 @@ hr{
 }
 .applyCart:hover{
     background-color: #eaf9ff;
-    color: #0098DA;
+    color: #0097b3;
     transition-duration: 0.1s;
     transition-delay: 0.2ms;
-    border: 0.5px solid #0098DA;
+    border: 0.5px solid #0097b3;
 }
 
 .modal-body{
@@ -941,7 +948,7 @@ hr{
     align-items: center;
 }
 .b1,.b2{
-    background-color: #0098DA;
+    background-color: #0097b3;
     color: white;
     transition-duration: 0.1s;
     transition-delay: 0.2ms;
@@ -973,11 +980,11 @@ hr{
     margin-top: 20px;
 }
 .fmg input{
-    border: 1px solid #0098DA;
+    border: 1px solid #0097b3;
     padding: 5px;
     border-radius: 6px;
     background-color: #e9f4f9;
-    border-bottom: 0.5px solid #43a6d1;
+    border-bottom: 0.5px solid #0097b3;
     width: 200px;
 }
 .fmg label{
@@ -999,14 +1006,14 @@ hr{
 }
 .time{
     border: transparent;
-    background-color: #43a6d1;
+    background-color: #0097b3;
     color: white;
     font-weight: 600;
     padding: 6px 5px;
     border-radius: 10px;
     transition-duration: 0.1s;
     transition-delay: 0.2ms;
-    border: 0.5px solid #43a6d1;
+    border: 0.5px solid #0097b3;
 
 }
 
@@ -1028,8 +1035,9 @@ hr{
     cursor: not-allowed;
 }
 .md{
+    min-width: 980px;
     width: auto;
-    margin-left: -150px !important;
+    margin-left: -200px !important;
 }
 
 .calendarTable{
@@ -1118,13 +1126,13 @@ hr{
     transition-delay: 0.2ms;
 }
 .cancelApp:hover{
-    background-color: #424242;
+    background-color: #602b2b;
 
 }
 .cancelAppLink{
-    border: 1px solid #0098DA;
+    border: 1px solid #0097b3;
     background-color: transparent;
-    color: #0098DA;
+    color: #0097b3;
     font-weight: 700;
     padding: 15px 10px;
     border-radius: 10px;
@@ -1137,7 +1145,7 @@ hr{
     transition-delay: 0.2ms;
 }
 .cancelAppLink:hover{
-    background-color: #0098DA;
+    background-color: #0097b3;
     color: white;
 }
 
@@ -1153,4 +1161,19 @@ hr{
 
 .dcWidth{
     width: 700px;
+}
+
+.diagnosticAlert{
+    padding: 20px 10px;
+}
+
+.d-none{
+    display: none !important;
+}
+
+.alert-diagnostic-success{
+    text-align: center;
+    border: 0.5px solid #7dc67d;
+    background-color: #e4fae4;
+    margin-top: 20px !important;
 }

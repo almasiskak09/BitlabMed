@@ -63,7 +63,7 @@
 
                             </div>
                             <div class="fmg">
-                                <label class="blueText">ФИО: <input type="text" name="patientFullName" id="patientFullName" placeholder="Имя Фамилия"></label>
+                                <label class="blueText">Имя: <input type="text" name="patientFullName" id="patientFullName" placeholder="Имя"></label>
                                 <label class="blueText">Телефон: <input type="number" name="patientPhone" id="patientPhone" placeholder="8 707 222 03 03" maxlength="11" minlength="11"></label>
                             </div>
 
@@ -109,7 +109,7 @@
 
         function loadSchedule(doctorId, startDate, modal) {
             console.log('Запрос расписания для доктора с id:', doctorId); // Логируем, чтобы увидеть id в запросе
-            fetch(`/week-schedule?doctorId=${doctorId}&startDate=${startDate}`)
+            fetch(`/appointment-doctor/week-schedule?doctorId=${doctorId}&startDate=${startDate}`)
                 .then(response => response.json())
                 .then(data => {
                     // Очистка расписания только для текущего модального окна
@@ -275,7 +275,7 @@
 
                     // Выполняем AJAX-запрос
                     $.ajax({
-                        url: '/addAppointmentDoctor',
+                        url: '/appointment-doctor/addAppointmentDoctor',
                         method: 'POST',
                         data: {
                             appointmentDate: appointmentDate,

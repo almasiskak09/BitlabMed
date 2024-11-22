@@ -36,15 +36,15 @@
             </ul>
             <a><button class="whatsapp"><img th:src="@{/images/whatsapp.png}"  class="whImg"></button></a>
         </div>
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Найти врача или услугу" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Найти</button>
-        </form>
+<!--        <form class="d-flex" role="search">-->
+<!--            <input class="form-control me-2" type="search" placeholder="Найти врача или услугу" aria-label="Search">-->
+<!--            <button class="btn btn-outline-success" type="submit">Найти</button>-->
+<!--        </form>-->
         <div class="headRight gg">
-            <a th:href="@{'/profile'}" class="cabinet" sec:authorize="isAnonymous()">Личный кабинет</a>
-            <a th:href="@{'/profile'}" class="cabinet" sec:authorize="hasAuthority('ROLE_USER')">Личный кабинет</a>
-            <a th:href="@{'/profile-manager'}" class="cabinet" sec:authorize="hasAuthority('ROLE_MANAGER')">Менеджер</a>
-            <a th:href="@{'/profile-doctor'}" class="cabinet" sec:authorize="hasAuthority('ROLE_DOCTOR')">Врач</a>
+            <a th:href="@{'/profile'}" class="cabinet strong0" sec:authorize="isAnonymous()"><i class="bi bi-person blueText" style="font-size: 18px;"></i> Личный кабинет</a>
+            <a th:href="@{'/profile'}" class="cabinet strong0" sec:authorize="hasAuthority('ROLE_USER')"><i class="bi bi-person blueText" style="font-size: 18px;"></i> Личный кабинет</a>
+            <a th:href="@{'/profile-manager'}" class="cabinet strong0" sec:authorize="hasAuthority('ROLE_MANAGER')"><i class="bi bi-person blueText" style="font-size: 18px;"></i> Менеджер</a>
+            <a th:href="@{'/profile-doctor'}" class="cabinet strong0" sec:authorize="hasAuthority('ROLE_DOCTOR')"><i class="bi bi-person blueText" style="font-size: 18px;"></i> Врач</a>
         </div>
     </div>
 </header>

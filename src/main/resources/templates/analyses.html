@@ -60,7 +60,7 @@
                                    <div>
                                        <i class="bi bi-calendar-check blueText"></i>
                                        <span>&nbsp;</span> <!-- Пробел -->
-                                       <small class="blueText" th:text="${analyze.analyzesReadyDate} + (${analyze.analyzesReadyDate} <= 4 ? '-x' : '') + ' календарных дней'"></small>
+                                       <small class="blueText" th:text="'до '+${analyze.analyzesReadyDate} + (${analyze.analyzesReadyDate} <= 4 ? '-x' : '') + ' календарных дней'"></small>
                                    </div>
                                 </div>
                                 <div class="analizPrice">
@@ -100,7 +100,7 @@
 
             // Отправляем AJAX-запрос
             $.ajax({
-                url: '/add-to-cart',  // Путь к методу контроллера
+                url: '/cart-page/add-to-cart',  // Путь к методу контроллера
                 method: 'POST',
                 data: { analyzeId: analyzeId },
                 success: function(response) {

@@ -38,4 +38,5 @@ public class DoctorRestController {
     public void deleteDoctor(@PathVariable Long id){
         doctorService.deleteCarById(id);
     }
+
 }

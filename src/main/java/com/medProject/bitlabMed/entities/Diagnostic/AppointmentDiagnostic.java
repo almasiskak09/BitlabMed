@@ -20,18 +20,11 @@ import java.time.LocalTime;
 public class AppointmentDiagnostic extends BaseEntity {
 
 
-
     @Column(name = "patient_full_name")
     private String patientFullName;
 
     @Column(name = "patient_phone")
     private String patientPhone;
-
-    @Column(name = "diagnost_appointment_date")
-    private LocalDate diagnosticAppointmentDate;
-
-    @Column(name = "diagnost_appointment_start_time")
-    private LocalTime diagnosticAppointmentStartTime;
 
     @ManyToOne
     @JoinColumn(name = "diagnostic_id")
@@ -45,9 +38,5 @@ public class AppointmentDiagnostic extends BaseEntity {
     private boolean isPresent;
 
 
-    public void setAppointmentStartTime(LocalTime appointmentStartTime) {
-        // Обнуляем секунды и наносекунды перед сохранением
-        this.diagnosticAppointmentStartTime = appointmentStartTime.withSecond(0).withNano(0);
-    }
 
 }

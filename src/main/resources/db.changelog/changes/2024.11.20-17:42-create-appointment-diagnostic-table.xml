@@ -13,8 +13,6 @@
             </column>
 
             <column name="is_present" type="boolean"></column>
-            <column name="diagnostic_appointment_date" type="date"></column>
-            <column name="diagnostic_appointment_start_time" type="time"></column>
             <column name="patient_full_name" type="varchar(255)"></column>
             <column name="patient_phone" type="varchar(255)"></column>
             <column name="diagnostic_id" type="bigint"></column>

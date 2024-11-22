@@ -57,11 +57,8 @@
         <h4>Ваша заявка на анализы успешно принята! Ожидайте звонка от менеджера.</h4>
     </div>
 
-<!--Модальное Окно для формы-->
-
 
     <!-- Modal -->
-<form th:action="@{/addApplication}" th:method="post">
     <div class="modal fade" id="applyCart" tabindex="-1" aria-labelledby="exampleModalApplyCart" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -71,56 +68,108 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="text" name="apUserFullName" id="user_email" placeholder="ФИО">
-                        <input type="tel" name="apUserPhone" id="user_password" placeholder="Телефон">
+                        <input type="text" id="apUserFullName" placeholder="ФИО">
+                        <input type="number" id="apUserPhone" placeholder="Телефон">
                     </div>
                 </div>
-                <div th:each="analyze:${cart}">
-                    <input type="hidden" th:value="${analyze.id}" name="analyzesIds">
+                <div id="analyzes-container" th:each="analyze:${cart}">
+                    <input type="hidden" th:value="${analyze.id}" class="analyze-id">
                 </div>
                 <div>
-                    <input type="hidden" th:value="${totalPrice}" name="apTotalPrice">
+                    <input type="hidden" id="apTotalPrice" th:value="${totalPrice}">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="b1 strong" data-bs-dismiss="modal">Закрыть</button>
-                    <button type="submit" class="b2 strong" >Подвердить</button>
+                    <button type="button" class="b2 strong" id="submit-application">Подвердить</button>
                 </div>
             </div>
         </div>
     </div>
-</form>
-
-
-
 </div>
 
 
-<script>$(document).ready(function() {
-    $(".analizPriceButton").on("click", function(event) {
-        event.preventDefault();
-        var form = $(this).closest("form");
-        var analyzeId = form.find("input[name='analyzeId']").val();
 
-        // Отправляем AJAX-запрос
+
+
+
+<script>
+
+    $(document).ready(function() {
+        $(".analizPriceButton").on("click", function(event) {
+            event.preventDefault();
+            var form = $(this).closest("form");
+            var analyzeId = form.find("input[name='analyzeId']").val();
+
+
+            // Отправляем AJAX-запрос
+            $.ajax({
+                url: '/cart-page/delete-from-cart',  // Путь к методу контроллера
+                method: 'POST',
+                data: { analyzeId: analyzeId },
+                success: function(response) {
+                    // Обработка ответа от сервера
+
+                    // Обновляем общую сумму на странице
+                    $("#totalPrice").text(response.totalPrice + " тг.");
+
+                    // Удаляем строку с удаленным анализом
+                    form.closest(".analizComponent").remove(); // Удаление элемента из корзины
+                },
+                error: function(xhr, status, error) {
+                    alert("Произошла ошибка при удалении товара из корзины.");
+                }
+            });
+        });
+    });
+
+
+
+    $('#submit-application').click(function () {
+        // Собираем данные формы
+        var updatedTotalPrice = $('#totalPrice').text().replace(" тг.", "").trim();
+
+        let applicationData = {
+            apUserFullName: $('#apUserFullName').val(),
+            apUserPhone: $('#apUserPhone').val(),
+            apTotalPrice: updatedTotalPrice,
+            analyzesIds: []
+        };
+
+        // Собираем список анализов
+        $('.analyze-id').each(function () {
+            applicationData.analyzesIds.push($(this).val());
+        });
+
+        // Отправляем данные на сервер
         $.ajax({
-            url: '/delete-from-cart',  // Путь к методу контроллера
+            url: '/application-analyzes/addApplication', // URL эндпоинта
             method: 'POST',
-            data: { analyzeId: analyzeId },
-            success: function(response) {
-                // Обработка ответа от сервера
+            contentType: 'application/json', // Отправляем JSON
+            data: JSON.stringify(applicationData),
+            success: function (response) {
+                // Закрытие модального окна
+                $('#applyCart').modal('hide');
 
-                // Обновляем общую сумму на странице
-                $("#totalPrice").text(response.totalPrice + " тг.");
+                // Очистка формы
+                $('#apUserFullName').val('');
+                $('#apUserPhone').val('');
 
-                // Удаляем строку с удаленным анализом
-                form.closest(".analizComponent").remove(); // Удаление элемента из корзины
+                window.location.href = window.location.href + '?success=true';
+
+                // Отображение уведомления об успехе
+                $('.alert-success').show();
+                setTimeout(function() {
+                    $('.alert-success').hide();
+                }, 5000);  // Уведомление будет скрыто через 5 секунд
+
             },
-            error: function(xhr, status, error) {
-                alert("Произошла ошибка при удалении товара из корзины.");
+            error: function (xhr, status, error) {
+                alert('Произошла ошибка: ' + error);
             }
         });
     });
-});
+
+
 </script>
 </body>
 </html>

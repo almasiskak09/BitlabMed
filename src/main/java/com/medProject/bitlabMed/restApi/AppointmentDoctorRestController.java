@@ -2,8 +2,10 @@ package com.medProject.bitlabMed.restApi;
 
 
 import com.medProject.bitlabMed.dtos.DoctorDto.AppointmentDoctorDto;
+import com.medProject.bitlabMed.entities.Doctor.AppointmentDoctor;
+import com.medProject.bitlabMed.mappers.AppointmentDoctorMapper;
 import com.medProject.bitlabMed.services.AppointmentDoctorService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,53 +15,43 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/appointments")
+@RequiredArgsConstructor
+@RequestMapping("/appointment-doctor")
 public class AppointmentDoctorRestController {
 
-        @Autowired
-        private AppointmentDoctorService appointmentDoctorService;
+        private final AppointmentDoctorService appointmentDoctorService;
+        private final AppointmentDoctorMapper appointmentDoctorMapper;
 
         @GetMapping("/week-schedule")
+        @ResponseBody
         public Map<LocalDate, List<LocalTime>> getWeekSchedule(
                 @RequestParam Long doctorId,
                 @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate) {
-            return appointmentDoctorService.getWeekSchedule(doctorId, startDate);
+
+                return appointmentDoctorService.getWeekSchedule(doctorId, startDate);
         }
 
-//        @PostMapping("/book")
-//        public ResponseEntity<String> bookAppointment(@RequestBody AppointmentDto appointmentDto) {
-//            // Проверка занятости
-//            List<LocalTime> availableSlots = appointmentService.getWeekSchedule(
-//                    appointmentDto.getDoctorId(),
-//                    appointmentDto.getDate()
-//            ).get(appointmentDto.getDate());
-//
-//            if (!availableSlots.contains(appointmentDto.getStartTime())) {
-//                return ResponseEntity.status(HttpStatus.CONFLICT).body("Время уже занято");
-//            }
-//
-//            // Сохранение записи
-//            Appointment appointment = new Appointment();
-//            appointment.setDoctorId(appointmentDto.getDoctorId());
-//            appointment.setDate(appointmentDto.getDate());
-//            appointment.setStartTime(appointmentDto.getStartTime());
-//            appointment.setPatientName(appointmentDto.getPatientName());
-//
-//            appointmentRepository.save(appointment);
-//
-//            return ResponseEntity.ok("Запись успешно создана");
-//        }
-//    }
+        @PostMapping(value = "/addAppointmentDoctor")
+        public Long addAppointmentDoctor(@ModelAttribute AppointmentDoctorDto appointmentDoctorDto) {
+
+                AppointmentDoctor savedAppointmentDoctor = appointmentDoctorMapper.toEntity(appointmentDoctorService.addAppointmentDoctor(appointmentDoctorDto));
+                Long savedId = savedAppointmentDoctor.getId();
+                return savedId;
+        }
 
         @GetMapping(value = "/getAllAppointments")
         public List<AppointmentDoctorDto> getAllAppointments(){
                 return appointmentDoctorService.getAllAppointmentDoctorsList();
         }
 
+        @GetMapping(value = "/getAppointmentById/{id}")
+        public AppointmentDoctorDto getAppointmentById(@PathVariable Long id){
+                return appointmentDoctorService.getAppointmentDoctorById(id);
+        }
+
         @DeleteMapping(value = "/deleteAppointmentById/{id}")
         public void deleteAppointmentById(@PathVariable Long id){
                 appointmentDoctorService.deleteAppointmentDoctorById(id);
-
         }
 }
 

@@ -82,6 +82,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <p class="diagnosticAlert">Прием в диагностику осуществляется в порядке живой очереди, с <b>10:00 - 17:00</b></p>
                 <div class="diagnostikaComponent dcWidth">
                     <span id="selectedDiagnosticId" class="hiddenId"></span>
                     <h5 class="strong" id="selectedDiagnosticName"></h5>
@@ -89,8 +90,14 @@
                         <h2 class="baseColor strong" id="selectedDiagnosticPrice"> тг.</span></h2>
                     </div>
                 </div>
+                <div>
+                </div>
+                <div class="alert alert-diagnostic-success mb-4 d-none">
+                    <h4>Ваша заявка на диагностику успешно принята!</h4>
+                    <h4> Ожидайте звонка от менеджера.</h4>
+                </div>
                 <div class="fmg">
-                    <label class="blueText">ФИО: <input type="text" name="patientFullName" id="patientFullName" placeholder="Имя Фамилия"></label>
+                    <label class="blueText">Имя: <input type="text" name="patientFullName" id="patientFullName" placeholder="Имя Фамилия"></label>
                     <label class="blueText">Телефон: <input type="text" name="patientPhone" id="patientPhone" placeholder="8 707 222 03 03"></label>
                 </div>
             </div>
@@ -101,6 +108,7 @@
         </div>
     </div>
 </div>
+
 
 
 <div th:replace="~{layout/layout :: footer}"></div>
@@ -126,8 +134,62 @@
             modalBodyId.textContent = diagnosticId;
             modalBodyPrice.textContent = diagnosticPrice + ' тг.';
         });
+
+        // Обработчик кнопки подтверждения
+        document.querySelector('.b2').addEventListener('click', function() {
+            // Получаем данные из полей ввода
+            var patientFullName = document.getElementById('patientFullName').value;
+            var patientPhone = document.getElementById('patientPhone').value;
+            var diagnosticId = document.getElementById('selectedDiagnosticId').textContent;
+
+            // Выполняем AJAX-запрос
+            $.ajax({
+                url: '/appointment-diagnostic/addAppointmentDiagnostic',
+                method: 'POST',
+                contentType: 'application/json', // Указываем, что отправляем JSON
+                data: JSON.stringify({
+                    patientFullName: patientFullName,
+                    patientPhone: patientPhone,
+                    diagnosticId: diagnosticId
+                }),
+                success: function(response) {
+                    console.log('Response from server:', response);
+
+                    // Очистка формы
+                    $('#patientFullName').val('');
+                    $('#patientPhone').val('');
+
+                    var fmg = $('.fmg')
+                    fmg.hide();
+                    setTimeout(function (){
+                        fmg.show();
+                    },6000);
+
+                    var footer = $('.modal-footer')
+                    footer.hide();
+                    setTimeout(function (){
+                        footer.show();
+                    },6000);
+
+                    // Показать сообщение об успехе
+                    var alertSuccess = $('.alert-diagnostic-success');
+                    alertSuccess.removeClass('d-none'); // Убираем класс d-none
+                    alertSuccess.show();
+                    setTimeout(function (){
+                        alertSuccess.addClass('d-none')
+                    },6000);
+
+                    // Перенаправляем на другую страницу при необходимости
+                    // window.location.href = '/app-doctor/' + response;
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error during AJAX request:', error);
+                    alert("Произошла ошибка при сохранении.");
+                }
+            });
+        });
     });
+
 </script>
 </body>
 </html>
-
