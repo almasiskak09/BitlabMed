@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -34,6 +35,10 @@ public class AppointmentDiagnosticRestController {
 
     @PostMapping(value = "/addAppointmentDiagnostic")
     public ResponseEntity<?> addAppointmentDiagnostic(@RequestBody AppointmentDiagnosticDto appointmentDiagnosticDto) {
+        if (appointmentDiagnosticDto.getDiagnosticAppointmentDate() == null) {
+            appointmentDiagnosticDto.setDiagnosticAppointmentDate(LocalDate.now());
+        }
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated() &&
                 !(authentication instanceof AnonymousAuthenticationToken)) {

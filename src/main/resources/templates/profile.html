@@ -22,25 +22,139 @@
 
 
 
-<section class="container">
-    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Главная</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Врачи</li>
-        </ol>
-    </nav>
-</section>
-
-<div class="container">
+<div class="container h">
 
     <div class="profileHead" >
-        <h3 class="strong2" >Имя Фамилия Клиента</h3>
+        <h3 class="strong2" th:text="'Пациент: '+${user.getFullName()}"></h3>
+        <small th:text="'Номер телефона: ' + ${user.getPhone()}"></small>
+    </div>
+    <!--ПРОФИЛЬ ЮЗЕРА-->
+
+    <div class="profileZapicCategory h">
+        <button id="btnAll" onclick="showCategory('all')">Все</button>
+        <button id="btnDoctors" onclick="showCategory('doctors')">Запись к врачам</button>
+        <button id="btnAnalyzes" onclick="showCategory('analiz')">Анализы</button>
+        <button id="btnDiagnostics" onclick="showCategory('diagnostika')">Диагностика</button>
     </div>
 
+        <div class="userHistory">
 
-</div>
+            <div class="profileZapic" id="doctors">
+            <div class="userDoctorBlock">
+                <h6 class="strong blueText "> История записей к врачам</h6>
 
-<div th:replace="~{layout/layout :: footer}"></div>
+                <div class="zapicComponent" th:each="doctors:${appointmentDoctorDtoList}">
+                    <div class="zapicComponentShoulder  zapicPadding">
+                        <h6 class="bac" th:text="${doctors.getDocName()}"></h6>
+                        <p class="strong p" th:text="${doctors.docSpeciality}"></p>
+                    </div>
+                    <div class="zapicComponentBody  zapicPadding">
+                        <h6 class="bac" th:text="${doctors.getDocAddress()}"> </h6>
+                    </div>
+                    <div class="zapicComponentBody  zapicPadding">
+                        <h6 class="strong" th:text="${doctors.getFormattedDate()}+' | '+${doctors.getAppointmentStartTime()}"></h6>
+                    </div>
+                    <div class="zapicComponentHips  zapicPadding">
+                        <p class="strong2 baseColor" th:text="${doctors.getFormattedPrice()} + ' тг.'"></p>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
+
+            <div class="profileZapic" id="diagnostika">
+            <div class="userDiagnosticBlock">
+                <h6 class="strong blueText "> История записей к диагностикам</h6>
+
+                <div class="diagnostikaComponent" th:each="diag:${appointmentDiagnosticDtoList}">
+                    <h5 class="strong" th:text="${diag.diagnostic.diagnosticName}"></h5>
+                    <div class="zapicComponentBody  zapicPadding">
+                        <h6 class="strong" th:text="${diag.getFormattedDate()}"></h6>
+                    </div>
+                    <div class="analizPriceZapic">
+                        <h2 class="baseColor strong" th:text="${diag.diagnostic.getDiagnosticPrice()}+' тг.'"></h2>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+
+
+
+
+
+
+                <div class="profileZapic" id="analiz">
+                    <h6 class="strong blueText"> История заказа анализов</h6>
+
+                    <div class="profileZapicList2">
+
+                        <div class="zapicComponentAnaliz" th:each="applicationAnalyzes : ${applicationAnalyzesDTOS2}">
+
+                            <section class="accordion">
+                                <div class="tab">
+                                    <input type="checkbox" name="accordion-1" th:id="${applicationAnalyzes.getId()}">
+                                    <label th:for="${applicationAnalyzes.getId()}" class="tab__label" th:text="${applicationAnalyzes.getApCreatedDate()}"></label>
+                                    <div class="tab__content">
+
+                                        <div class="analizBlock" th:each="analyzes : ${analyzesMap2[applicationAnalyzes.getId()]}">
+                                            <div class="analizComponent" th:each="an : ${analyzes}">
+                                                <button class="zapicButton03">Результаты</button>
+
+                                                <div class="analizName">
+                                                    <small class="smallGreyText" th:text="'№'+${an.getId()}">№324</small>
+                                                    <h6 class="strong" th:text="${an.analyzesName}"></h6>
+                                                    <div>
+                                                        <i class="bi bi-calendar-check blueText"></i>
+                                                        <span>&nbsp;</span> <!-- Пробел -->
+                                                        <small class="blueText" th:text="'до '+${an.analyzesReadyDate} + (${an.analyzesReadyDate} <= 4 ? '-x' : '') + ' календарных дней'"></small>
+                                                    </div>
+                                                </div>
+                                                <div class="analizPrice">
+                                                    <h5 class="baseColor strong" th:text="${an.getFormattedPrice()}+' тг.'"></h5>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </section>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+
+
+
+
+<script>
+    function showCategory(category) {
+        // Получаем все категории
+        const allCategories = document.querySelectorAll('.profileZapic');
+
+        allCategories.forEach((categoryElement) => {
+            if (category === 'all') {
+                categoryElement.style.display = 'block'; // Показать все
+            } else if (categoryElement.id === category) {
+                categoryElement.style.display = 'block'; // Показать только выбранное
+            } else {
+                categoryElement.style.display = 'none'; // Скрыть остальные
+            }
+        });
+    }
+
+    // Показать все категории по умолчанию при загрузке страницы
+    document.addEventListener('DOMContentLoaded', () => showCategory('all'));
+</script>
+
 
 
 </body>

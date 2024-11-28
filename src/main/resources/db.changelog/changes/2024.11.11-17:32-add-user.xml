@@ -26,6 +26,15 @@
             <column name="password" value="$2a$12$BmEjv.TgVBs.IIXMjkAq1eAQhIWLw7.4MJHKcUa61ZnAhkDsuCO7C"></column>
             <column name="phone" value="87073030303"></column>
         </insert>
+
+        <insert tableName="t_users">
+            <column name="full_name" value="Қайрат Нұртас"></column>
+            <column name="email" value="kairat@mail.ru"></column>
+            <column name="password" value="$2a$12$x4NEE/hqLZfvPueUOSaqguVEINQPOKuLnLcyzgcisxxA4cJr2yJRu"></column>
+            <column name="phone" value="87070404040"></column>
+        </insert>
+
+
     </changeSet>
     
 

@@ -42,4 +42,9 @@ public class AppointmentDiagnosticServiceImpl implements AppointmentDiagnosticSe
         appointmentDiagnosticRepository.deleteById(id);
     }
 
+    public List<AppointmentDiagnosticDto> getAppointmentDiagnosticsByUserId(Long userId){
+        List<AppointmentDiagnosticDto> appointmentDiagnosticDtoList = appointmentDiagnosticMapper.toDtoList(appointmentDiagnosticRepository.findAllByUserId(userId));
+        return appointmentDiagnosticDtoList;
+    }
+
 }

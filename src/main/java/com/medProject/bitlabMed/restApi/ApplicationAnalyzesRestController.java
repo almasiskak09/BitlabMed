@@ -53,7 +53,6 @@ public class ApplicationAnalyzesRestController {
 
 
         applicationAnalyzesService.addApplicationAnalyzes(applicationAnalyzesDTO);
-        System.out.println(applicationAnalyzesDTO.getApUserFullName());
 
         //очищаем корзину
         List<AnalyzesDTO> cart = (List<AnalyzesDTO>) httpSession.getAttribute("cart");

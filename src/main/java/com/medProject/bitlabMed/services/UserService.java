@@ -1,4 +1,5 @@
 package com.medProject.bitlabMed.services;
+import com.medProject.bitlabMed.dtos.DoctorDto.AppointmentDoctorDto;
 import com.medProject.bitlabMed.entities.User.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,5 +17,4 @@ public interface UserService extends UserDetailsService {
     void deleteById(Long id);
     Boolean addUser(User user);
     User updateUser(User user);
-
-    }
+ }

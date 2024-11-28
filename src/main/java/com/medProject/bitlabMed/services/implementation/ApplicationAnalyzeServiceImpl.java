@@ -12,7 +12,11 @@ import com.medProject.bitlabMed.services.ApplicationAnalyzesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -50,6 +54,11 @@ public class ApplicationAnalyzeServiceImpl implements ApplicationAnalyzesService
     public List<AnalyzesDTO> getAllAnalyzesByIds(List<Long> analyzesIds){
        List<AnalyzesDTO> analyzesDTOList = analyzesMapper.toDtoList(analyzesRepository.findAllById(analyzesIds));
        return analyzesDTOList;
+    }
+
+    public List<ApplicationAnalyzesDTO> getAllApplicationAnalyzesByUserId(Long userId){
+       List<ApplicationAnalyzesDTO> applicationAnalyzesDTOS = applicationAnalyzesMapper.toDtoList(applicationAnalyzesRepository.findAllByUserId(userId));
+       return applicationAnalyzesDTOS;
     }
 
 

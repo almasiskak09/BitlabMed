@@ -116,4 +116,10 @@ public class AppointmentDoctorServiceImpl implements AppointmentDoctorService {
     public void deleteAppointmentDoctorById(Long id) {
         appointmentDoctorRepository.deleteById(id);
     }
+
+    public List<AppointmentDoctorDto> getAllAppointmentDoctorListByUserId(Long userId){
+        List<AppointmentDoctorDto> appointmentDoctorDtoList = appointmentDoctorMapper.toDtoList(appointmentDoctorRepository.findByUserId(userId));
+        return appointmentDoctorDtoList;
+    }
+
 }

@@ -51,7 +51,6 @@ public class AppointmentDoctorRestController {
 
         @DeleteMapping(value = "/deleteAppointmentById/{id}")
         public void deleteAppointmentById(@PathVariable Long id){
-                System.out.println(id);
                 appointmentDoctorService.deleteAppointmentDoctorById(id);
         }
 }

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,6 +92,24 @@ public class UserController {
     public String profile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
+
+        List<AppointmentDoctorDto> appointmentDoctorDtoList = appointmentDoctorService.getAllAppointmentDoctorListByUserId(user.getId());
+        model.addAttribute("appointmentDoctorDtoList",appointmentDoctorDtoList);
+
+        List<AppointmentDiagnosticDto>appointmentDiagnosticDtoList = appointmentDiagnosticService.getAppointmentDiagnosticsByUserId(user.getId());
+        model.addAttribute("appointmentDiagnosticDtoList",appointmentDiagnosticDtoList);
+
+
+        List<ApplicationAnalyzesDTO>applicationAnalyzesDTOS = applicationAnalyzesService.getAllApplicationAnalyzesByUserId(user.getId());
+        model.addAttribute("applicationAnalyzesDTOS2",applicationAnalyzesDTOS);
+
+        Map<Long,List<AnalyzesDTO>> analyzesMap2 = new HashMap<>();
+        for(ApplicationAnalyzesDTO app : applicationAnalyzesDTOS){
+            List<AnalyzesDTO> analyzesDTOList = applicationAnalyzesService.getAllAnalyzesByIds(app.getAnalyzesIds());
+            analyzesMap2.put(app.getId(),analyzesDTOList);
+        }
+        model.addAttribute("analyzesMap2",analyzesMap2);
+
 
         model.addAttribute("user", user);
         return "/profile";

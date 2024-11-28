@@ -1,7 +1,10 @@
 package com.medProject.bitlabMed.services.implementation;
 
+import com.medProject.bitlabMed.dtos.DoctorDto.AppointmentDoctorDto;
 import com.medProject.bitlabMed.entities.User.Permission;
 import com.medProject.bitlabMed.entities.User.User;
+import com.medProject.bitlabMed.mappers.AppointmentDoctorMapper;
+import com.medProject.bitlabMed.repositories.AppointmentDoctorRepository;
 import com.medProject.bitlabMed.repositories.PermissionRepository;
 import com.medProject.bitlabMed.repositories.UserRepository;
 import com.medProject.bitlabMed.services.UserService;
@@ -31,6 +34,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private AppointmentDoctorRepository appointmentDoctorRepository;
+
+    @Autowired
+    private AppointmentDoctorMapper appointmentDoctorMapper;
 
     @Transactional
     @Override
@@ -122,5 +131,7 @@ public class UserServiceImpl implements UserService {
     public User updateUser(User user){
         return userRepository.save(user);
     }
+
+
 }
 

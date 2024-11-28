@@ -10,10 +10,11 @@ import java.util.Map;
 public interface AppointmentDoctorService {
 
     Map<LocalDate, List<LocalTime>> getWeekSchedule(Long doctorId, LocalDate startDate);
-
     List<AppointmentDoctorDto> getAllAppointmentDoctorsList();
-    AppointmentDoctorDto addAppointmentDoctor ( AppointmentDoctorDto appointmentDoctorDto);
+    AppointmentDoctorDto addAppointmentDoctor(AppointmentDoctorDto appointmentDoctorDto);
     AppointmentDoctorDto getAppointmentDoctorById(Long id);
     AppointmentDoctorDto updateAppointmentDoctor(AppointmentDoctorDto appointmentDoctorDto);
     void deleteAppointmentDoctorById(Long id);
+    List<AppointmentDoctorDto> getAllAppointmentDoctorListByUserId(Long userId);
+
 }

@@ -26,6 +26,9 @@ public class AppointmentDiagnostic extends BaseEntity {
     @Column(name = "patient_phone")
     private String patientPhone;
 
+    @Column(name = "diagnostic_appointment_date")
+    private LocalDate diagnosticAppointmentDate;
+
     @OneToOne
     @JoinColumn(name = "diagnostic_id")
     private Diagnostic diagnostic;

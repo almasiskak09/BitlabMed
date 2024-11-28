@@ -3,6 +3,7 @@ package com.medProject.bitlabMed.dtos.DoctorDto;
 import com.medProject.bitlabMed.entities.BaseEntity;
 import com.medProject.bitlabMed.entities.Doctor.Doctor;
 import com.medProject.bitlabMed.entities.User.User;
+import com.medProject.bitlabMed.utils.PriceFormatter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,5 +41,12 @@ public class AppointmentDoctorDto {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM", new Locale("ru"));
         return appointmentDate.format(formatter);
     }
+
+    public String getFormattedPrice(){
+        return PriceFormatter.formatPrice(docPrice);
+    }
+
+
+
 
 }

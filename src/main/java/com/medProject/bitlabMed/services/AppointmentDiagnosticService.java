@@ -12,4 +12,5 @@ public interface AppointmentDiagnosticService {
     AppointmentDiagnosticDto getAppointmentDiagnosticById(Long id);
     AppointmentDiagnosticDto updateAppointmentDiagnostic(Long id);
     void deleteAppointmentDiagnosticById(Long id);
+    List<AppointmentDiagnosticDto> getAppointmentDiagnosticsByUserId(Long userId);
 }
