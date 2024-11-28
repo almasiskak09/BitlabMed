@@ -48,76 +48,89 @@
 
     </div>
 
+
+    <!--Записи к врачам-->
+
     <div class="profileZapic" id="doctors">
         <h3 class="strong2 baseColor">Запись к врачам</h3>
         <div class="profileZapicList2">
 
-            <div class="zapicComponent">
+
+            <div class="zapicComponent" th:classappend="${appo.handled} ? 'grayBack'" th:each="appo:${appointmentDoctorsList}">
+
+                <form th:action="@{/deleteAppointmentDoctor}" th:method="post">
+                    <input type="hidden" name="id" th:value="${appo.getId()}">
+                    <button type="submit" class="zapicButton0 ">X</button>
+                </form>
+
+
+                <form th:if="${!appo.handled}" th:action="@{/updateAppointmentDoctor}" th:method="post">
+                    <input type="hidden" name="id" th:value="${appo.getId()}">
+                    <button class="zapicButton02">H</button>
+                </form>
+
                 <div class="zapicComponentHead  zapicPadding">
-                    <h6 class="bac">Толегенов Данияр</h6>
-                    <p class="strong p">87072377437</p>
+                    <h6 class="bac" th:text="${appo.getPatientFullName()}"></h6>
+                    <p class="strong p" th:text="${appo.getPatientPhone()}"></p>
                 </div>
                 <div class="zapicComponentShoulder  zapicPadding">
-                    <h6 class="bac">Асан Айбар</h6>
-                    <p class="strong p">Невропатолог</p>
+                    <h6 class="bac" th:text="${appo.getDocName()}"></h6>
+                    <p class="strong p" th:text="${appo.getDocSpeciality()}"></p>
                 </div>
                 <div class="zapicComponentBody  zapicPadding">
-                    <h6 class="bac">г.Алматы, Северное кольцо 14 </h6>
-                </div>
-                <div class="zapicComponentHips  zapicPadding">
-                    <p class="strong2 baseColor">9 000 тг.</p>
-                </div>
-                <button class="zapicButton0 ">ЗАПИСЬ</button>
-
-            </div>
-            <div class="zapicComponent">
-                <div class="zapicComponentHead  zapicPadding">
-                    <h6 class="bac">Толегенов Данияр</h6>
-                    <p class="strong p">87072377437</p>
-                </div>
-                <div class="zapicComponentShoulder  zapicPadding">
-                    <h6 class="bac">Асан Айбар</h6>
-                    <p class="strong p">Невропатолог</p>
+                    <h6 class="bac" th:text="${appo.getDocAddress()}"></h6>
                 </div>
                 <div class="zapicComponentBody  zapicPadding">
-                    <h6 class="bac">г.Алматы, Северное кольцо 14 </h6>
+                    <h6 class="strong" th:text="${appo.getFormattedDate()}+' | '+${appo.getAppointmentStartTime()}"></h6>
                 </div>
                 <div class="zapicComponentHips  zapicPadding">
-                    <p class="strong2 baseColor">9 000 тг.</p>
+                    <p class="strong2 baseColor" th:text="${appo.getDocPrice()}+' тг.'"></p>
                 </div>
-                <button class="zapicButton0 ">ЗАПИСЬ</button>
-
             </div>
+
 
         </div>
     </div>
 
 
+<!--Записи к анализам-->
 
     <div class="profileZapic" id="analiz">
         <h3 class="strong2 baseColor">Анализы</h3>
         <div class="profileZapicList2">
 
-            <div class="zapicComponentAnaliz">
-                <button class="zapicButton">ЗАПИСЬ</button>
-                <h6 class="bac">Толегенов Данияр | <small class="strong">87079797096</small></h6>
+            <div class="zapicComponentAnaliz" th:classappend="${applicationAnalyzes.handled} ? 'grayBack'" th:each="applicationAnalyzes : ${applicationAnalyzesDTOS}">
+                <form th:action="@{/deleteAppointmentAnalyze}" th:method="post">
+                    <input type="hidden" name="id" th:value="${applicationAnalyzes.getId()}">
+                    <button type="submit" class="zapicButton0 ">X</button>
+                </form>
+
+
+                <form th:if="${!applicationAnalyzes.handled}" th:action="@{/updateAppointmentAnalyze}" th:method="post">
+                    <input type="hidden" name="id" th:value="${applicationAnalyzes.getId()}">
+                    <button class="zapicButton02">H</button>
+                </form>
+                <h6 class="bac strong" th:text="${applicationAnalyzes.getApUserFullName()}+' | '+${applicationAnalyzes.getApUserPhone()}"></h6>
 
                 <section class="accordion">
                     <div class="tab">
-                        <input type="checkbox" name="accordion-1" id="cb2">
-                        <label for="cb2" class="tab__label">Анализы</label>
+                        <input type="checkbox" name="accordion-1" th:id="${applicationAnalyzes.getId()}">
+                        <label th:for="${applicationAnalyzes.getId()}" class="tab__label">Анализы</label>
                         <div class="tab__content">
 
-                            <div class="analizBlock">
-                                <div class="analizComponent">
-                                    <div class="analizName">
-                                        <small class="smallGreyText">№324</small>
-                                        <h6 class="strong">АК (Общий анализ крови) </h6>
-                                        <small class="blueText"> <i class="bi bi-calendar-check"></i>&nbsp; до 3-х календарных дней</small>
+                            <div class="analizBlock" th:each="analyzes : ${analyzesMap[applicationAnalyzes.id]}">
+                                <div class="analizComponent" th:each="an : ${analyzes}">
+                                    <div class="analizName" >
+                                        <small class="smallGreyText" th:text="'№'+${an.getId()}">№324</small>
+                                        <h6 class="strong" th:text="${an.analyzesName}"></h6>
+                                        <div>
+                                            <i class="bi bi-calendar-check blueText"></i>
+                                            <span>&nbsp;</span> <!-- Пробел -->
+                                            <small class="blueText" th:text="'до '+${an.analyzesReadyDate} + (${an.analyzesReadyDate} <= 4 ? '-x' : '') + ' календарных дней'"></small>
+                                        </div>
                                     </div>
                                     <div class="analizPrice">
-                                        <h5 class="baseColor"><strong>12 900 тг.</strong></h5>
-                                        <button class="analizPriceButton blueText">-</button>
+                                        <h5 class="baseColor strong" th:text="${an.getFormattedPrice()}+' тг.'"></h5>
                                     </div>
                                 </div>
                             </div>
@@ -132,6 +145,8 @@
         </div>
     </div>
 
+
+    <!--ДИАГНОСТИКА-->
 
     <div class="profileZapic" id="diagnostika">
         <h3 class="strong2 baseColor">Диагностика</h3>
@@ -168,8 +183,6 @@
 
 </div>
 
-
-<div th:replace="~{layout/layout :: footer}"></div>
 
 
 </body>

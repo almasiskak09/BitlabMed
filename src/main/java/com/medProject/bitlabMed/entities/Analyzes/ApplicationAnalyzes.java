@@ -38,4 +38,7 @@ public class ApplicationAnalyzes extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name = "is_handled")
+    private boolean isHandled;
+
 }

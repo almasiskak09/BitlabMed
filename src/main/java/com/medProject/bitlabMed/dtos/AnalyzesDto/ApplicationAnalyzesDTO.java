@@ -22,5 +22,7 @@ public class ApplicationAnalyzesDTO {
     private LocalDate apCreatedDate;
     private List<Long> analyzesIds;
     private Long userId;
+    private boolean isHandled;
+
 
 }

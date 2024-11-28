@@ -29,6 +29,12 @@ public class AppointmentDoctorDto {
     private Long doctorId;
     private Long userId;
     private boolean isPresent;
+    private boolean handled;
+    private String docName;
+    private String docSpeciality;
+    private String docAddress;
+    private int docPrice;
+
 
     public String getFormattedDate(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM", new Locale("ru"));

@@ -6,6 +6,7 @@ import com.medProject.bitlabMed.dtos.DiagnosticDto.DiagnosticCategoryDTO;
 import com.medProject.bitlabMed.dtos.DiagnosticDto.DiagnosticDTO;
 import com.medProject.bitlabMed.dtos.DoctorDto.AppointmentDoctorDto;
 import com.medProject.bitlabMed.dtos.DoctorDto.DoctorDTO;
+import com.medProject.bitlabMed.repositories.AppointmentDoctorRepository;
 import com.medProject.bitlabMed.services.*;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ public class HomeController {
     private final DiagnosticService diagnosticService;
     private final DiagnosticCategoryService diagnosticCategoryService;
     private final AppointmentDoctorService appointmentDoctorService;
+    private final ApplicationAnalyzesService applicationAnalyzesService;
 
 
     @GetMapping(value = "/home")
@@ -35,7 +38,7 @@ public class HomeController {
         return "home";
     }
 
-//    отображение страницы с анализами (HTML)
+    //    отображение страницы с анализами (HTML)
     @GetMapping(value = "/analyses")
     public String analysesPage(Model model, HttpSession httpSession){
         List<AnalyzesDTO>analyzesDTOList = analyzesService.getAllAnalyzes();
@@ -113,6 +116,30 @@ public class HomeController {
         return "cart";
     }
 
+    @PostMapping(value = "/deleteAppointmentDoctor")
+    public String deleteAppointment(@RequestParam Long id) {
+        appointmentDoctorService.deleteAppointmentDoctorById(id);
+        return "redirect:/profile-manager";
+    }
 
+    @PostMapping(value = "/updateAppointmentDoctor")
+    public String updateAppointment(@RequestParam Long id) {
+        AppointmentDoctorDto appointmentDoctorDto = appointmentDoctorService.getAppointmentDoctorById(id);
+        appointmentDoctorDto.setHandled(true);
+        appointmentDoctorService.updateAppointmentDoctor(appointmentDoctorDto);
+        return "redirect:/profile-manager";
+    }
+
+
+    @PostMapping(value = "/deleteAppointmentAnalyze")
+    public String deleteAppointmentAnalyze(@RequestParam Long id) {
+        applicationAnalyzesService.deleteApplicationAnalyzesById(id);
+        return "redirect:/profile-manager";
+    }
+    @PostMapping(value = "/updateAppointmentAnalyze")
+    public String updateAppointmentAnalyze(@RequestParam Long id) {
+        applicationAnalyzesService.updateApplicationAnalyzes(id);
+        return "redirect:/profile-manager";
+    }
 
 }

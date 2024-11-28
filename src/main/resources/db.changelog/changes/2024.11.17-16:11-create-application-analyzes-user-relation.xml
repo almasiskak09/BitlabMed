@@ -22,6 +22,7 @@
             <column name="application_analyzes_created_date" type="date">
                 <constraints nullable="false"></constraints>
             </column>
+            <column name="is_handled" type="boolean"></column>
             <column name="user_id" type="bigint">
                 <constraints nullable="true"></constraints>
             </column>

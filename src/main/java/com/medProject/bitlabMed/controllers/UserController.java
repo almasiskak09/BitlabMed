@@ -1,6 +1,12 @@
 package com.medProject.bitlabMed.controllers;
 
+import com.medProject.bitlabMed.dtos.AnalyzesDto.AnalyzesDTO;
+import com.medProject.bitlabMed.dtos.AnalyzesDto.ApplicationAnalyzesDTO;
+import com.medProject.bitlabMed.dtos.DoctorDto.AppointmentDoctorDto;
 import com.medProject.bitlabMed.entities.User.User;
+import com.medProject.bitlabMed.mappers.AnalyzesMapper;
+import com.medProject.bitlabMed.services.ApplicationAnalyzesService;
+import com.medProject.bitlabMed.services.AppointmentDoctorService;
 import com.medProject.bitlabMed.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -12,12 +18,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Controller
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
-
+    private final AppointmentDoctorService appointmentDoctorService;
+    private final ApplicationAnalyzesService applicationAnalyzesService;
 
     @GetMapping(value = "/sign-in")
     @PreAuthorize("isAnonymous()")
@@ -89,12 +100,32 @@ public class UserController {
         model.addAttribute("user", user);
         return "/profile-doctor";
     }
+
     @GetMapping(value = "/profile-manager")
     public String profileManager(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
 
+        List<AppointmentDoctorDto> appointmentDoctorDtoList = appointmentDoctorService.getAllAppointmentDoctorsList();
+        model.addAttribute("appointmentDoctorsList", appointmentDoctorDtoList);
+
+        List<ApplicationAnalyzesDTO> applicationAnalyzesDTOS = applicationAnalyzesService.getAllApplicationAnalyzes();
+        model.addAttribute("applicationAnalyzesDTOS", applicationAnalyzesDTOS);
+
+
+        Map<Long,List<AnalyzesDTO>> analyzesMap = new HashMap<>();
+        for(ApplicationAnalyzesDTO app : applicationAnalyzesDTOS){
+            List<AnalyzesDTO> analyzesDTOList = applicationAnalyzesService.getAllAnalyzesByIds(app.getAnalyzesIds());
+            analyzesMap.put(app.getId(),analyzesDTOList);
+        }
+        model.addAttribute("analyzesMap",analyzesMap);
+
+
         model.addAttribute("user", user);
         return "/profile-manager";
     }
+
+
+
+
 }

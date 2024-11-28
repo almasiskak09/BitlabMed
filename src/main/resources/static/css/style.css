@@ -724,6 +724,7 @@ hr{
     border-top: 1px solid rgb(241, 241, 241);
     transition-duration: 0.2s;
     transition-delay: 0.3ms;
+    position: relative;
 }
 .zapicComponent:hover{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -740,7 +741,7 @@ hr{
     right: -10px;
     border: 0px;
     border-radius: 20px;
-    background-color: #0097b3;
+    background-color: #0098DA;
     color: white;
     font-weight: 700;
     padding: 5px 20px;
@@ -749,25 +750,43 @@ hr{
 }
 
 .zapicButton0{
-    top: -5px;
-    position: relative;
+    top: -15px;
+    right: -15px;
+    position: absolute;
     border: 0px;
-    border-radius: 20px;
-    background-color: #0097b3;
+    border-radius: 10px;
+    background-color: #da004c;
     color: white;
     font-weight: 700;
+    font-size: 14px;
+    padding: 5px 20px;
+    transition-duration: 0.1s;
+    transition-delay: 0.2ms;
+}
+.zapicButton02{
+    top: -15px;
+    right: 35px;
+    position: absolute;
+    border: 0px;
+    border-radius: 10px;
+    background-color: #0099da;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
     padding: 5px 20px;
     transition-duration: 0.1s;
     transition-delay: 0.2ms;
 }
 
-
-.zapicButton:hover, .zapicButton0:hover{
+.zapicButton:hover, .zapicButton0:hover, .zapicButton02:hover{
     background-color: rgb(255, 255, 255);
-    color: #0097b3;
-    border: 1px solid #0097b3;
+    color: #0098DA;
+    border: 1px solid #0098DA;
 }
 
+.grayBack{
+    background-color: rgb(51, 120, 143);
+}
 
 .zapicComponentHead{
     border-radius: 6px 6px 0px 0px;

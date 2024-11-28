@@ -2,9 +2,11 @@ package com.medProject.bitlabMed.services.implementation;
 
 import com.medProject.bitlabMed.dtos.DoctorDto.AppointmentDoctorDto;
 import com.medProject.bitlabMed.entities.Doctor.AppointmentDoctor;
+import com.medProject.bitlabMed.entities.Doctor.Doctor;
 import com.medProject.bitlabMed.entities.User.User;
 import com.medProject.bitlabMed.mappers.AppointmentDoctorMapper;
 import com.medProject.bitlabMed.repositories.AppointmentDoctorRepository;
+import com.medProject.bitlabMed.repositories.DoctorRepository;
 import com.medProject.bitlabMed.repositories.UserRepository;
 import com.medProject.bitlabMed.services.AppointmentDoctorService;
 import lombok.RequiredArgsConstructor;
@@ -16,10 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +27,7 @@ public class AppointmentDoctorServiceImpl implements AppointmentDoctorService {
     private final AppointmentDoctorRepository appointmentDoctorRepository;
     private final AppointmentDoctorMapper appointmentDoctorMapper;
     private final UserRepository userRepository;
+    private final DoctorRepository doctorRepository;
 
     public Map<LocalDate, List<LocalTime>> getWeekSchedule(Long doctorId, LocalDate startDate) {
         LocalDate endDate = startDate.plusDays(7); // Неделя
@@ -73,6 +73,9 @@ public class AppointmentDoctorServiceImpl implements AppointmentDoctorService {
         List<AppointmentDoctor> appointments = appointmentDoctorRepository.findAll();
       return   appointmentDoctorMapper.toDtoList(appointments);
     }
+
+
+
     public AppointmentDoctorDto addAppointmentDoctor ( AppointmentDoctorDto appointmentDoctorDto){
         // Получение текущего пользователя через SecurityContext
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -88,6 +91,14 @@ public class AppointmentDoctorServiceImpl implements AppointmentDoctorService {
         }
 
         AppointmentDoctor appointmentDoctor = appointmentDoctorMapper.toEntity(appointmentDoctorDto);
+        Long docId = appointmentDoctorDto.getDoctorId();
+        Doctor doctor = doctorRepository.findById(docId).orElse(null);
+
+        appointmentDoctor.setDocName(doctor.getDoctorName());
+        appointmentDoctor.setDocSpeciality(doctor.getDoctorSpeciality());
+        appointmentDoctor.setDocAddress(doctor.getDoctorAddress());
+        appointmentDoctor.setDocPrice(doctor.getDoctorPrice());
+
         appointmentDoctorRepository.save(appointmentDoctor);
         return appointmentDoctorMapper.toDto(appointmentDoctor);
     }
@@ -101,7 +112,8 @@ public class AppointmentDoctorServiceImpl implements AppointmentDoctorService {
         appointmentDoctorRepository.save(appointmentDoctor);
         return appointmentDoctorMapper.toDto(appointmentDoctor);
     }
-    public void deleteAppointmentDoctorById(Long id){
+
+    public void deleteAppointmentDoctorById(Long id) {
         appointmentDoctorRepository.deleteById(id);
     }
 }

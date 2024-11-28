@@ -10,8 +10,6 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 @Entity
 @Getter
@@ -33,17 +31,31 @@ public class AppointmentDoctor extends BaseEntity {
     @Column(name = "patient_phone")
     private String patientPhone;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
     @Column(name = "is_present")
     private boolean isPresent;
 
+    @Column(name = "handled")
+    private boolean handled;
+
+    @Column(name = "doc_name")
+    private String docName;
+
+    @Column(name = "doc_speciality")
+    private String docSpeciality;
+
+    @Column(name = "doc_address")
+    private String docAddress;
+
+    @Column(name = "doc_price")
+    private int docPrice;
 
     public void setAppointmentStartTime(LocalTime appointmentStartTime) {
         // Обнуляем секунды и наносекунды перед сохранением
