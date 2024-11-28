@@ -2,7 +2,6 @@ package com.medProject.bitlabMed.services.implementation;
 
 
 import com.medProject.bitlabMed.dtos.DiagnosticDto.AppointmentDiagnosticDto;
-import com.medProject.bitlabMed.dtos.DoctorDto.AppointmentDoctorDto;
 import com.medProject.bitlabMed.entities.Diagnostic.AppointmentDiagnostic;
 import com.medProject.bitlabMed.mappers.AppointmentDiagnosticMapper;
 import com.medProject.bitlabMed.repositories.AppointmentDiagnosticRepository;
@@ -33,12 +32,14 @@ public class AppointmentDiagnosticServiceImpl implements AppointmentDiagnosticSe
         AppointmentDiagnostic appointmentDiagnostic = appointmentDiagnosticRepository.findById(id).orElse(null);
         return appointmentDiagnosticMapper.toDto(appointmentDiagnostic);
     }
-    public AppointmentDiagnosticDto updateAppointmentDiagnostic(AppointmentDiagnosticDto appointmentDiagnosticDto){
-        AppointmentDiagnostic appointmentDiagnostic = appointmentDiagnosticMapper.toEntity(appointmentDiagnosticDto);
+    public AppointmentDiagnosticDto updateAppointmentDiagnostic(Long id){
+        AppointmentDiagnostic appointmentDiagnostic = appointmentDiagnosticRepository.findById(id).orElse(null);
+        appointmentDiagnostic.setHandled(true);
         appointmentDiagnosticRepository.save(appointmentDiagnostic);
         return appointmentDiagnosticMapper.toDto(appointmentDiagnostic);
     }
     public void deleteAppointmentDiagnosticById(Long id){
         appointmentDiagnosticRepository.deleteById(id);
     }
+
 }

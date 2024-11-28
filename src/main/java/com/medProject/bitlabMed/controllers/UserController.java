@@ -2,10 +2,13 @@ package com.medProject.bitlabMed.controllers;
 
 import com.medProject.bitlabMed.dtos.AnalyzesDto.AnalyzesDTO;
 import com.medProject.bitlabMed.dtos.AnalyzesDto.ApplicationAnalyzesDTO;
+import com.medProject.bitlabMed.dtos.DiagnosticDto.AppointmentDiagnosticDto;
+import com.medProject.bitlabMed.dtos.DiagnosticDto.DiagnosticDTO;
 import com.medProject.bitlabMed.dtos.DoctorDto.AppointmentDoctorDto;
 import com.medProject.bitlabMed.entities.User.User;
 import com.medProject.bitlabMed.mappers.AnalyzesMapper;
 import com.medProject.bitlabMed.services.ApplicationAnalyzesService;
+import com.medProject.bitlabMed.services.AppointmentDiagnosticService;
 import com.medProject.bitlabMed.services.AppointmentDoctorService;
 import com.medProject.bitlabMed.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +32,7 @@ public class UserController {
     private final UserService userService;
     private final AppointmentDoctorService appointmentDoctorService;
     private final ApplicationAnalyzesService applicationAnalyzesService;
+    private final AppointmentDiagnosticService appointmentDiagnosticService;
 
     @GetMapping(value = "/sign-in")
     @PreAuthorize("isAnonymous()")
@@ -105,10 +109,13 @@ public class UserController {
     public String profileManager(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
+        model.addAttribute("user", user);
 
+//        Доктор
         List<AppointmentDoctorDto> appointmentDoctorDtoList = appointmentDoctorService.getAllAppointmentDoctorsList();
         model.addAttribute("appointmentDoctorsList", appointmentDoctorDtoList);
 
+//        Анализы
         List<ApplicationAnalyzesDTO> applicationAnalyzesDTOS = applicationAnalyzesService.getAllApplicationAnalyzes();
         model.addAttribute("applicationAnalyzesDTOS", applicationAnalyzesDTOS);
 
@@ -120,8 +127,11 @@ public class UserController {
         }
         model.addAttribute("analyzesMap",analyzesMap);
 
+//        Диагностика
+       List<AppointmentDiagnosticDto> appointmentDiagnosticDto = appointmentDiagnosticService.getAllAppointmentDiagnosticList();
+       model.addAttribute("appointmentDiagnosticDto", appointmentDiagnosticDto);
 
-        model.addAttribute("user", user);
+
         return "/profile-manager";
     }
 

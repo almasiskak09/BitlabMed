@@ -58,7 +58,9 @@ public class SecurityConfig {
                                         "/deleteAppointmentDoctor/**",
                                         "/updateAppointmentDoctor/**",
                                         "/deleteAppointmentAnalyze/**",
-                                        "/updateAppointmentAnalyze/**").permitAll()
+                                        "/updateAppointmentAnalyze/**",
+                                        "/deleteAppointmentDiagnostic/**",
+                                        "/updateAppointmentDiagnostic/**").permitAll()
                                 .anyRequest().hasAuthority("ROLE_ADMIN"))
                 .formLogin(
                         login -> login

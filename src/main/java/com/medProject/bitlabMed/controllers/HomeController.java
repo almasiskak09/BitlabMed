@@ -31,6 +31,7 @@ public class HomeController {
     private final DiagnosticCategoryService diagnosticCategoryService;
     private final AppointmentDoctorService appointmentDoctorService;
     private final ApplicationAnalyzesService applicationAnalyzesService;
+    private final AppointmentDiagnosticService appointmentDiagnosticService;
 
 
     @GetMapping(value = "/home")
@@ -139,6 +140,18 @@ public class HomeController {
     @PostMapping(value = "/updateAppointmentAnalyze")
     public String updateAppointmentAnalyze(@RequestParam Long id) {
         applicationAnalyzesService.updateApplicationAnalyzes(id);
+        return "redirect:/profile-manager";
+    }
+
+    @PostMapping(value = "/deleteAppointmentDiagnostic")
+    public String deleteAppointmentDiagnostic(@RequestParam Long id) {
+        appointmentDiagnosticService.deleteAppointmentDiagnosticById(id);
+        return "redirect:/profile-manager";
+    }
+
+    @PostMapping(value = "/updateAppointmentDiagnostic")
+    public String updateAppointmentDiagnostic(@RequestParam Long id) {
+        appointmentDiagnosticService.updateAppointmentDiagnostic(id);
         return "redirect:/profile-manager";
     }
 

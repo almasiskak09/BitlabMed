@@ -41,11 +41,10 @@
     </div>
 
     <div class="profileZapicCategory">
-        <button>Все</button>
-        <button>Запись к врачам</button>
-        <button>Анализы</button>
-        <button>Диагностика</button>
-
+        <button id="btnAll" onclick="showCategory('all')">Все</button>
+        <button id="btnDoctors" onclick="showCategory('doctors')">Запись к врачам</button>
+        <button id="btnAnalyzes" onclick="showCategory('analiz')">Анализы</button>
+        <button id="btnDiagnostics" onclick="showCategory('diagnostika')">Диагностика</button>
     </div>
 
 
@@ -152,30 +151,27 @@
         <h3 class="strong2 baseColor">Диагностика</h3>
         <div class="profileZapicList2">
 
-            <div class="zapicComponentAnaliz">
-                <button class="zapicButton">ЗАПИСЬ</button>
+            <div class="zapicComponentAnaliz" th:classappend="${ap.handled}?'grayBack'" th:each="ap : ${appointmentDiagnosticDto}">
 
-                <h6 class="bac">Толегенов Данияр | <small class="strong">87079797096</small></h6>
-
-                <section class="accordion">
-                    <div class="tab">
-                        <input type="checkbox" name="accordion-1" id="cb7">
-                        <label for="cb7" class="tab__label">Диагностика</label>
-                        <div class="tab__content">
-
-                            <div class="diagnostikaComponent">
-                                <h5 class="strong">Название услуги</h5>
-                                <div class="analizPriceZapic">
-                                    <h2 class="baseColor"><strong>12 900 тг.</strong></h2>
-                                </div>
-                            </div>
+                <form th:action="@{/deleteAppointmentDiagnostic}" th:method="post">
+                    <input type="hidden" name="id" th:value="${ap.getId()}">
+                    <button type="submit" class="zapicButton0 ">X</button>
+                </form>
 
 
-                        </div>
+                <form th:if="${!ap.handled}" th:action="@{/updateAppointmentDiagnostic}" th:method="post">
+                    <input type="hidden" name="id" th:value="${ap.getId()}">
+                    <button class="zapicButton02">H</button>
+                </form>
+
+                <h6 class="bac strong" th:text="${ap.getPatientFullName()}+' | '+${ap.getPatientPhone()}"></h6>
+                <div class="diagnostikaComponent">
+                    <h5 class="strong" th:text="${ap.diagnostic.getDiagnosticName()}"></h5>
+                    <div class="analizPriceZapic">
+                        <h2 class="baseColor strong" th:text="${ap.diagnostic.getDiagnosticPrice()}+' тг.'"></h2>
                     </div>
-                </section>
+                </div>
             </div>
-
 
         </div>
     </div>
@@ -183,6 +179,25 @@
 
 </div>
 
+<script>
+    function showCategory(category) {
+        // Получаем все категории
+        const allCategories = document.querySelectorAll('.profileZapic');
+
+        allCategories.forEach((categoryElement) => {
+            if (category === 'all') {
+                categoryElement.style.display = 'block'; // Показать все
+            } else if (categoryElement.id === category) {
+                categoryElement.style.display = 'block'; // Показать только выбранное
+            } else {
+                categoryElement.style.display = 'none'; // Скрыть остальные
+            }
+        });
+    }
+
+    // Показать все категории по умолчанию при загрузке страницы
+    document.addEventListener('DOMContentLoaded', () => showCategory('all'));
+</script>
 
 
 </body>

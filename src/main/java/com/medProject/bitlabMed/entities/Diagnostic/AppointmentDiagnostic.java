@@ -26,7 +26,7 @@ public class AppointmentDiagnostic extends BaseEntity {
     @Column(name = "patient_phone")
     private String patientPhone;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "diagnostic_id")
     private Diagnostic diagnostic;
 
@@ -36,6 +36,9 @@ public class AppointmentDiagnostic extends BaseEntity {
 
     @Column(name = "is_present")
     private boolean isPresent;
+
+    @Column(name = "is_handled")
+    private boolean isHandled;
 
 
 

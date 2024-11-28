@@ -16,6 +16,7 @@
             <column name="patient_full_name" type="varchar(255)"></column>
             <column name="patient_phone" type="varchar(255)"></column>
             <column name="diagnostic_id" type="bigint"></column>
+            <column name="is_handled" type="boolean"></column>
             <column name="user_id" type="bigint">
                 <constraints nullable="true"></constraints>
             </column>

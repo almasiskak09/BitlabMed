@@ -1,13 +1,7 @@
 package com.medProject.bitlabMed.services;
 
 import com.medProject.bitlabMed.dtos.DiagnosticDto.AppointmentDiagnosticDto;
-import com.medProject.bitlabMed.dtos.DoctorDto.AppointmentDoctorDto;
-import com.medProject.bitlabMed.entities.Diagnostic.AppointmentDiagnostic;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
-import java.util.Map;
 
 public interface AppointmentDiagnosticService {
 
@@ -16,6 +10,6 @@ public interface AppointmentDiagnosticService {
     List<AppointmentDiagnosticDto> getAllAppointmentDiagnosticList();
     AppointmentDiagnosticDto addAppointmentDiagnostic ( AppointmentDiagnosticDto appointmentDiagnosticDto);
     AppointmentDiagnosticDto getAppointmentDiagnosticById(Long id);
-    AppointmentDiagnosticDto updateAppointmentDiagnostic(AppointmentDiagnosticDto appointmentDiagnosticDto);
+    AppointmentDiagnosticDto updateAppointmentDiagnostic(Long id);
     void deleteAppointmentDiagnosticById(Long id);
 }
