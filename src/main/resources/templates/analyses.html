@@ -30,8 +30,8 @@
 
     <div class="analizHead">
         <h1 class="analizText"><b>Сдать анализ</b></h1>
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Найти анализ" aria-label="Search">
+        <form class="d-flex" role="search" th:action="@{/analyses}" th:method="get">
+            <input class="form-control me-2" type="search" name="search" placeholder="Найти анализ" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Найти</button>
         </form>
     </div>

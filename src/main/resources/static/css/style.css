@@ -327,11 +327,10 @@ hr{
     transition-delay: 0.2ms;
     cursor: pointer;
 }
-.news button:hover{
-    color: white;
-    background-color: #0097b3;
-
-}
+/*.news button:hover{*/
+/*    color: white;*/
+/*    background-color: #0097b3;*/
+/*}*/
 .bigRight{
     width: 40% !important;
     position: sticky;

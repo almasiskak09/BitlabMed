@@ -11,4 +11,5 @@ public interface DiagnosticCategoryService {
     DiagnosticCategoryDTO getDiagnosticCategoryById(Long id);
     DiagnosticCategoryDTO updateDiagnosticCategory(DiagnosticCategoryDTO diagnosticCategoryDTO);
     void deleteDiagnosticCategoryById(Long id);
+    List<DiagnosticCategoryDTO> findDiagnosticCategoryByDiagnosticName(String name);
 }

@@ -28,8 +28,8 @@
 
     <div class="diagnostikaHead">
         <h1 class="diagnostikaText"><b>Диагностика</b></h1>
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Найти вид диагностики" aria-label="Search">
+        <form class="d-flex" role="search" th:action="@{/diagnostic}" th:method="get">
+            <input class="form-control me-2" type="search" name="search" placeholder="Найти вид диагностики" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Найти</button>
         </form>
     </div>

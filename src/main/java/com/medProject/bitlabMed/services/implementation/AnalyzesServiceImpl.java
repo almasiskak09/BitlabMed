@@ -60,4 +60,5 @@ public class AnalyzesServiceImpl implements AnalyzesService  {
         return analyzesRepository.findAllById(ids);
     }
 
+
 }

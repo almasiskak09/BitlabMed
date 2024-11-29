@@ -38,4 +38,13 @@ public class DiagnosticCategoryServiceImpl implements DiagnosticCategoryService 
     public void deleteDiagnosticCategoryById(Long id){
         diagnosticCategoryRepository.deleteById(id);
     }
+
+    public     List<DiagnosticCategoryDTO> findDiagnosticCategoryByDiagnosticName(String name){
+        List<DiagnosticCategoryDTO> diagnosticCategoryDTOS = diagnosticCategoryMapper.toDtoList(diagnosticCategoryRepository.findADiagnosticCategoryByDiagnosticNameContainingIgnoreCase(name.toLowerCase()));
+        return diagnosticCategoryDTOS;
+    }
+
+
 }
+
+

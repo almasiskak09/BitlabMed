@@ -45,11 +45,15 @@ public class HomeController {
 
     //    отображение страницы с анализами (HTML)
     @GetMapping(value = "/analyses")
-    public String analysesPage(Model model, HttpSession httpSession){
-        List<AnalyzesDTO>analyzesDTOList = analyzesService.getAllAnalyzes();
-        List<AnalyzesCategoryDTO> analyzesCategoryDTOList = analyzesCategoryService.getAllAnalyzesCategory();
+    public String analysesPage(Model model, HttpSession httpSession,@RequestParam (required = false)String search){
 
-        model.addAttribute("analyzesList",analyzesDTOList);
+        List<AnalyzesCategoryDTO> analyzesCategoryDTOList;
+        if (search !=null && !search.isEmpty()){
+            analyzesCategoryDTOList = analyzesCategoryService.searchAnalyzesCategoryByAnalyzeName(search);
+        }else{
+            analyzesCategoryDTOList = analyzesCategoryService.getAllAnalyzesCategory();
+        }
+
         model.addAttribute("analyzesCategoryList",analyzesCategoryDTOList);
 
         List<Long> addedAnalyzes = (List<Long>) httpSession.getAttribute("addedAnalyzes");
@@ -65,11 +69,15 @@ public class HomeController {
 
     //    отображение страницы с диагностиками (HTML)
     @GetMapping(value = "/diagnostic")
-    public String diagnosticPage(Model model){
-        List<DiagnosticDTO>diagnosticDTOList = diagnosticService.getAllDiagnostics();
-        List<DiagnosticCategoryDTO>diagnosticCategoryDTOList = diagnosticCategoryService.getAllDiagnosticsCategory();
+    public String diagnosticPage(Model model,@RequestParam (required = false) String search){
 
-        model.addAttribute("diagnosticList",diagnosticDTOList);
+        List<DiagnosticCategoryDTO>diagnosticCategoryDTOList;
+        System.out.println(search);
+        if (search !=null && !search.isEmpty()){
+            diagnosticCategoryDTOList = diagnosticCategoryService.findDiagnosticCategoryByDiagnosticName(search);
+        }else {
+            diagnosticCategoryDTOList = diagnosticCategoryService.getAllDiagnosticsCategory();
+        }
         model.addAttribute("diagnosticCategoryList",diagnosticCategoryDTOList);
 
         return "diagnostic";

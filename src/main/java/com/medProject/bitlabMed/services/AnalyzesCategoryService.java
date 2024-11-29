@@ -12,6 +12,6 @@ public interface AnalyzesCategoryService {
     AnalyzesCategoryDTO getAnalyzeCategoryById(Long id);
     AnalyzesCategoryDTO updateAnalyzeCategory(AnalyzesCategoryDTO analyzesCategoryDTO);
     void deleteAnalyzeCategoryById(Long id);
-
+    List<AnalyzesCategoryDTO> searchAnalyzesCategoryByAnalyzeName(String analyze);
 
 }

@@ -39,7 +39,7 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     public List<DoctorDTO> getDoctorsBySpeciality(String speciality){
-        List<DoctorDTO>doctorList = doctorMapper.toDtoList(doctorRepository.findByDoctorSpecialityIgnoreCase(speciality));
+        List<DoctorDTO>doctorList = doctorMapper.toDtoList(doctorRepository.findByDoctorSpecialityIgnoreCase(speciality.toLowerCase()));
         return doctorList;
     }
 
