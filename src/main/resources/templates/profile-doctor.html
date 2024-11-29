@@ -22,32 +22,58 @@
 
 
 
-<section class="container">
-    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Главная</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Врачи</li>
-        </ol>
-    </nav>
-</section>
-
 <!--ПРОФИЛЬ ДОКТОРА-->
 
-<div class="container">
+<div class="container h">
 
     <div class="profileHead">
-        <h3 class="strong2">Имя Фамилия Врача</h3>
-        <p class="baseColor">Должность</p>
+        <h3 class="strong2" th:text="${user.doctor.getDoctorName()}"></h3>
+        <p class="baseColor" th:text="'Должность: '+${user.doctor.getDoctorSpeciality()}"></p>
     </div>
-    <div class="doctorCalendar">
-        Здесь будет календарь
 
+
+    <div class="doctorHistory" th:each="entry:${groupedAppointments}">
+
+        <div class="doctorDate">
+            <h6 class="strong2 blueText h" th:text="${entry.key}"></h6>
+
+            <div class="zapicComponent" th:classappend="${ap.present}? 'greenBack'" th:each="ap:${entry.value}">
+
+                <form th:action="@{/deleteAppointmentDoctor}" th:method="post">
+                    <input type="hidden" name="id" th:value="${ap.getId()}">
+                    <button type="submit" class="zapicButton0 ">X</button>
+                </form>
+
+
+                <form th:if="${!ap.isPresent()}" th:action="@{/updateAppointmentDoctorIsPresent}" th:method="post">
+                    <input type="hidden" name="id" th:value="${ap.getId()}">
+                    <button class="zapicButton02">H</button>
+                </form>
+
+
+
+                <div class="zapicComponentHead  zapicPadding">
+                    <h6 class="bac" th:text="${ap.getPatientFullName()}"></h6>
+                    <p class="strong p" th:text="${ap.getPatientPhone()}"></p>
+                </div>
+                <div class="zapicComponentShoulder  zapicPadding">
+                    <h6 class="bac"th:text="${ap.docName}">Асан Айбар</h6>
+                    <p class="strong p" th:text="${ap.docSpeciality}"></p>
+                </div>
+                <div class="zapicComponentBody  zapicPadding">
+                    <h6 class="strong" th:text="${ap.getFormattedDate()}+' | '+${ap.getAppointmentStartTime()}"></h6>
+                </div>
+                <div class="zapicComponentHips  zapicPadding">
+                    <p class="strong2 baseColor" th:text="${ap.getFormattedPrice()}+' тг.'"></p>
+                </div>
+            </div>
+
+        </div>
     </div>
 
 </div>
 
 
-<div th:replace="~{layout/layout :: footer}"></div>
 
 </body>
 </html>

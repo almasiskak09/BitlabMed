@@ -39,4 +39,9 @@ public class DoctorRestController {
         doctorService.deleteCarById(id);
     }
 
+    @GetMapping(value = "getDoctorBySpeciality/{speciality}")
+    public List<DoctorDTO> getDoctorBySpeciality(@PathVariable String speciality){
+        return doctorService.getDoctorsBySpeciality(speciality);
+    }
+
 }

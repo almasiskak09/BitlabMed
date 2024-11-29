@@ -14,10 +14,24 @@
         </insert>
 
         <insert tableName="t_users">
-            <column name="full_name" value="doctor"></column>
-            <column name="email" value="doctor@mail.ru"></column>
-            <column name="password" value="$2a$12$hsGn5hI.EsWu6MvdIqc0Weq5Wd4BLx/EdN.V4TgakRDkyhwxp999S"></column>
+            <column name="full_name" value="Толегенов Данияр"></column>
+            <column name="email" value="doni@mail.ru"></column>
+            <column name="password" value="$2a$12$TTJD0LfxhNwUkFePq.u.p.egazcpUElOUuQCBAR5EWzbU/z3a45.2"></column>
+            <column name="phone" value="87073030303"></column>
+        </insert>
+
+        <insert tableName="t_users">
+            <column name="full_name" value="Асан Айбар"></column>
+            <column name="email" value="aibar@mail.ru"></column>
+            <column name="password" value="$2a$12$6E9KBij/XTPF.VJXoCozk.7DAbVXbc99UvuGaFOacsnY6HvKIREDm"></column>
             <column name="phone" value="87072020202"></column>
+        </insert>
+
+        <insert tableName="t_users">
+            <column name="full_name" value="Каипназаров Димаш"></column>
+            <column name="email" value="dimash@mail.ru"></column>
+            <column name="password" value="$2a$12$qFXKwU.2ozoyTtXre1FJYud3j9uT5OjcveS/sJQZV0A/fFyVU5tBO"></column>
+            <column name="phone" value="87074040404"></column>
         </insert>
 
         <insert tableName="t_users">

@@ -16,9 +16,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.DateFormatter;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -121,5 +124,22 @@ public class AppointmentDoctorServiceImpl implements AppointmentDoctorService {
         List<AppointmentDoctorDto> appointmentDoctorDtoList = appointmentDoctorMapper.toDtoList(appointmentDoctorRepository.findByUserId(userId));
         return appointmentDoctorDtoList;
     }
+
+    public  List<AppointmentDoctorDto> getAppointmentDoctorByDoctorId(Long doctorId){
+        List<AppointmentDoctorDto> appointmentDoctorDto = appointmentDoctorMapper.toDtoList(appointmentDoctorRepository.findByDoctorId(doctorId));
+        return appointmentDoctorDto;
+    }
+
+    public Map<String, List<AppointmentDoctorDto>> groupAppointmentsByDate(List<AppointmentDoctorDto> appointments) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM", new Locale("ru"));
+        return appointments.stream()
+                .collect(Collectors.groupingBy(
+                        appointment -> appointment.getAppointmentDate().format(formatter),
+                        TreeMap::new,
+                        Collectors.toList()
+                ));
+    }
+
+
 
 }

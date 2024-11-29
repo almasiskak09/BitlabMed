@@ -7,6 +7,8 @@ import com.medProject.bitlabMed.dtos.DiagnosticDto.DiagnosticDTO;
 import com.medProject.bitlabMed.dtos.DoctorDto.AppointmentDoctorDto;
 import com.medProject.bitlabMed.entities.User.User;
 import com.medProject.bitlabMed.mappers.AnalyzesMapper;
+import com.medProject.bitlabMed.mappers.AppointmentDoctorMapper;
+import com.medProject.bitlabMed.repositories.AppointmentDoctorRepository;
 import com.medProject.bitlabMed.services.ApplicationAnalyzesService;
 import com.medProject.bitlabMed.services.AppointmentDiagnosticService;
 import com.medProject.bitlabMed.services.AppointmentDoctorService;
@@ -22,9 +24,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,6 +36,8 @@ public class UserController {
     private final AppointmentDoctorService appointmentDoctorService;
     private final ApplicationAnalyzesService applicationAnalyzesService;
     private final AppointmentDiagnosticService appointmentDiagnosticService;
+    private final AppointmentDoctorRepository appointmentDoctorRepository;
+    private final AppointmentDoctorMapper appointmentDoctorMapper;
 
     @GetMapping(value = "/sign-in")
     @PreAuthorize("isAnonymous()")
@@ -119,6 +123,16 @@ public class UserController {
     public String profileDoctor(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
+        Long doctorId = user.getId();
+
+        System.out.println(doctorId);
+        List<AppointmentDoctorDto> appointments = appointmentDoctorService.getAppointmentDoctorByDoctorId(doctorId);
+        appointments.sort(Comparator.comparing(AppointmentDoctorDto::getAppointmentDate)
+                .thenComparing(AppointmentDoctorDto::getAppointmentStartTime));
+
+
+        Map<String,List<AppointmentDoctorDto>> groupedAppointments = appointmentDoctorService.groupAppointmentsByDate(appointments);
+        model.addAttribute("groupedAppointments",groupedAppointments);
 
         model.addAttribute("user", user);
         return "/profile-doctor";

@@ -8,6 +8,7 @@ import com.medProject.bitlabMed.dtos.DoctorDto.AppointmentDoctorDto;
 import com.medProject.bitlabMed.dtos.DoctorDto.DoctorDTO;
 import com.medProject.bitlabMed.repositories.AppointmentDoctorRepository;
 import com.medProject.bitlabMed.services.*;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,8 +18,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -74,11 +78,18 @@ public class HomeController {
 
     //    отображение страницы с докторами (HTML)
     @GetMapping(value = "/doctors")
-    public String doctorsPage(Model model) {
-        List<DoctorDTO> doctorList = doctorService.getAllDoctors();
+    public String doctorsPage(Model model,@RequestParam(required = false) String search) {
+        List<DoctorDTO> doctorList;
+
+        if(search != null && !search.isEmpty()){
+            doctorList = doctorService.getDoctorsBySpeciality(search);
+        }else{
+            doctorList = doctorService.getAllDoctors();
+        }
         model.addAttribute("doctorsList", doctorList);
         return "doctors";
     }
+
 
     //    отображение страницы после заявки к доктору (HTML)
     @GetMapping(value = {"/app-doctor/{id}", "/app-doctor"})
@@ -118,9 +129,11 @@ public class HomeController {
     }
 
     @PostMapping(value = "/deleteAppointmentDoctor")
-    public String deleteAppointment(@RequestParam Long id) {
+    public String deleteAppointment(@RequestParam Long id, HttpServletRequest request) {
         appointmentDoctorService.deleteAppointmentDoctorById(id);
-        return "redirect:/profile-manager";
+
+        String referer = request.getHeader("referer");
+        return "redirect:"+referer;
     }
 
     @PostMapping(value = "/updateAppointmentDoctor")
@@ -129,6 +142,15 @@ public class HomeController {
         appointmentDoctorDto.setHandled(true);
         appointmentDoctorService.updateAppointmentDoctor(appointmentDoctorDto);
         return "redirect:/profile-manager";
+    }
+    @PostMapping(value = "/updateAppointmentDoctorIsPresent")
+    public String updateAppointmentIsPresent(@RequestParam Long id,HttpServletRequest request) {
+        AppointmentDoctorDto appointmentDoctorDto = appointmentDoctorService.getAppointmentDoctorById(id);
+        appointmentDoctorDto.setPresent(true);
+        appointmentDoctorService.updateAppointmentDoctor(appointmentDoctorDto);
+
+        String referer = request.getHeader("referer");
+        return "redirect:"+referer;
     }
 
 

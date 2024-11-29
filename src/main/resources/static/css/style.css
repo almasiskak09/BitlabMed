@@ -788,6 +788,11 @@ hr{
     background-color: rgb(209, 209, 209);
     color: gray !important;
 }
+
+.greenBack{
+    background-color: rgb(209, 236, 219);
+    color: rgb(0, 128, 109);
+}
 .zapicComponentHead{
     border-radius: 6px 6px 0px 0px;
 }

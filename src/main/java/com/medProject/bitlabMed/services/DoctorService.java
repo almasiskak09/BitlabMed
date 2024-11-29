@@ -11,4 +11,5 @@ public interface DoctorService {
     DoctorDTO getDoctorById(Long id);
     DoctorDTO updateDoctor(DoctorDTO doctorDto);
     void deleteCarById(Long id);
+    List<DoctorDTO>  getDoctorsBySpeciality(String speciality);
 }

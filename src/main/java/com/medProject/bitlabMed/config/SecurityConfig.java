@@ -57,6 +57,7 @@ public class SecurityConfig {
                                         "/cart-page/**",
                                         "/deleteAppointmentDoctor/**",
                                         "/updateAppointmentDoctor/**",
+                                        "/updateAppointmentDoctorIsPresent/**",
                                         "/deleteAppointmentAnalyze/**",
                                         "/updateAppointmentAnalyze/**",
                                         "/deleteAppointmentDiagnostic/**",

@@ -1,6 +1,7 @@
 package com.medProject.bitlabMed.entities.Doctor;
 
 import com.medProject.bitlabMed.entities.BaseEntity;
+import com.medProject.bitlabMed.entities.User.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -49,6 +50,10 @@ public class Doctor extends BaseEntity {
 
     @OneToMany(mappedBy = "doctor")
     private List<AppointmentDoctor> appointmentList;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 //    @OneToMany(fetch = FetchType.LAZY)
 //    private List<ApplicationRequest> application_request_list;

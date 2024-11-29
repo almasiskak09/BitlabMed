@@ -25,9 +25,9 @@
 <div class="container h marginFoot">
     <div class="doctorProfileHead">
         <h1 class="diagnostikaText"><b>Врачи</b></h1>
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Поиск врача" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Найти</button>
+        <form class="d-flex" role="search" th:action="@{/doctors}" th:method="get">
+            <input class="form-control me-2" type="search" name="search" placeholder="Поиск врача" aria-label="Search">
+            <button class="btn btn-outline-success"  type="submit">Найти</button>
         </form>
     </div>
 
@@ -91,7 +91,6 @@
     </div>
 
 </div>
-    <div th:replace="~{layout/layout :: footer}"></div>
 
 
     <script>

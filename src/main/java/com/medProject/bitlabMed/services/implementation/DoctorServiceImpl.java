@@ -37,4 +37,10 @@ public class DoctorServiceImpl implements DoctorService {
     public void deleteCarById(Long id){
         doctorRepository.deleteById(id);
     }
+
+    public List<DoctorDTO> getDoctorsBySpeciality(String speciality){
+        List<DoctorDTO>doctorList = doctorMapper.toDtoList(doctorRepository.findByDoctorSpecialityIgnoreCase(speciality));
+        return doctorList;
+    }
+
 }

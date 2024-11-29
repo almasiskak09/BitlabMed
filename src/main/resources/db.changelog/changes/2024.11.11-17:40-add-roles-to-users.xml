@@ -18,13 +18,24 @@
 
         <insert tableName="t_users_roles">
             <column name="user_id" value="3"></column>
-            <column name="roles_id" value="3"></column>
+            <column name="roles_id" value="2"></column>
         </insert>
 
         <insert tableName="t_users_roles">
             <column name="user_id" value="4"></column>
+            <column name="roles_id" value="2"></column>
+        </insert>
+
+        <insert tableName="t_users_roles">
+            <column name="user_id" value="5"></column>
+            <column name="roles_id" value="3"></column>
+        </insert>
+
+        <insert tableName="t_users_roles">
+            <column name="user_id" value="6"></column>
             <column name="roles_id" value="1"></column>
         </insert>
+
     </changeSet>
 
 
