@@ -52,9 +52,9 @@
 
 2. Проверьте настройки базы данных в application.properties или application.yml:
 
-spring.datasource.url=jdbc:postgresql://localhost:5432/bitlabMed
-spring.datasource.username=<ваш-username>
-spring.datasource.password=<ваш-пароль>
+- spring.datasource.url=jdbc:postgresql://localhost:5432/bitlabMed
+- spring.datasource.username=<ваш-username>
+- spring.datasource.password=<ваш-пароль>
 
 3. Создайте базу данных bitlabMed в PostgreSQL:
 
