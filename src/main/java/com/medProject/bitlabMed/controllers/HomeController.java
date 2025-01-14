@@ -72,7 +72,6 @@ public class HomeController {
     public String diagnosticPage(Model model,@RequestParam (required = false) String search){
 
         List<DiagnosticCategoryDTO>diagnosticCategoryDTOList;
-        System.out.println(search);
         if (search !=null && !search.isEmpty()){
             diagnosticCategoryDTOList = diagnosticCategoryService.findDiagnosticCategoryByDiagnosticName(search);
         }else {

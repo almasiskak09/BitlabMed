@@ -445,12 +445,24 @@ hr{
     padding: 20px 25px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 10px;
-    height: 700px;
+    height: 600px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    overflow: hidden;
+
 }
 
+.analizTable img{
+    width: 200px;
+    margin-left: 170px;
+}
+
+.analizTable a{
+    text-decoration: underline;
+    color: #0097b3;
+    font-weight: 700;
+}
 .action{
     align-self: center;
 }

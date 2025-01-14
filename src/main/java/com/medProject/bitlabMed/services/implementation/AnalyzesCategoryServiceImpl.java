@@ -41,7 +41,7 @@ public class AnalyzesCategoryServiceImpl implements AnalyzesCategoryService {
         analyzesCategoryRepository.deleteById(id);
     }
 
-    public     List<AnalyzesCategoryDTO> searchAnalyzesCategoryByAnalyzeName(String analyze){
+    public List<AnalyzesCategoryDTO> searchAnalyzesCategoryByAnalyzeName(String analyze){
         List<AnalyzesCategoryDTO> analyzesCategoryDTOList = analyzesCategoryMapper.toDtoList(analyzesCategoryRepository.findAnalyzesCategoryByAnalyzeName(analyze.toLowerCase()));
         return analyzesCategoryDTOList;
     }
