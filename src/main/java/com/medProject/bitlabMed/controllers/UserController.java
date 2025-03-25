@@ -116,7 +116,7 @@ public class UserController {
 
 
         model.addAttribute("user", user);
-        return "/profile";
+        return "profile";
     }
 
     @GetMapping(value = "/profile-doctor")
@@ -135,7 +135,7 @@ public class UserController {
         model.addAttribute("groupedAppointments",groupedAppointments);
 
         model.addAttribute("user", user);
-        return "/profile-doctor";
+        return "profile-doctor";
     }
 
     @GetMapping(value = "/profile-manager")
@@ -165,7 +165,7 @@ public class UserController {
        model.addAttribute("appointmentDiagnosticDto", appointmentDiagnosticDto);
 
 
-        return "/profile-manager";
+        return "profile-manager";
     }
 
 
